@@ -98,77 +98,117 @@ const Ministries = () => {
                 initial={{ opacity: 0, y: 30 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ delay: index * 0.1 }}
+                whileHover={{ y: -5 }}
               >
-                <Card
-                  className={`p-6 cursor-pointer transition-all hover:shadow-glow border-border ${
-                    isExpanded ? "ring-2 ring-primary" : ""
+                <div
+                  className={`relative cursor-pointer transition-all group ${
+                    isExpanded ? "lg:col-span-1" : ""
                   }`}
                   onClick={() => handleCardClick(ministry.id)}
                 >
-                  <div className="space-y-4">
-                    <div className="flex items-start justify-between">
-                      <div className="w-14 h-14 rounded-xl bg-gradient-fire flex items-center justify-center shadow-glow">
-                        <Icon className="w-7 h-7 text-white" />
+                  {/* Glow Effect */}
+                  <div className={`absolute -inset-2 bg-gradient-fire opacity-0 group-hover:opacity-20 blur-xl transition-opacity rounded-3xl ${isExpanded ? "opacity-30" : ""}`} />
+                  
+                  {/* Card */}
+                  <Card className={`relative bg-card/80 backdrop-blur-sm border-2 transition-all ${
+                    isExpanded ? "border-primary shadow-glow" : "border-border hover:border-primary/50"
+                  }`}>
+                    <div className="p-6 space-y-4">
+                      {/* Header */}
+                      <div className="flex items-start justify-between">
+                        <div className="w-16 h-16 rounded-2xl bg-gradient-fire flex items-center justify-center shadow-glow group-hover:scale-110 transition-transform">
+                          <Icon className="w-8 h-8 text-white" />
+                        </div>
+                        <motion.div
+                          animate={{ rotate: isExpanded ? 180 : 0 }}
+                          transition={{ duration: 0.3 }}
+                          className="p-2 rounded-full hover:bg-muted transition-colors"
+                        >
+                          <ChevronDown className="w-5 h-5 text-muted-foreground" />
+                        </motion.div>
                       </div>
+
+                      {/* Title & Description */}
+                      <div>
+                        <h3 className="font-sans text-xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors">
+                          {ministry.name}
+                        </h3>
+                        <p className="text-muted-foreground text-sm leading-relaxed">
+                          {ministry.description}
+                        </p>
+                      </div>
+
+                      {/* Expanded Content */}
                       <motion.div
-                        animate={{ rotate: isExpanded ? 180 : 0 }}
-                        transition={{ duration: 0.3 }}
+                        initial={false}
+                        animate={{
+                          height: isExpanded ? "auto" : 0,
+                          opacity: isExpanded ? 1 : 0,
+                        }}
+                        transition={{ duration: 0.4, ease: "easeInOut" }}
+                        className="overflow-hidden"
                       >
-                        <ChevronDown className="w-5 h-5 text-muted-foreground" />
+                        <div className="pt-4 border-t border-border space-y-6">
+                          {/* Details Section */}
+                          <div className="bg-muted/30 rounded-xl p-4">
+                            <h4 className="font-sans font-bold text-sm text-foreground mb-2 uppercase tracking-wide flex items-center gap-2">
+                              <div className="w-1 h-4 bg-gradient-fire rounded-full" />
+                              Sobre o Ministério
+                            </h4>
+                            <p className="text-muted-foreground text-sm leading-relaxed">
+                              {ministry.details}
+                            </p>
+                          </div>
+
+                          {/* Requirements Section */}
+                          <div className="bg-gradient-fire/5 rounded-xl p-4 border border-primary/20">
+                            <h4 className="font-sans font-bold text-sm text-foreground mb-3 uppercase tracking-wide flex items-center gap-2">
+                              <div className="w-1 h-4 bg-gradient-fire rounded-full" />
+                              Requisitos
+                            </h4>
+                            
+                            {/* Requisitos Espirituais */}
+                            <div className="mb-3">
+                              <p className="text-xs font-semibold text-primary mb-1 uppercase tracking-wider">
+                                Espirituais
+                              </p>
+                              <p className="text-muted-foreground text-sm">
+                                Compromisso com Cristo, vida de oração, frequência nos cultos
+                              </p>
+                            </div>
+                            
+                            {/* Requisitos Técnicos */}
+                            <div>
+                              <p className="text-xs font-semibold text-primary mb-1 uppercase tracking-wider">
+                                Técnicos
+                              </p>
+                              <p className="text-muted-foreground text-sm">
+                                {ministry.requirements}
+                              </p>
+                            </div>
+                          </div>
+
+                          {/* CTA Button */}
+                          <Button
+                            className="w-full bg-gradient-fire hover:opacity-90 text-white font-sans font-bold uppercase tracking-wide"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              const message = encodeURIComponent(
+                                `Olá! Tenho interesse em servir no ministério de ${ministry.name}.`
+                              );
+                              window.open(
+                                `https://wa.me/5511999999999?text=${message}`,
+                                "_blank"
+                              );
+                            }}
+                          >
+                            Quero Servir em {ministry.name}
+                          </Button>
+                        </div>
                       </motion.div>
                     </div>
-
-                    <div>
-                      <h3 className="font-sans text-xl font-bold text-foreground mb-2">
-                        {ministry.name}
-                      </h3>
-                      <p className="text-muted-foreground text-sm">
-                        {ministry.description}
-                      </p>
-                    </div>
-
-                    <motion.div
-                      initial={false}
-                      animate={{
-                        height: isExpanded ? "auto" : 0,
-                        opacity: isExpanded ? 1 : 0,
-                      }}
-                      transition={{ duration: 0.3 }}
-                      className="overflow-hidden"
-                    >
-                      <div className="pt-4 border-t border-border space-y-4">
-                        <div>
-                          <h4 className="font-sans font-semibold text-sm text-foreground mb-2">
-                            Sobre o ministério:
-                          </h4>
-                          <p className="text-muted-foreground text-sm leading-relaxed">
-                            {ministry.details}
-                          </p>
-                        </div>
-                        <div>
-                          <h4 className="font-sans font-semibold text-sm text-foreground mb-2">
-                            Requisitos:
-                          </h4>
-                          <p className="text-muted-foreground text-sm leading-relaxed">
-                            {ministry.requirements}
-                          </p>
-                        </div>
-                        <Button
-                          className="w-full bg-gradient-fire hover:opacity-90 text-white"
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            window.open(
-                              `https://wa.me/5511999999999?text=Olá! Tenho interesse em servir no ministério de ${ministry.name}.`,
-                              "_blank"
-                            );
-                          }}
-                        >
-                          Quero Servir em {ministry.name}
-                        </Button>
-                      </div>
-                    </motion.div>
-                  </div>
-                </Card>
+                  </Card>
+                </div>
               </motion.div>
             );
           })}
@@ -191,8 +231,11 @@ const Ministries = () => {
             size="lg"
             className="bg-white text-primary hover:bg-white/90 font-sans font-bold text-lg px-8 py-6"
             onClick={() => {
+              const message = encodeURIComponent(
+                "Olá! Sou novo convertido e gostaria de conhecer mais sobre o Incends."
+              );
               window.open(
-                "https://wa.me/5511999999999?text=Olá! Sou novo convertido e gostaria de conhecer mais sobre o Incends.",
+                `https://wa.me/5511999999999?text=${message}`,
                 "_blank"
               );
             }}

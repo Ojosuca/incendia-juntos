@@ -56,79 +56,142 @@ const Worship = () => {
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-12 items-center mb-16">
-          {/* Featured Video/Content */}
+        <div className="grid lg:grid-cols-2 gap-8 mb-16">
+          {/* Left: Spotify-style Playlist */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8 }}
           >
-            <div className="relative rounded-2xl overflow-hidden shadow-glow group">
-              <div className="aspect-video bg-gradient-dark flex items-center justify-center">
-                <div className="text-center space-y-4">
-                  <motion.div
-                    whileHover={{ scale: 1.1 }}
-                    className="w-20 h-20 rounded-full bg-gradient-fire flex items-center justify-center mx-auto cursor-pointer shadow-glow"
-                  >
-                    <Play className="w-10 h-10 text-white ml-1" />
-                  </motion.div>
-                  <div>
-                    <h3 className="font-sans font-bold text-xl text-foreground mb-2">
-                      Último Culto
-                    </h3>
-                    <p className="text-muted-foreground text-sm">
-                      Assista à gravação do nosso último encontro
-                    </p>
-                  </div>
+            <div className="bg-card/80 backdrop-blur-sm border border-border rounded-3xl p-8 shadow-glow">
+              <div className="flex items-center gap-4 mb-6">
+                <div className="w-16 h-16 rounded-xl bg-gradient-fire flex items-center justify-center shadow-glow">
+                  <Music2 className="w-8 h-8 text-white" />
+                </div>
+                <div>
+                  <h3 className="font-sans font-bold text-2xl text-foreground">
+                    Louvores dos Cultos
+                  </h3>
+                  <p className="text-muted-foreground text-sm">
+                    Ouça nossa playlist no Spotify
+                  </p>
                 </div>
               </div>
-              <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+
+              {/* Playlist Items */}
+              <div className="space-y-3 mb-6">
+                {[
+                  { name: "Incendiados", artist: "Ministério Incends", duration: "4:32" },
+                  { name: "Sem Máscaras", artist: "Ministério Incends", duration: "5:18" },
+                  { name: "Chama Viva", artist: "Ministério Incends", duration: "3:45" },
+                  { name: "Transformação", artist: "Ministério Incends", duration: "4:50" },
+                  { name: "Geração Santa", artist: "Ministério Incends", duration: "4:12" },
+                ].map((song, idx) => (
+                  <motion.div
+                    key={idx}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={isInView ? { opacity: 1, x: 0 } : {}}
+                    transition={{ delay: 0.3 + idx * 0.1 }}
+                    whileHover={{ x: 5 }}
+                    className="flex items-center gap-4 p-3 rounded-xl hover:bg-muted/50 transition-all cursor-pointer group"
+                  >
+                    <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-gradient-fire/20 flex items-center justify-center group-hover:bg-gradient-fire transition-all">
+                      <Play className="w-5 h-5 text-primary group-hover:text-white transition-colors" />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <p className="font-sans font-semibold text-sm text-foreground truncate">
+                        {song.name}
+                      </p>
+                      <p className="text-xs text-muted-foreground truncate">
+                        {song.artist}
+                      </p>
+                    </div>
+                    <span className="text-xs text-muted-foreground font-mono">
+                      {song.duration}
+                    </span>
+                  </motion.div>
+                ))}
+              </div>
+
+              <Button
+                size="lg"
+                onClick={() => window.open("https://open.spotify.com/", "_blank")}
+                className="w-full bg-gradient-fire hover:opacity-90 text-white font-sans font-bold"
+              >
+                Ouvir no Spotify
+              </Button>
             </div>
           </motion.div>
 
-          {/* Description */}
+          {/* Right: Message Card */}
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="space-y-6"
           >
-            <div className="flex items-start gap-4">
-              <div className="flex-shrink-0 w-14 h-14 rounded-xl bg-gradient-fire flex items-center justify-center shadow-glow">
-                <Music2 className="w-7 h-7 text-white" />
-              </div>
-              <div>
-                <h3 className="font-sans font-bold text-xl text-foreground mb-2">
-                  Louvor Autêntico
+            <div className="bg-gradient-to-br from-card via-card to-card/50 backdrop-blur-xl border-2 border-border rounded-3xl p-8 shadow-glow h-full">
+              <div className="flex items-center gap-3 mb-6">
+                <BookOpen className="w-8 h-8 text-primary" />
+                <h3 className="font-sans font-bold text-2xl text-foreground">
+                  Última Mensagem
                 </h3>
-                <p className="text-muted-foreground leading-relaxed">
-                  Nossa adoração não é apenas música - é um estilo de vida. Cada cântico é uma
-                  declaração de rendição total a Cristo, conduzindo o povo à presença genuína de Deus.
-                </p>
+              </div>
+
+              <div className="space-y-6">
+                {/* Pregador */}
+                <div>
+                  <p className="text-xs uppercase tracking-wider text-muted-foreground mb-1 font-semibold">
+                    Pregador
+                  </p>
+                  <p className="text-lg font-sans font-bold text-foreground">
+                    Pr. João Silva
+                  </p>
+                </div>
+
+                {/* Tema */}
+                <div>
+                  <p className="text-xs uppercase tracking-wider text-muted-foreground mb-1 font-semibold">
+                    Tema
+                  </p>
+                  <p className="text-xl font-display text-foreground uppercase tracking-tight">
+                    O Fogo que Transforma
+                  </p>
+                </div>
+
+                {/* Palavra Base */}
+                <div className="bg-gradient-fire/10 rounded-2xl p-4 border border-primary/20">
+                  <p className="text-xs uppercase tracking-wider text-primary mb-2 font-semibold">
+                    Palavra Base
+                  </p>
+                  <p className="text-sm font-sans text-foreground italic">
+                    "E eu rogarei ao Pai, e ele vos dará outro Consolador, para que fique convosco para sempre"
+                  </p>
+                  <p className="text-xs text-muted-foreground mt-2 font-semibold">
+                    João 14:16
+                  </p>
+                </div>
+
+                {/* Reflexão */}
+                <div>
+                  <p className="text-xs uppercase tracking-wider text-muted-foreground mb-2 font-semibold">
+                    Reflexão
+                  </p>
+                  <p className="text-muted-foreground leading-relaxed">
+                    Deus está chamando nossa geração para ser incendiada pelo Espírito Santo. 
+                    Não podemos viver uma vida morna, precisamos abraçar o fogo transformador 
+                    que queima tudo que não é de Deus e acende uma paixão genuína por Cristo.
+                  </p>
+                </div>
+
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="w-full border-primary text-primary hover:bg-primary hover:text-white font-sans font-semibold"
+                >
+                  Assistir Mensagem
+                </Button>
               </div>
             </div>
-
-            <div className="flex items-start gap-4">
-              <div className="flex-shrink-0 w-14 h-14 rounded-xl bg-gradient-fire flex items-center justify-center shadow-glow">
-                <BookOpen className="w-7 h-7 text-white" />
-              </div>
-              <div>
-                <h3 className="font-sans font-bold text-xl text-foreground mb-2">
-                  Palavra que Transforma
-                </h3>
-                <p className="text-muted-foreground leading-relaxed">
-                  Ensinamos a Palavra sem rodeios, sem máscaras, sem diluição. É a verdade do
-                  evangelho aplicada à realidade da nossa geração, trazendo transformação genuína.
-                </p>
-              </div>
-            </div>
-
-            <Button
-              size="lg"
-              className="bg-gradient-fire hover:opacity-90 text-white font-sans font-semibold w-full md:w-auto"
-            >
-              Ver todas as mensagens
-            </Button>
           </motion.div>
         </div>
 
