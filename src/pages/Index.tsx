@@ -101,7 +101,7 @@ const Index = () => {
               </p>
             </motion.div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 px-4">
               {sections.map((section, index) => {
                 const Icon = section.icon;
                 return (
@@ -111,9 +111,9 @@ const Index = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: index * 0.1, duration: 0.5 }}
-                    className="group"
+                    className="group w-full"
                   >
-                    <div className={`relative overflow-hidden rounded-2xl bg-gradient-to-br ${section.gradient} backdrop-blur-sm border border-border/50 p-8 h-full transition-all duration-300 hover:shadow-glow hover:border-primary/50`}>
+                    <div className={`relative overflow-hidden rounded-2xl bg-gradient-to-br ${section.gradient} backdrop-blur-sm border border-border/50 p-6 md:p-8 h-full transition-all duration-300 hover:shadow-glow hover:border-primary/50`}>
                       <div className="relative z-10">
                         <div className="mb-6 inline-flex p-4 rounded-2xl bg-background/50 backdrop-blur-sm border border-border/50">
                           <Icon className="w-8 h-8 text-primary" />

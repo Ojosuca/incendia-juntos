@@ -32,7 +32,7 @@ const ActionButton = ({
     whileTap={{ scale: 0.95 }}
     onClick={onClick}
     className={cn(
-      "px-8 py-3 rounded-full font-sans font-bold text-lg shadow-glow uppercase tracking-wide transition-all focus:outline-none focus:ring-2 focus:ring-offset-2",
+      "w-full sm:w-auto px-6 md:px-8 py-2.5 md:py-3 rounded-full font-sans font-bold text-base md:text-lg shadow-glow uppercase tracking-wide transition-all focus:outline-none focus:ring-2 focus:ring-offset-2",
       variant === "primary" 
         ? "bg-gradient-fire text-white hover:opacity-90 focus:ring-primary" 
         : "border-2 border-primary bg-background/50 backdrop-blur-sm text-primary hover:bg-primary hover:text-white focus:ring-primary"
@@ -71,13 +71,13 @@ export const AnimatedMarqueeHero: React.FC<AnimatedMarqueeHeroProps> = ({
         className
       )}
     >
-      <div className="z-10 flex flex-col items-center max-w-6xl">
+      <div className="z-10 flex flex-col items-center max-w-6xl w-full">
         {/* Tagline */}
         <motion.div
           initial="hidden"
           animate="show"
           variants={FADE_IN_ANIMATION_VARIANTS}
-          className="mb-6 inline-block rounded-full border-2 border-primary/30 bg-background/40 backdrop-blur-xl px-6 py-2 text-sm font-sans font-bold text-primary uppercase tracking-wider shadow-glow"
+          className="mb-4 md:mb-6 inline-block rounded-full border-2 border-primary/30 bg-background/40 backdrop-blur-xl px-4 py-1.5 md:px-6 md:py-2 text-xs md:text-sm font-sans font-bold text-primary uppercase tracking-wider shadow-glow"
         >
           {tagline}
         </motion.div>
@@ -94,7 +94,7 @@ export const AnimatedMarqueeHero: React.FC<AnimatedMarqueeHeroProps> = ({
               },
             },
           }}
-          className="font-display text-7xl md:text-9xl lg:text-[12rem] text-foreground leading-none tracking-tighter mb-8"
+          className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl 2xl:text-[12rem] text-foreground leading-none tracking-tighter mb-6 md:mb-8"
         >
           {typeof title === 'string' ? (
             title.split(" ").map((word, i) => (
@@ -117,7 +117,7 @@ export const AnimatedMarqueeHero: React.FC<AnimatedMarqueeHeroProps> = ({
           animate="show"
           variants={FADE_IN_ANIMATION_VARIANTS}
           transition={{ delay: 0.5 }}
-          className="mt-6 max-w-3xl text-xl md:text-2xl text-muted-foreground font-sans"
+          className="mt-4 md:mt-6 max-w-3xl text-base sm:text-lg md:text-xl lg:text-2xl text-muted-foreground font-sans px-4"
         >
           {description}
         </motion.p>
@@ -128,7 +128,7 @@ export const AnimatedMarqueeHero: React.FC<AnimatedMarqueeHeroProps> = ({
           animate="show"
           variants={FADE_IN_ANIMATION_VARIANTS}
           transition={{ delay: 0.6 }}
-          className="mt-10 flex flex-col sm:flex-row gap-4 justify-center items-center"
+          className="mt-8 md:mt-10 flex flex-col sm:flex-row gap-3 md:gap-4 justify-center items-center w-full px-4"
         >
           <ActionButton variant="primary" onClick={onCtaClick}>
             {ctaText}
@@ -142,9 +142,9 @@ export const AnimatedMarqueeHero: React.FC<AnimatedMarqueeHeroProps> = ({
       </div>
 
       {/* Animated Image Marquee */}
-      <div className="absolute bottom-0 left-0 w-full h-1/3 md:h-2/5 [mask-image:linear-gradient(to_bottom,transparent,black_20%,black_80%,transparent)]">
+      <div className="absolute bottom-0 left-0 w-full h-1/4 sm:h-1/3 md:h-2/5 [mask-image:linear-gradient(to_bottom,transparent,black_20%,black_80%,transparent)]">
         <motion.div
-          className="flex gap-4"
+          className="flex gap-2 sm:gap-3 md:gap-4"
           animate={{
             x: ["-50%", "0%"],
             transition: {
@@ -157,7 +157,7 @@ export const AnimatedMarqueeHero: React.FC<AnimatedMarqueeHeroProps> = ({
           {duplicatedImages.map((src, index) => (
             <div
               key={index}
-              className="relative aspect-[3/4] h-48 md:h-64 flex-shrink-0"
+              className="relative aspect-[3/4] h-32 sm:h-40 md:h-48 lg:h-64 flex-shrink-0"
               style={{
                 rotate: `${(index % 2 === 0 ? -2 : 5)}deg`,
               }}
@@ -165,7 +165,7 @@ export const AnimatedMarqueeHero: React.FC<AnimatedMarqueeHeroProps> = ({
               <img
                 src={src}
                 alt={`Imagem do culto ${index + 1}`}
-                className="w-full h-full object-cover rounded-2xl shadow-md border-2 border-white/10"
+                className="w-full h-full object-cover rounded-lg sm:rounded-xl md:rounded-2xl shadow-md border-2 border-white/10"
               />
             </div>
           ))}

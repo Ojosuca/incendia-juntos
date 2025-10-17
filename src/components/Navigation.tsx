@@ -2,21 +2,23 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Flame, Sun, Moon } from "lucide-react";
 import { Button } from "./ui/button";
+import { Link, useLocation } from "react-router-dom";
 
 const navItems = [
-  { name: "Home", href: "#home" },
-  { name: "Sobre", href: "#sobre" },
-  { name: "Agenda", href: "#agenda" },
-  { name: "Louvor e Palavra", href: "#louvor" },
-  { name: "Galeria", href: "#galeria" },
-  { name: "Ministérios", href: "#ministerios" },
-  { name: "Contato", href: "#contato" },
+  { name: "Home", href: "/" },
+  { name: "Sobre", href: "/sobre" },
+  { name: "Agenda", href: "/eventos" },
+  { name: "Louvor", href: "/louvor" },
+  { name: "Galeria", href: "/galeria" },
+  { name: "Ministérios", href: "/ministerios" },
+  { name: "Contato", href: "/contato" },
 ];
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [theme, setTheme] = useState<"light" | "dark">("dark");
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -43,29 +45,32 @@ const Navigation = () => {
           isScrolled ? "bg-background/95 backdrop-blur-md shadow-lg" : "bg-transparent"
         }`}
       >
-        <nav className="container mx-auto px-4 py-4 flex items-center justify-between">
-          <motion.a
-            href="#home"
-            className="flex items-center gap-2"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <Flame className="w-8 h-8 text-primary" />
-            <span className="font-display text-2xl md:text-3xl text-foreground">
-              INCENDS
-            </span>
-          </motion.a>
+        <nav className="container mx-auto px-4 py-3 md:py-4 flex items-center justify-between">
+          <Link to="/" className="flex items-center gap-2">
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="flex items-center gap-2"
+            >
+              <Flame className="w-6 h-6 md:w-8 md:h-8 text-primary" />
+              <span className="font-display text-xl md:text-2xl lg:text-3xl text-foreground">
+                INCENDS
+              </span>
+            </motion.div>
+          </Link>
 
-          <div className="hidden lg:flex items-center gap-8">
+          <div className="hidden lg:flex items-center gap-4 xl:gap-8">
             {navItems.map((item) => (
-              <a
+              <Link
                 key={item.name}
-                href={item.href}
-                className="text-foreground/80 hover:text-primary transition-colors font-sans text-sm font-medium relative group"
+                to={item.href}
+                className={`text-foreground/80 hover:text-primary transition-colors font-sans text-sm font-medium relative group ${
+                  location.pathname === item.href ? "text-primary" : ""
+                }`}
               >
                 {item.name}
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full" />
-              </a>
+              </Link>
             ))}
           </div>
 
@@ -111,9 +116,9 @@ const Navigation = () => {
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ type: "spring", damping: 25, stiffness: 200 }}
-              className="fixed top-0 right-0 bottom-0 w-80 bg-card border-l border-border z-50 lg:hidden overflow-y-auto"
+              className="fixed top-0 right-0 bottom-0 w-[85vw] max-w-sm bg-card border-l border-border z-50 lg:hidden overflow-y-auto"
             >
-              <div className="p-8">
+              <div className="p-6 md:p-8">
                 <div className="flex items-center justify-between mb-12">
                   <div className="flex items-center gap-2">
                     <Flame className="w-6 h-6 text-primary" />
@@ -132,17 +137,22 @@ const Navigation = () => {
 
                 <nav className="space-y-6">
                   {navItems.map((item, index) => (
-                    <motion.a
+                    <motion.div
                       key={item.name}
-                      href={item.href}
                       initial={{ opacity: 0, x: 20 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: index * 0.1 }}
-                      onClick={() => setIsOpen(false)}
-                      className="block text-lg font-sans font-medium text-foreground/80 hover:text-primary transition-colors"
                     >
-                      {item.name}
-                    </motion.a>
+                      <Link
+                        to={item.href}
+                        onClick={() => setIsOpen(false)}
+                        className={`block text-lg font-sans font-medium text-foreground/80 hover:text-primary transition-colors ${
+                          location.pathname === item.href ? "text-primary" : ""
+                        }`}
+                      >
+                        {item.name}
+                      </Link>
+                    </motion.div>
                   ))}
                 </nav>
 
@@ -150,9 +160,14 @@ const Navigation = () => {
                   <p className="text-sm text-muted-foreground mb-4">
                     Vamos lá, Alguém
                   </p>
-                  <Button className="w-full bg-gradient-fire hover:opacity-90">
-                    Quero fazer parte
-                  </Button>
+                  <Link to="/contato">
+                    <Button 
+                      className="w-full bg-gradient-fire hover:opacity-90"
+                      onClick={() => setIsOpen(false)}
+                    >
+                      Quero fazer parte
+                    </Button>
+                  </Link>
                 </div>
               </div>
             </motion.div>
