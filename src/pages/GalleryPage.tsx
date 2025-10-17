@@ -10,7 +10,13 @@ import fireTexture from "@/assets/fire-texture.jpg";
 
 const GalleryPage = () => {
   useEffect(() => {
-    const lenis = new Lenis();
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smoothWheel: true,
+      wheelMultiplier: 1,
+      touchMultiplier: 2,
+    });
     
     function raf(time: number) {
       lenis.raf(time);
@@ -37,36 +43,50 @@ const GalleryPage = () => {
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
-      <main className="min-h-screen w-full">
-        <div className="relative flex h-[50vh] items-center justify-center">
+      <main className="min-h-screen w-full overflow-x-hidden">
+        <div className="relative flex h-screen items-center justify-center bg-background">
           {/* Radial spotlight */}
           <div
             aria-hidden="true"
             className={cn(
-              'pointer-events-none absolute -top-1/2 left-1/2 h-[120vmin] w-[120vmin] -translate-x-1/2 rounded-full',
-              'bg-[radial-gradient(ellipse_at_center,hsl(var(--primary)/.2),transparent_50%)]',
-              'blur-[60px]',
+              'pointer-events-none absolute top-0 left-1/2 h-[120vmin] w-[120vmin] -translate-x-1/2 rounded-full',
+              'bg-[radial-gradient(ellipse_at_center,hsl(var(--primary)/.3),transparent_60%)]',
+              'blur-[80px]',
             )}
           />
           <div className="z-10 text-center px-4">
-            <p className="text-primary font-sans font-semibold text-sm uppercase tracking-wider mb-4">
+            <p className="text-primary font-sans font-semibold text-sm md:text-base uppercase tracking-wider mb-4 md:mb-6">
               Momentos que marcam
             </p>
-            <h1 className="font-display text-6xl md:text-8xl text-foreground mb-6">
+            <h1 className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-foreground mb-4 md:mb-6">
               GALERIA INCENDS
             </h1>
-            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+            <p className="text-muted-foreground text-base md:text-lg lg:text-xl max-w-2xl mx-auto mb-8">
               Veja como Deus tem se movido entre nós através desses momentos eternizados
             </p>
+            <div className="flex items-center justify-center gap-2 text-muted-foreground/60 text-sm animate-bounce">
+              <span>Role para explorar</span>
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+              </svg>
+            </div>
           </div>
         </div>
         <ZoomParallax images={images} />
-        <div className="h-[50vh] flex items-center justify-center bg-background/50 backdrop-blur-sm">
-          <div className="text-center px-4">
-            <h2 className="font-display text-4xl md:text-6xl text-foreground mb-4">
+        <div className="h-screen flex items-center justify-center bg-background relative">
+          <div
+            aria-hidden="true"
+            className={cn(
+              'pointer-events-none absolute top-1/2 left-1/2 h-[100vmin] w-[100vmin] -translate-x-1/2 -translate-y-1/2 rounded-full',
+              'bg-[radial-gradient(ellipse_at_center,hsl(var(--primary)/.2),transparent_60%)]',
+              'blur-[80px]',
+            )}
+          />
+          <div className="text-center px-4 z-10">
+            <h2 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-foreground mb-4 md:mb-6">
               Vamos Incendiar Juntos
             </h2>
-            <p className="text-muted-foreground text-lg mb-8">
+            <p className="text-muted-foreground text-lg md:text-xl mb-8">
               Faça parte dessa história
             </p>
           </div>
