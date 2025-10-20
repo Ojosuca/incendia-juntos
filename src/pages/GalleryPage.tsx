@@ -2,6 +2,9 @@ import { LayoutGrid } from "@/components/ui/layout-grid";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { cn } from "@/lib/utils";
+import heroImage from "@/assets/hero-worship.jpg";
+import communityImage from "@/assets/community.jpg";
+import fireTexture from "@/assets/fire-texture.jpg";
 import galleryWorship1 from "@/assets/gallery-worship-1.jpg";
 import galleryCommunity1 from "@/assets/gallery-community-1.jpg";
 import galleryWorshipBand from "@/assets/gallery-worship-band.jpg";
@@ -26,7 +29,7 @@ const GalleryPage = () => {
         </div>
       ),
       className: "md:col-span-2",
-      thumbnail: galleryWorship1,
+      thumbnail: heroImage,
     },
     {
       id: 2,
