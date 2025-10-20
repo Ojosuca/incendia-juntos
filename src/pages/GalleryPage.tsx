@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import Lenis from '@studio-freight/lenis';
-import { ZoomParallax } from "@/components/ui/zoom-parallax";
+import { LayoutGrid } from "@/components/ui/layout-grid";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { cn } from "@/lib/utils";
@@ -30,14 +30,112 @@ const GalleryPage = () => {
     };
   }, []);
 
-  const images = [
-    { src: heroImage, alt: "Momento de adoração" },
-    { src: communityImage, alt: "Comunidade reunida" },
-    { src: fireTexture, alt: "Atmosfera de fogo" },
-    { src: heroImage, alt: "Louvor intenso" },
-    { src: communityImage, alt: "Juventude incendiada" },
-    { src: fireTexture, alt: "Momento especial" },
-    { src: heroImage, alt: "Unidos em Cristo" },
+  const cards = [
+    {
+      id: 1,
+      content: (
+        <div>
+          <p className="font-bold md:text-4xl text-xl text-white">
+            Momento de Adoração
+          </p>
+          <p className="font-normal text-base my-4 max-w-lg text-neutral-200">
+            Unidos em louvor e adoração, experimentamos a presença de Deus de forma intensa.
+          </p>
+        </div>
+      ),
+      className: "md:col-span-2",
+      thumbnail: heroImage,
+    },
+    {
+      id: 2,
+      content: (
+        <div>
+          <p className="font-bold md:text-4xl text-xl text-white">
+            Comunidade Reunida
+          </p>
+          <p className="font-normal text-base my-4 max-w-lg text-neutral-200">
+            Juntos somos mais fortes. A comunidade Incends celebrando a fé.
+          </p>
+        </div>
+      ),
+      className: "col-span-1",
+      thumbnail: communityImage,
+    },
+    {
+      id: 3,
+      content: (
+        <div>
+          <p className="font-bold md:text-4xl text-xl text-white">
+            Fogo do Espírito
+          </p>
+          <p className="font-normal text-base my-4 max-w-lg text-neutral-200">
+            O fogo de Deus queima em nossos corações e transforma vidas.
+          </p>
+        </div>
+      ),
+      className: "col-span-1",
+      thumbnail: fireTexture,
+    },
+    {
+      id: 4,
+      content: (
+        <div>
+          <p className="font-bold md:text-4xl text-xl text-white">
+            Louvor Intenso
+          </p>
+          <p className="font-normal text-base my-4 max-w-lg text-neutral-200">
+            Cada momento de louvor é uma oportunidade de nos conectar com o criador.
+          </p>
+        </div>
+      ),
+      className: "md:col-span-2",
+      thumbnail: heroImage,
+    },
+    {
+      id: 5,
+      content: (
+        <div>
+          <p className="font-bold md:text-4xl text-xl text-white">
+            Juventude Incendiada
+          </p>
+          <p className="font-normal text-base my-4 max-w-lg text-neutral-200">
+            Uma geração apaixonada por Jesus, pronta para transformar o mundo.
+          </p>
+        </div>
+      ),
+      className: "col-span-1",
+      thumbnail: communityImage,
+    },
+    {
+      id: 6,
+      content: (
+        <div>
+          <p className="font-bold md:text-4xl text-xl text-white">
+            Momento Especial
+          </p>
+          <p className="font-normal text-base my-4 max-w-lg text-neutral-200">
+            Cada encontro é único e marcado pela presença do Espírito Santo.
+          </p>
+        </div>
+      ),
+      className: "col-span-1",
+      thumbnail: fireTexture,
+    },
+    {
+      id: 7,
+      content: (
+        <div>
+          <p className="font-bold md:text-4xl text-xl text-white">
+            Unidos em Cristo
+          </p>
+          <p className="font-normal text-base my-4 max-w-lg text-neutral-200">
+            Em Cristo, encontramos nossa verdadeira identidade e propósito.
+          </p>
+        </div>
+      ),
+      className: "md:col-span-2",
+      thumbnail: heroImage,
+    },
   ];
 
   return (
@@ -72,7 +170,9 @@ const GalleryPage = () => {
             </div>
           </div>
         </div>
-        <ZoomParallax images={images} />
+        <div className="min-h-screen py-10 md:py-20 bg-background">
+          <LayoutGrid cards={cards} />
+        </div>
         <div className="h-screen flex items-center justify-center bg-background relative">
           <div
             aria-hidden="true"
