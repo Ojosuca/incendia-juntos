@@ -31,10 +31,9 @@ export const LayoutGrid = ({ cards }: { cards: Card[] }) => {
           <motion.div
             onClick={() => handleClick(card)}
             className={cn(
-              card.className,
               "relative overflow-hidden cursor-pointer",
               selected?.id === card.id
-                ? "rounded-lg absolute inset-0 h-1/2 w-full md:w-1/2 m-auto z-50 flex justify-center items-center flex-wrap flex-col"
+                ? "fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[80vh] w-[90vw] md:w-[60vw] z-50 flex justify-center items-center rounded-lg"
                 : lastSelected?.id === card.id
                 ? "z-40 bg-white rounded-xl h-full w-full"
                 : "bg-white rounded-xl h-full w-full"
@@ -49,10 +48,10 @@ export const LayoutGrid = ({ cards }: { cards: Card[] }) => {
       <motion.div
         onClick={handleOutsideClick}
         className={cn(
-          "absolute h-full w-full left-0 top-0 bg-black opacity-0 z-10",
+          "fixed inset-0 bg-black opacity-0 z-40",
           selected?.id ? "pointer-events-auto" : "pointer-events-none"
         )}
-        animate={{ opacity: selected?.id ? 0.3 : 0 }}
+        animate={{ opacity: selected?.id ? 0.6 : 0 }}
       />
     </div>
   );
