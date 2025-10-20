@@ -31,28 +31,31 @@ export const LayoutGrid = ({ cards }: { cards: Card[] }) => {
           <motion.div
             onClick={() => handleClick(card)}
             className={cn(
-              "relative overflow-hidden cursor-pointer",
-              selected?.id === card.id
-                ? "fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[80vh] w-[90vw] md:w-[60vw] z-50 flex justify-center items-center rounded-lg"
-                : lastSelected?.id === card.id
-                ? "z-40 bg-white rounded-xl h-full w-full"
-                : "bg-white rounded-xl h-full w-full"
+              "bg-white rounded-xl h-full w-full relative overflow-hidden cursor-pointer"
             )}
             layoutId={`card-${card.id}`}
           >
-            {selected?.id === card.id && <SelectedCard selected={selected} />}
             <ImageComponent card={card} />
           </motion.div>
         </div>
       ))}
-      <motion.div
-        onClick={handleOutsideClick}
-        className={cn(
-          "fixed inset-0 bg-black opacity-0 z-40",
-          selected?.id ? "pointer-events-auto" : "pointer-events-none"
-        )}
-        animate={{ opacity: selected?.id ? 0.6 : 0 }}
-      />
+      {selected && (
+        <div
+          onClick={handleOutsideClick}
+          className={cn("fixed inset-0 z-50 flex items-center justify-center")}
+        >
+          <div className="absolute inset-0 bg-black/60" />
+          <motion.div
+            onClick={(e) => e.stopPropagation()}
+            layoutId={`card-${selected.id}`}
+            className="relative w-[90vw] md:w-[70vw] lg:w-[60vw] h-[80vh] rounded-lg overflow-hidden bg-white"
+          >
+            <ImageComponent card={selected} />
+            <SelectedCard selected={selected} />
+          </motion.div>
+        </div>
+      )}
+
     </div>
   );
 };
