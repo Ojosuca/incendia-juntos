@@ -2,9 +2,13 @@ import { LayoutGrid } from "@/components/ui/layout-grid";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { cn } from "@/lib/utils";
-import heroImage from "@/assets/hero-worship.jpg";
-import communityImage from "@/assets/community.jpg";
-import fireTexture from "@/assets/fire-texture.jpg";
+import galleryWorship1 from "@/assets/gallery-worship-1.jpg";
+import galleryCommunity1 from "@/assets/gallery-community-1.jpg";
+import galleryWorshipBand from "@/assets/gallery-worship-band.jpg";
+import galleryPrayer from "@/assets/gallery-prayer.jpg";
+import galleryYouth from "@/assets/gallery-youth.jpg";
+import gallerySpecialMoment from "@/assets/gallery-special-moment.jpg";
+import galleryGathering from "@/assets/gallery-gathering.jpg";
 
 const GalleryPage = () => {
 
@@ -22,7 +26,7 @@ const GalleryPage = () => {
         </div>
       ),
       className: "md:col-span-2",
-      thumbnail: heroImage,
+      thumbnail: galleryWorship1,
     },
     {
       id: 2,
@@ -37,37 +41,37 @@ const GalleryPage = () => {
         </div>
       ),
       className: "col-span-1",
-      thumbnail: communityImage,
+      thumbnail: galleryCommunity1,
     },
     {
       id: 3,
       content: (
         <div>
           <p className="font-bold md:text-4xl text-xl text-white">
-            Fogo do Espírito
+            Banda de Louvor
           </p>
           <p className="font-normal text-base my-4 max-w-lg text-neutral-200">
-            O fogo de Deus queima em nossos corações e transforma vidas.
+            Nossa banda ministra com excelência e paixão pelo Reino de Deus.
           </p>
         </div>
       ),
       className: "col-span-1",
-      thumbnail: fireTexture,
+      thumbnail: galleryWorshipBand,
     },
     {
       id: 4,
       content: (
         <div>
           <p className="font-bold md:text-4xl text-xl text-white">
-            Louvor Intenso
+            Momento de Oração
           </p>
           <p className="font-normal text-base my-4 max-w-lg text-neutral-200">
-            Cada momento de louvor é uma oportunidade de nos conectar com o criador.
+            Juntos em oração, buscando a face de Deus com fervor e fé.
           </p>
         </div>
       ),
       className: "md:col-span-2",
-      thumbnail: heroImage,
+      thumbnail: galleryPrayer,
     },
     {
       id: 5,
@@ -82,7 +86,7 @@ const GalleryPage = () => {
         </div>
       ),
       className: "col-span-1",
-      thumbnail: communityImage,
+      thumbnail: galleryYouth,
     },
     {
       id: 6,
@@ -97,7 +101,7 @@ const GalleryPage = () => {
         </div>
       ),
       className: "col-span-1",
-      thumbnail: fireTexture,
+      thumbnail: gallerySpecialMoment,
     },
     {
       id: 7,
@@ -112,7 +116,7 @@ const GalleryPage = () => {
         </div>
       ),
       className: "md:col-span-2",
-      thumbnail: heroImage,
+      thumbnail: galleryGathering,
     },
   ];
 
