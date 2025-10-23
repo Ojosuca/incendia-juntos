@@ -3,9 +3,10 @@ import { useInView } from "framer-motion";
 import { useRef } from "react";
 import { Button } from "./ui/button";
 import { ChevronRight } from "lucide-react";
-import heroImage from "@/assets/hero-worship.jpg";
-import communityImage from "@/assets/community.jpg";
-import fireTexture from "@/assets/fire-texture.jpg";
+import heroImage from "@/assets/IMG_4144.jpg";
+import communityImage from "@/assets/IMG_8221.jpg";
+import fireTexture from "@/assets/IMG_9968.jpg";
+import incends57 from "@/assets/INCENDS-57.jpg";
 
 const Gallery = () => {
   const ref = useRef(null);
@@ -13,7 +14,11 @@ const Gallery = () => {
 
   // Placeholder images (reusing generated ones for demo)
   const images = [
-    { src: heroImage, alt: "Momento de adoração", span: "md:col-span-2 md:row-span-2" },
+    {
+      src: heroImage,
+      alt: "Momento de adoração",
+      span: "md:col-span-2 md:row-span-2",
+    },
     { src: communityImage, alt: "Comunidade reunida", span: "" },
     { src: fireTexture, alt: "Atmosfera de fogo", span: "" },
     { src: heroImage, alt: "Louvor intenso", span: "md:col-span-2" },
@@ -38,7 +43,8 @@ const Gallery = () => {
             GALERIA
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Veja como Deus tem se movido entre nós e os momentos que eternizamos juntos
+            Veja como Deus tem se movido entre nós e os momentos que eternizamos
+            juntos
           </p>
         </motion.div>
 

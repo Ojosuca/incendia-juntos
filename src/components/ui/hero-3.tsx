@@ -18,11 +18,11 @@ interface AnimatedMarqueeHeroProps {
 }
 
 // Reusable Button component styled like in the image
-const ActionButton = ({ 
-  children, 
+const ActionButton = ({
+  children,
   variant = "primary",
-  onClick 
-}: { 
+  onClick,
+}: {
   children: React.ReactNode;
   variant?: "primary" | "secondary";
   onClick?: () => void;
@@ -33,9 +33,9 @@ const ActionButton = ({
     onClick={onClick}
     className={cn(
       "w-full sm:w-auto px-6 md:px-8 py-2.5 md:py-3 rounded-full font-sans font-bold text-base md:text-lg shadow-glow uppercase tracking-wide transition-all focus:outline-none focus:ring-2 focus:ring-offset-2",
-      variant === "primary" 
-        ? "bg-gradient-fire text-white hover:opacity-90 focus:ring-primary" 
-        : "border-2 border-primary bg-background/50 backdrop-blur-sm text-primary hover:bg-primary hover:text-white focus:ring-primary"
+      variant === "primary"
+        ? "bg-gradient-fire text-white hover:opacity-90 focus:ring-primary"
+        : "border-2 border-primary bg-background/50 backdrop-blur-sm text-primary hover:bg-primary hover:text-white focus:ring-primary",
     )}
   >
     {children}
@@ -57,7 +57,11 @@ export const AnimatedMarqueeHero: React.FC<AnimatedMarqueeHeroProps> = ({
   // Animation variants for the text content
   const FADE_IN_ANIMATION_VARIANTS = {
     hidden: { opacity: 0, y: 10 },
-    show: { opacity: 1, y: 0, transition: { type: "spring" as const, stiffness: 100, damping: 20 } },
+    show: {
+      opacity: 1,
+      y: 0,
+      transition: { type: "spring" as const, stiffness: 100, damping: 20 },
+    },
   };
 
   // Duplicate images for a seamless loop
@@ -68,7 +72,7 @@ export const AnimatedMarqueeHero: React.FC<AnimatedMarqueeHeroProps> = ({
       id="home"
       className={cn(
         "relative w-full min-h-screen overflow-hidden bg-background flex flex-col items-center justify-center text-center px-4 py-20",
-        className
+        className,
       )}
     >
       <div className="z-10 flex flex-col items-center max-w-6xl w-full">
@@ -96,19 +100,17 @@ export const AnimatedMarqueeHero: React.FC<AnimatedMarqueeHeroProps> = ({
           }}
           className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl 2xl:text-[12rem] text-foreground leading-none tracking-tighter mb-6 md:mb-8"
         >
-          {typeof title === 'string' ? (
-            title.split(" ").map((word, i) => (
-              <motion.span
-                key={i}
-                variants={FADE_IN_ANIMATION_VARIANTS}
-                className="inline-block"
-              >
-                {word}&nbsp;
-              </motion.span>
-            ))
-          ) : (
-            title
-          )}
+          {typeof title === "string"
+            ? title.split(" ").map((word, i) => (
+                <motion.span
+                  key={i}
+                  variants={FADE_IN_ANIMATION_VARIANTS}
+                  className="inline-block"
+                >
+                  {word}&nbsp;
+                </motion.span>
+              ))
+            : title}
         </motion.h1>
 
         {/* Description */}
@@ -159,7 +161,7 @@ export const AnimatedMarqueeHero: React.FC<AnimatedMarqueeHeroProps> = ({
               key={index}
               className="relative aspect-[3/4] h-32 sm:h-40 md:h-48 lg:h-64 flex-shrink-0"
               style={{
-                rotate: `${(index % 2 === 0 ? -2 : 5)}deg`,
+                rotate: `${index % 2 === 0 ? -2 : 5}deg`,
               }}
             >
               <img

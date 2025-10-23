@@ -3,12 +3,12 @@ import { useInView } from "framer-motion";
 import { useRef } from "react";
 import { ExpandableCard } from "./ui/expandable-card";
 import { Button } from "./ui/button";
-import heroImage from "@/assets/hero-worship.jpg";
-import communityImage from "@/assets/community.jpg";
-import galleryWorship1 from "@/assets/gallery-worship-1.jpg";
-import galleryWorshipBand from "@/assets/gallery-worship-band.jpg";
-import galleryPrayer from "@/assets/gallery-prayer.jpg";
-import galleryYouth from "@/assets/gallery-youth.jpg";
+import heroImage from "@/assets/IMG_8221.jpg";
+import communityImage from "@/assets/IMG_7796.jpg";
+import galleryWorship1 from "@/assets/IMG_4141.jpg";
+import galleryWorshipBand from "@/assets/IMG_2116.jpg";
+import galleryPrayer from "@/assets/IMG_4152.jpg";
+import galleryYouth from "@/assets/IMG_8247.jpg";
 
 const Ministries = () => {
   const ref = useRef(null);
@@ -20,59 +20,80 @@ const Ministries = () => {
       name: "Louvor",
       image: galleryWorshipBand,
       description: "Ministério de Adoração",
-      shortDescription: "Lidere a adoração e conduza o povo à presença de Deus através da música.",
-      details: "O ministério de louvor é a porta de entrada para a presença de Deus em nossos cultos. Aqui você desenvolverá suas habilidades musicais enquanto aprende a ser um verdadeiro adorador.",
-      requirements: "Ter conhecimento musical básico, disposição para ensaios semanais e coração de adorador.",
+      shortDescription:
+        "Lidere a adoração e conduza o povo à presença de Deus através da música.",
+      details:
+        "O ministério de louvor é a porta de entrada para a presença de Deus em nossos cultos. Aqui você desenvolverá suas habilidades musicais enquanto aprende a ser um verdadeiro adorador.",
+      requirements:
+        "Ter conhecimento musical básico, disposição para ensaios semanais e coração de adorador.",
     },
     {
       id: "danca",
       name: "Dança",
       image: heroImage,
       description: "Ministério de Dança Profética",
-      shortDescription: "Expresse adoração através de movimentos e coreografias que glorificam a Deus.",
-      details: "Na dança profética, cada movimento é uma oração, cada gesto é adoração. Junte-se a nós para adorar com todo o seu ser.",
-      requirements: "Disponibilidade para ensaios, dedicação e paixão por expressar adoração através do corpo.",
+      shortDescription:
+        "Expresse adoração através de movimentos e coreografias que glorificam a Deus.",
+      details:
+        "Na dança profética, cada movimento é uma oração, cada gesto é adoração. Junte-se a nós para adorar com todo o seu ser.",
+      requirements:
+        "Disponibilidade para ensaios, dedicação e paixão por expressar adoração através do corpo.",
     },
     {
       id: "midia",
       name: "Mídia",
       image: communityImage,
       description: "Ministério de Comunicação",
-      shortDescription: "Capture momentos e conte histórias através de fotografia e vídeo.",
-      details: "Cada culto tem momentos únicos que merecem ser registrados. Ajude-nos a documentar como Deus está se movendo em nossa geração.",
-      requirements: "Conhecimento básico de fotografia/vídeo, equipamento próprio (desejável) e olhar criativo.",
+      shortDescription:
+        "Capture momentos e conte histórias através de fotografia e vídeo.",
+      details:
+        "Cada culto tem momentos únicos que merecem ser registrados. Ajude-nos a documentar como Deus está se movendo em nossa geração.",
+      requirements:
+        "Conhecimento básico de fotografia/vídeo, equipamento próprio (desejável) e olhar criativo.",
     },
     {
       id: "multimidia",
       name: "Multimídia",
       image: galleryWorship1,
-      description: "Ministério de Tecnologia",
-      shortDescription: "Opere projeção, iluminação e som para criar experiências impactantes.",
-      details: "A tecnologia é uma ferramenta poderosa para amplificar a mensagem do evangelho. Seja parte da equipe que cria a atmosfera dos nossos cultos.",
-      requirements: "Interesse em tecnologia, disponibilidade para treinamento e pontualidade nos cultos.",
+      description: "Ministério de Multimídia",
+      shortDescription:
+        "Opere projeção, iluminação e som para criar experiências impactantes.",
+      details:
+        "A tecnologia é uma ferramenta poderosa para amplificar a mensagem do evangelho. Seja parte da equipe que cria a atmosfera dos nossos cultos.",
+      requirements:
+        "Interesse em tecnologia, disponibilidade para treinamento e pontualidade nos cultos.",
     },
     {
       id: "intercessao",
       name: "Intercessão",
       image: galleryPrayer,
       description: "Ministério de Oração",
-      shortDescription: "Seja um guerreiro de oração que sustenta o ministério no mundo espiritual.",
-      details: "Antes de cada culto, um time se reúne para orar e preparar o terreno espiritual. Sua oração faz a diferença.",
-      requirements: "Vida de oração consistente, maturidade espiritual e compromisso com o ministério.",
+      shortDescription:
+        "Seja um guerreiro de oração que sustenta o ministério no mundo espiritual.",
+      details:
+        "Antes de cada culto, um time se reúne para orar e preparar o terreno espiritual. Sua oração faz a diferença.",
+      requirements:
+        "Vida de oração consistente, maturidade espiritual e compromisso com o ministério.",
     },
     {
       id: "acolhimento",
       name: "Acolhimento",
       image: galleryYouth,
       description: "Ministério de Recepção",
-      shortDescription: "Receba as pessoas com amor e faça todos se sentirem em casa.",
-      details: "Você será o primeiro sorriso que muitos verão ao chegarem. Seu papel é crucial para que todos se sintam bem-vindos e parte da família.",
+      shortDescription:
+        "Receba as pessoas com amor e faça todos se sentirem em casa.",
+      details:
+        "Você será o primeiro sorriso que muitos verão ao chegarem. Seu papel é crucial para que todos se sintam bem-vindos e parte da família.",
       requirements: "Simpatia, pontualidade e coração para servir as pessoas.",
     },
   ];
 
   return (
-    <section id="ministerios" ref={ref} className="py-24 md:py-32 bg-background">
+    <section
+      id="ministerios"
+      ref={ref}
+      className="py-24 md:py-32 bg-background"
+    >
       <div className="container mx-auto px-4">
         {/* Header */}
         <motion.div
@@ -88,7 +109,8 @@ const Ministries = () => {
             QUERO SER FAMÍLIA INCENDS
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Encontre seu lugar e use seus dons para transformar vidas. Todo mundo tem espaço aqui!
+            Encontre seu lugar e use seus dons para transformar vidas. Todo
+            mundo tem espaço aqui!
           </p>
         </motion.div>
 
@@ -109,23 +131,25 @@ const Ministries = () => {
               >
                 <h4>Sobre o Ministério</h4>
                 <p>{ministry.details}</p>
-                
+
                 <h4>Requisitos Espirituais</h4>
-                <p>Compromisso com Cristo, vida de oração, frequência nos cultos</p>
-                
+                <p>
+                  Compromisso com Cristo, vida de oração, frequência nos cultos
+                </p>
+
                 <h4>Requisitos Técnicos</h4>
                 <p>{ministry.requirements}</p>
-                
+
                 <Button
                   className="w-full bg-gradient-fire hover:opacity-90 text-white font-sans font-bold uppercase tracking-wide mt-4"
                   onClick={(e) => {
                     e.stopPropagation();
                     const message = encodeURIComponent(
-                      `Olá! Tenho interesse em servir no ministério de ${ministry.name}.`
+                      `Olá! Tenho interesse em servir no ministério de ${ministry.name}.`,
                     );
                     window.open(
                       `https://wa.me/5511999999999?text=${message}`,
-                      "_blank"
+                      "_blank",
                     );
                   }}
                 >
@@ -147,18 +171,19 @@ const Ministries = () => {
             NOVO POR AQUI?
           </h3>
           <p className="text-white/90 text-lg mb-8 max-w-2xl mx-auto">
-            Se você acabou de entregar sua vida a Jesus, queremos te ajudar a dar os primeiros passos nessa nova jornada!
+            Se você acabou de entregar sua vida a Jesus, queremos te ajudar a
+            dar os primeiros passos nessa nova jornada!
           </p>
           <Button
             size="lg"
             className="bg-white text-primary hover:bg-white/90 font-sans font-bold text-lg px-8 py-6"
             onClick={() => {
               const message = encodeURIComponent(
-                "Olá! Sou novo convertido e gostaria de conhecer mais sobre o Incends."
+                "Olá! Sou novo convertido e gostaria de conhecer mais sobre o Incends.",
               );
               window.open(
                 `https://wa.me/5511999999999?text=${message}`,
-                "_blank"
+                "_blank",
               );
             }}
           >

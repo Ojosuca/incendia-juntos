@@ -42,7 +42,9 @@ const Navigation = () => {
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
-          isScrolled ? "bg-background/95 backdrop-blur-md shadow-lg" : "bg-transparent"
+          isScrolled
+            ? "bg-background/95 backdrop-blur-md shadow-lg"
+            : "bg-transparent"
         }`}
       >
         <nav className="container mx-auto px-4 py-3 md:py-4 flex items-center justify-between">
@@ -94,7 +96,11 @@ const Navigation = () => {
               className="lg:hidden"
               onClick={() => setIsOpen(!isOpen)}
             >
-              {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              {isOpen ? (
+                <X className="w-6 h-6" />
+              ) : (
+                <Menu className="w-6 h-6" />
+              )}
             </Button>
           </div>
         </nav>
@@ -161,7 +167,7 @@ const Navigation = () => {
                     Vamos lá, Alguém
                   </p>
                   <Link to="/contato">
-                    <Button 
+                    <Button
                       className="w-full bg-gradient-fire hover:opacity-90"
                       onClick={() => setIsOpen(false)}
                     >

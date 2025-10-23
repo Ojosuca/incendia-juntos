@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
 import { Heart, Users, Sparkles } from "lucide-react";
-import communityImage from "@/assets/community.jpg";
+import communityImage from "@/assets/IMG_5092.jpg";
 
 const About = () => {
   const ref = useRef(null);
@@ -12,26 +12,33 @@ const About = () => {
     {
       icon: Heart,
       title: "Transformação Genuína",
-      description: "Viva uma experiência real com Cristo, sem máscaras, apenas verdade e amor.",
+      description:
+        "Viva uma experiência real com Cristo, sem máscaras, apenas verdade e amor.",
     },
     {
       icon: Users,
       title: "Comunidade Forte",
-      description: "Conecte-se com jovens que compartilham a mesma paixão por Jesus.",
+      description:
+        "Conecte-se com jovens que compartilham a mesma paixão por Jesus.",
     },
     {
       icon: Sparkles,
       title: "Propósito e Chamado",
-      description: "Descubra seu propósito e seja incendiado pelo Espírito Santo.",
+      description:
+        "Descubra seu propósito e seja incendiado pelo Espírito Santo.",
     },
   ];
 
   return (
-    <section id="sobre" ref={ref} className="py-24 md:py-32 bg-background relative overflow-hidden">
+    <section
+      id="sobre"
+      ref={ref}
+      className="py-24 md:py-32 bg-background relative overflow-hidden"
+    >
       {/* Decorative Elements */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-fire opacity-5 blur-3xl" />
       <div className="absolute bottom-0 left-0 w-96 h-96 bg-primary opacity-5 blur-3xl" />
-      
+
       <div className="container mx-auto px-4 relative z-10">
         {/* Header */}
         <motion.div
@@ -79,15 +86,16 @@ const About = () => {
           >
             <div className="bg-card/50 backdrop-blur-sm border border-border rounded-2xl p-8">
               <p className="text-muted-foreground text-lg leading-relaxed">
-                O Incends é mais do que um culto de jovens. É um movimento de jovens apaixonados
-                por Jesus, dispostos a abrir mão de si mesmos para viver o verdadeiro evangelho.
+                O Incends é mais do que um culto de jovens. É um movimento de
+                jovens apaixonados por Jesus, dispostos a abrir mão de si mesmos
+                para viver o verdadeiro evangelho.
               </p>
             </div>
-            
+
             <div className="bg-gradient-fire/10 backdrop-blur-sm border border-primary/20 rounded-2xl p-8">
               <p className="text-foreground text-lg leading-relaxed font-semibold">
-                Aqui, você não será apenas mais um na multidão - você terá uma família, um
-                propósito e uma chama que nunca se apagará.
+                Aqui, você não será apenas mais um na multidão - você terá uma
+                família, um propósito e uma chama que nunca se apagará.
               </p>
             </div>
           </motion.div>

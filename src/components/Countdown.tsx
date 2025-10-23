@@ -23,7 +23,7 @@ const Countdown = ({ targetDate }: CountdownProps) => {
   useEffect(() => {
     const calculateTimeLeft = () => {
       const difference = +targetDate - +new Date();
-      
+
       if (difference > 0) {
         setTimeLeft({
           days: Math.floor(difference / (1000 * 60 * 60 * 24)),
@@ -66,12 +66,12 @@ const Countdown = ({ targetDate }: CountdownProps) => {
           >
             {/* Glow Effect */}
             <div className="absolute inset-0 bg-gradient-fire opacity-0 group-hover:opacity-20 blur-xl transition-opacity rounded-3xl" />
-            
+
             {/* Card with Glassmorphism */}
             <div className="relative bg-gradient-to-br from-card via-card to-card/50 backdrop-blur-xl border-2 border-border group-hover:border-primary/50 rounded-3xl overflow-hidden shadow-glow transition-all">
               {/* Inner Glow */}
               <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-fire opacity-50" />
-              
+
               <div className="p-6 md:p-8 text-center">
                 {/* Value Display */}
                 <motion.div
@@ -83,10 +83,10 @@ const Countdown = ({ targetDate }: CountdownProps) => {
                   <div className="font-display text-6xl md:text-8xl bg-gradient-fire bg-clip-text text-transparent mb-3 group-hover:scale-110 transition-transform">
                     {unit.value.toString().padStart(2, "0")}
                   </div>
-                  
+
                   {/* Separator Line */}
                   <div className="w-12 h-1 bg-gradient-fire mx-auto mb-3 rounded-full" />
-                  
+
                   {/* Label */}
                   <div className="text-muted-foreground font-sans text-xs md:text-sm uppercase tracking-widest font-bold">
                     {unit.label}

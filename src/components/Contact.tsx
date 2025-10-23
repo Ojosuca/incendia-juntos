@@ -12,8 +12,8 @@ const Contact = () => {
     {
       icon: MapPin,
       label: "Endereço",
-      value: "Rua da Igreja, 123 - Centro, São Paulo - SP",
-      link: "https://maps.google.com",
+      value: "Conjunto Habitacional Angelim, 23 - Angelim, São Luis - MA",
+      link: "https://maps.app.goo.gl/6noG45EM45tDMg736",
     },
     {
       icon: Phone,
@@ -30,7 +30,7 @@ const Contact = () => {
   ];
 
   const socialMedia = [
-    { icon: Instagram, link: "https://instagram.com/incends", name: "@incends" },
+    { icon: Instagram, link: "https://www.instagram.com/incendiadosmovement/", name: "@incendiadosmovement" },
     { icon: Facebook, link: "https://facebook.com/incends", name: "/incends" },
     { icon: Youtube, link: "https://youtube.com/incends", name: "/incends" },
   ];
@@ -150,7 +150,7 @@ const Contact = () => {
             className="h-[500px] rounded-2xl overflow-hidden shadow-card"
           >
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3657.1973!2d-46.6333824!3d-23.5505199!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjPCsDMzJzAxLjkiUyA0NsKwMzgnMDAuMiJX!5e0!3m2!1spt-BR!2sbr!4v1234567890123!5m2!1spt-BR!2sbr"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3985.9185449990046!2d-44.23616519116772!3d-2.5334727974342637!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x7f691c598a50bfd%3A0xe98d989a0d37851a!2sIgreja%20Batista%20do%20Angelim!5e0!3m2!1spt-BR!2sbr!4v1761244304124!5m2!1spt-BR!2sbr"
               width="100%"
               height="100%"
               style={{ border: 0 }}

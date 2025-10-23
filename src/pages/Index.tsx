@@ -6,7 +6,15 @@ import Hero from "@/components/Hero";
 import Footer from "@/components/Footer";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Users, Calendar, Music, Heart, Camera, MapPin } from "lucide-react";
+import {
+  ArrowRight,
+  Users,
+  Calendar,
+  Music,
+  Heart,
+  Camera,
+  MapPin,
+} from "lucide-react";
 
 const Index = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -14,7 +22,7 @@ const Index = () => {
 
   useEffect(() => {
     const hasSeenLoading = sessionStorage.getItem("hasSeenLoading");
-    
+
     if (hasSeenLoading) {
       setIsLoading(false);
     }
@@ -35,43 +43,43 @@ const Index = () => {
       title: "Sobre Nós",
       description: "Conheça nossa história, propósito e valores que nos movem",
       path: "/sobre",
-      gradient: "from-primary/20 to-primary/5"
+      gradient: "from-primary/20 to-primary/5",
     },
     {
       icon: Calendar,
       title: "Eventos",
       description: "Fique por dentro dos próximos cultos e encontros especiais",
       path: "/eventos",
-      gradient: "from-orange-500/20 to-orange-500/5"
+      gradient: "from-orange-500/20 to-orange-500/5",
     },
     {
       icon: Music,
       title: "Louvor e Palavra",
       description: "Ouça nossas playlists e reflita sobre as últimas mensagens",
       path: "/louvor",
-      gradient: "from-red-500/20 to-red-500/5"
+      gradient: "from-red-500/20 to-red-500/5",
     },
     {
       icon: Heart,
       title: "Ministérios",
       description: "Descubra como você pode servir e fazer a diferença",
       path: "/ministerios",
-      gradient: "from-primary/20 to-primary/5"
+      gradient: "from-primary/20 to-primary/5",
     },
     {
       icon: Camera,
       title: "Galeria",
       description: "Reviva os momentos que Deus tem marcado em nossa jornada",
       path: "/galeria",
-      gradient: "from-orange-500/20 to-orange-500/5"
+      gradient: "from-orange-500/20 to-orange-500/5",
     },
     {
       icon: MapPin,
       title: "Contato",
       description: "Entre em contato conosco e encontre nossa localização",
       path: "/contato",
-      gradient: "from-red-500/20 to-red-500/5"
-    }
+      gradient: "from-red-500/20 to-red-500/5",
+    },
   ];
 
   return (
@@ -79,7 +87,7 @@ const Index = () => {
       <Navigation />
       <main>
         <Hero />
-        
+
         {/* Sections Grid */}
         <section className="py-24 md:py-32 bg-background">
           <div className="container mx-auto px-4">
@@ -113,7 +121,9 @@ const Index = () => {
                     transition={{ delay: index * 0.1, duration: 0.5 }}
                     className="group w-full"
                   >
-                    <div className={`relative overflow-hidden rounded-2xl bg-gradient-to-br ${section.gradient} backdrop-blur-sm border border-border/50 p-6 md:p-8 h-full transition-all duration-300 hover:shadow-glow hover:border-primary/50`}>
+                    <div
+                      className={`relative overflow-hidden rounded-2xl bg-gradient-to-br ${section.gradient} backdrop-blur-sm border border-border/50 p-6 md:p-8 h-full transition-all duration-300 hover:shadow-glow hover:border-primary/50`}
+                    >
                       <div className="relative z-10">
                         <div className="mb-6 inline-flex p-4 rounded-2xl bg-background/50 backdrop-blur-sm border border-border/50">
                           <Icon className="w-8 h-8 text-primary" />
@@ -133,7 +143,7 @@ const Index = () => {
                           <ArrowRight className="ml-2 w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
                         </Button>
                       </div>
-                      
+
                       {/* Decorative element */}
                       <div className="absolute -bottom-12 -right-12 w-40 h-40 bg-primary/10 rounded-full blur-3xl group-hover:bg-primary/20 transition-colors duration-300" />
                     </div>

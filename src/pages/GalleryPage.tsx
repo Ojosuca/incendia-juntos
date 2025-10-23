@@ -2,19 +2,18 @@ import { LayoutGrid } from "@/components/ui/layout-grid";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { cn } from "@/lib/utils";
-import heroImage from "@/assets/hero-worship.jpg";
-import communityImage from "@/assets/community.jpg";
-import fireTexture from "@/assets/fire-texture.jpg";
-import galleryWorship1 from "@/assets/gallery-worship-1.jpg";
-import galleryCommunity1 from "@/assets/gallery-community-1.jpg";
-import galleryWorshipBand from "@/assets/gallery-worship-band.jpg";
-import galleryPrayer from "@/assets/gallery-prayer.jpg";
-import galleryYouth from "@/assets/gallery-youth.jpg";
-import gallerySpecialMoment from "@/assets/gallery-special-moment.jpg";
-import galleryGathering from "@/assets/gallery-gathering.jpg";
+import heroImage from "@/assets/IMG_4144.jpg";
+import communityImage from "@/assets/IMG_8221.jpg";
+import fireTexture from "@/assets/IMG_9968.jpg";
+import galleryWorship1 from "@/assets/INCENDS-57.jpg";
+import galleryCommunity1 from "@/assets/IMG_8249.jpg";
+import galleryWorshipBand from "@/assets/IMG_9968.jpg";
+import galleryPrayer from "@/assets/IMG_9989.jpg";
+import galleryYouth from "@/assets/INCENDS-73.jpg";
+import gallerySpecialMoment from "@/assets/IMG_8221.jpg";
+import galleryGathering from "@/assets/IMG_9999.jpg";
 
 const GalleryPage = () => {
-
   const cards = [
     {
       id: 1,
@@ -24,7 +23,8 @@ const GalleryPage = () => {
             Momento de Adoração
           </p>
           <p className="font-normal text-base my-4 max-w-lg text-neutral-200">
-            Unidos em louvor e adoração, experimentamos a presença de Deus de forma intensa.
+            Unidos em louvor e adoração, experimentamos a presença de Deus de
+            forma intensa.
           </p>
         </div>
       ),
@@ -132,9 +132,9 @@ const GalleryPage = () => {
           <div
             aria-hidden="true"
             className={cn(
-              'pointer-events-none absolute top-0 left-1/2 h-[120vmin] w-[120vmin] -translate-x-1/2 rounded-full',
-              'bg-[radial-gradient(ellipse_at_center,hsl(var(--primary)/.3),transparent_60%)]',
-              'blur-[80px]',
+              "pointer-events-none absolute top-0 left-1/2 h-[120vmin] w-[120vmin] -translate-x-1/2 rounded-full",
+              "bg-[radial-gradient(ellipse_at_center,hsl(var(--primary)/.3),transparent_60%)]",
+              "blur-[80px]",
             )}
           />
           <div className="z-10 text-center px-4">
@@ -145,12 +145,23 @@ const GalleryPage = () => {
               GALERIA INCENDS
             </h1>
             <p className="text-muted-foreground text-base md:text-lg lg:text-xl max-w-2xl mx-auto mb-8">
-              Veja como Deus tem se movido entre nós através desses momentos eternizados
+              Veja como Deus tem se movido entre nós através desses momentos
+              eternizados
             </p>
             <div className="flex items-center justify-center gap-2 text-muted-foreground/60 text-sm animate-bounce">
               <span>Role para explorar</span>
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+              <svg
+                className="w-4 h-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M19 14l-7 7m0 0l-7-7m7 7V3"
+                />
               </svg>
             </div>
           </div>
@@ -162,9 +173,9 @@ const GalleryPage = () => {
           <div
             aria-hidden="true"
             className={cn(
-              'pointer-events-none absolute top-1/2 left-1/2 h-[100vmin] w-[100vmin] -translate-x-1/2 -translate-y-1/2 rounded-full',
-              'bg-[radial-gradient(ellipse_at_center,hsl(var(--primary)/.2),transparent_60%)]',
-              'blur-[80px]',
+              "pointer-events-none absolute top-1/2 left-1/2 h-[100vmin] w-[100vmin] -translate-x-1/2 -translate-y-1/2 rounded-full",
+              "bg-[radial-gradient(ellipse_at_center,hsl(var(--primary)/.2),transparent_60%)]",
+              "blur-[80px]",
             )}
           />
           <div className="text-center px-4 z-10">

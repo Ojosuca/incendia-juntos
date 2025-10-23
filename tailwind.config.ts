@@ -2,7 +2,12 @@ import type { Config } from "tailwindcss";
 
 export default {
   darkMode: ["class"],
-  content: ["./pages/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}", "./app/**/*.{ts,tsx}", "./src/**/*.{ts,tsx}"],
+  content: [
+    "./pages/**/*.{ts,tsx}",
+    "./components/**/*.{ts,tsx}",
+    "./app/**/*.{ts,tsx}",
+    "./src/**/*.{ts,tsx}",
+  ],
   prefix: "",
   theme: {
     container: {
@@ -63,8 +68,8 @@ export default {
         "gradient-dark": "var(--gradient-dark)",
       },
       boxShadow: {
-        "glow": "var(--shadow-glow)",
-        "card": "var(--shadow-card)",
+        glow: "var(--shadow-glow)",
+        card: "var(--shadow-card)",
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -138,7 +143,7 @@ export default {
             boxShadow: "0 0 40px hsla(0, 60%, 50%, 0.6)",
           },
         },
-        "flame": {
+        flame: {
           "0%, 100%": {
             transform: "scaleY(1) translateY(0)",
           },
@@ -155,7 +160,7 @@ export default {
         "scale-in": "scale-in 0.4s ease-out",
         "slide-in-right": "slide-in-right 0.3s ease-out",
         "pulse-glow": "pulse-glow 2s ease-in-out infinite",
-        "flame": "flame 1.5s ease-in-out infinite",
+        flame: "flame 1.5s ease-in-out infinite",
       },
     },
   },

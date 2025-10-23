@@ -9,7 +9,7 @@ const Events = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
-  // Próximo culto: exemplo de data (próxima sexta às 19h30)
+  // Próximo culto: exemplo de data (próximo Sábadoo às 18h00)
   const getNextFriday = () => {
     const today = new Date();
     const dayOfWeek = today.getDay();
@@ -23,9 +23,9 @@ const Events = () => {
   const upcomingEvents = [
     {
       title: "Culto de Jovens",
-      date: "Toda Sexta",
-      time: "19h30",
-      location: "Igreja Principal",
+      date: "Todo Sábado",
+      time: "18h00",
+      location: "Igreja Batista do Angelim",
       description: "Nosso encontro semanal de louvor, palavra e comunhão.",
     },
     {
@@ -39,7 +39,7 @@ const Events = () => {
       title: "Noite de Adoração",
       date: "30 Nov",
       time: "20h00",
-      location: "Auditório",
+      location: "Auditório Aprisquinho",
       description: "Uma noite dedicada à adoração profunda e intimidade com Deus.",
     },
   ];

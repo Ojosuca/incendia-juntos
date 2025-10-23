@@ -23,17 +23,17 @@ const FormularioMeuLugar = ({ onClose }: FormularioMeuLugarProps) => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     const message = encodeURIComponent(
       `*NOVO CONVERTIDO - ENCONTRAR MEU LUGAR*\n\n` +
-      `Nome: ${formData.nome}\n` +
-      `Email: ${formData.email}\n` +
-      `Telefone: ${formData.telefone}\n` +
-      `Idade: ${formData.idade}\n` +
-      `Data da Conversão: ${formData.dataConversao}\n` +
-      `Mensagem: ${formData.mensagem}`
+        `Nome: ${formData.nome}\n` +
+        `Email: ${formData.email}\n` +
+        `Telefone: ${formData.telefone}\n` +
+        `Idade: ${formData.idade}\n` +
+        `Data da Conversão: ${formData.dataConversao}\n` +
+        `Mensagem: ${formData.mensagem}`,
     );
-    
+
     window.open(`https://wa.me/5511999999999?text=${message}`, "_blank");
     onClose();
   };
@@ -77,11 +77,15 @@ const FormularioMeuLugar = ({ onClose }: FormularioMeuLugarProps) => {
           <p className="text-muted-foreground">
             Seja bem-vindo à família Incends!
           </p>
-          
+
           {/* Progress Indicator */}
           <div className="flex gap-2 mt-4">
-            <div className={`flex-1 h-1 rounded-full ${step >= 1 ? "bg-gradient-fire" : "bg-muted"}`} />
-            <div className={`flex-1 h-1 rounded-full ${step >= 2 ? "bg-gradient-fire" : "bg-muted"}`} />
+            <div
+              className={`flex-1 h-1 rounded-full ${step >= 1 ? "bg-gradient-fire" : "bg-muted"}`}
+            />
+            <div
+              className={`flex-1 h-1 rounded-full ${step >= 2 ? "bg-gradient-fire" : "bg-muted"}`}
+            />
           </div>
         </div>
 
@@ -104,7 +108,9 @@ const FormularioMeuLugar = ({ onClose }: FormularioMeuLugarProps) => {
                   type="text"
                   required
                   value={formData.nome}
-                  onChange={(e) => setFormData({ ...formData, nome: e.target.value })}
+                  onChange={(e) =>
+                    setFormData({ ...formData, nome: e.target.value })
+                  }
                   placeholder="Seu nome completo"
                   className="bg-background/50"
                 />
@@ -120,14 +126,19 @@ const FormularioMeuLugar = ({ onClose }: FormularioMeuLugarProps) => {
                   type="email"
                   required
                   value={formData.email}
-                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                  onChange={(e) =>
+                    setFormData({ ...formData, email: e.target.value })
+                  }
                   placeholder="seu@email.com"
                   className="bg-background/50"
                 />
               </div>
 
               <div>
-                <Label htmlFor="telefone" className="flex items-center gap-2 mb-2">
+                <Label
+                  htmlFor="telefone"
+                  className="flex items-center gap-2 mb-2"
+                >
                   <Phone className="w-4 h-4 text-primary" />
                   Telefone (WhatsApp)
                 </Label>
@@ -136,7 +147,9 @@ const FormularioMeuLugar = ({ onClose }: FormularioMeuLugarProps) => {
                   type="tel"
                   required
                   value={formData.telefone}
-                  onChange={(e) => setFormData({ ...formData, telefone: e.target.value })}
+                  onChange={(e) =>
+                    setFormData({ ...formData, telefone: e.target.value })
+                  }
                   placeholder="(11) 99999-9999"
                   className="bg-background/50"
                 />
@@ -152,7 +165,9 @@ const FormularioMeuLugar = ({ onClose }: FormularioMeuLugarProps) => {
                   type="number"
                   required
                   value={formData.idade}
-                  onChange={(e) => setFormData({ ...formData, idade: e.target.value })}
+                  onChange={(e) =>
+                    setFormData({ ...formData, idade: e.target.value })
+                  }
                   placeholder="Sua idade"
                   className="bg-background/50"
                 />
@@ -168,7 +183,10 @@ const FormularioMeuLugar = ({ onClose }: FormularioMeuLugarProps) => {
               className="space-y-4"
             >
               <div>
-                <Label htmlFor="dataConversao" className="flex items-center gap-2 mb-2">
+                <Label
+                  htmlFor="dataConversao"
+                  className="flex items-center gap-2 mb-2"
+                >
                   <Calendar className="w-4 h-4 text-primary" />
                   Quando você aceitou Jesus?
                 </Label>
@@ -177,14 +195,19 @@ const FormularioMeuLugar = ({ onClose }: FormularioMeuLugarProps) => {
                   type="text"
                   required
                   value={formData.dataConversao}
-                  onChange={(e) => setFormData({ ...formData, dataConversao: e.target.value })}
+                  onChange={(e) =>
+                    setFormData({ ...formData, dataConversao: e.target.value })
+                  }
                   placeholder="Ex: Semana passada, mês passado..."
                   className="bg-background/50"
                 />
               </div>
 
               <div>
-                <Label htmlFor="mensagem" className="flex items-center gap-2 mb-2">
+                <Label
+                  htmlFor="mensagem"
+                  className="flex items-center gap-2 mb-2"
+                >
                   <MessageSquare className="w-4 h-4 text-primary" />
                   Como podemos te ajudar?
                 </Label>
@@ -192,7 +215,9 @@ const FormularioMeuLugar = ({ onClose }: FormularioMeuLugarProps) => {
                   id="mensagem"
                   required
                   value={formData.mensagem}
-                  onChange={(e) => setFormData({ ...formData, mensagem: e.target.value })}
+                  onChange={(e) =>
+                    setFormData({ ...formData, mensagem: e.target.value })
+                  }
                   placeholder="Conte um pouco sobre sua jornada..."
                   className="bg-background/50 min-h-[120px]"
                 />

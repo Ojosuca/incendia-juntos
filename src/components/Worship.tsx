@@ -12,26 +12,30 @@ const Worship = () => {
   const recentMessages = [
     {
       title: "O Fogo que Transforma",
-      speaker: "Pr. João Silva",
+      speaker: "Pr. Lucas",
       date: "10 Nov 2024",
       type: "Pregação",
     },
     {
       title: "Incendiados por Cristo",
-      speaker: "Ministério de Louvor",
+      speaker: "Incends Music",
       date: "03 Nov 2024",
       type: "Louvor",
     },
     {
       title: "Uma Geração Sem Máscaras",
-      speaker: "Pr. Maria Santos",
+      speaker: "Pr. Lucas",
       date: "27 Out 2024",
       type: "Pregação",
     },
   ];
 
   return (
-    <section id="louvor" ref={ref} className="py-24 md:py-32 bg-background relative overflow-hidden">
+    <section
+      id="louvor"
+      ref={ref}
+      className="py-24 md:py-32 bg-background relative overflow-hidden"
+    >
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5">
         <img src={fireTexture} alt="" className="w-full h-full object-cover" />
@@ -52,7 +56,8 @@ const Worship = () => {
             LOUVOR E PALAVRA
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Experiências transformadoras através da adoração genuína e do ensino bíblico profundo
+            Experiências transformadoras através da adoração genuína e do ensino
+            bíblico profundo
           </p>
         </motion.div>
 
@@ -81,11 +86,31 @@ const Worship = () => {
               {/* Playlist Items */}
               <div className="space-y-3 mb-6">
                 {[
-                  { name: "Incendiados", artist: "Ministério Incends", duration: "4:32" },
-                  { name: "Sem Máscaras", artist: "Ministério Incends", duration: "5:18" },
-                  { name: "Chama Viva", artist: "Ministério Incends", duration: "3:45" },
-                  { name: "Transformação", artist: "Ministério Incends", duration: "4:50" },
-                  { name: "Geração Santa", artist: "Ministério Incends", duration: "4:12" },
+                  {
+                    name: "Incendiados",
+                    artist: "Ministério Incends",
+                    duration: "4:32",
+                  },
+                  {
+                    name: "Sem Máscaras",
+                    artist: "Ministério Incends",
+                    duration: "5:18",
+                  },
+                  {
+                    name: "Chama Viva",
+                    artist: "Ministério Incends",
+                    duration: "3:45",
+                  },
+                  {
+                    name: "Transformação",
+                    artist: "Ministério Incends",
+                    duration: "4:50",
+                  },
+                  {
+                    name: "Geração Santa",
+                    artist: "Ministério Incends",
+                    duration: "4:12",
+                  },
                 ].map((song, idx) => (
                   <motion.div
                     key={idx}
@@ -115,7 +140,9 @@ const Worship = () => {
 
               <Button
                 size="lg"
-                onClick={() => window.open("https://open.spotify.com/", "_blank")}
+                onClick={() =>
+                  window.open("https://open.spotify.com/", "_blank")
+                }
                 className="w-full bg-gradient-fire hover:opacity-90 text-white font-sans font-bold"
               >
                 Ouvir no Spotify
@@ -144,7 +171,7 @@ const Worship = () => {
                     Pregador
                   </p>
                   <p className="text-lg font-sans font-bold text-foreground">
-                    Pr. João Silva
+                    Pr. Lucas  
                   </p>
                 </div>
 
@@ -164,7 +191,8 @@ const Worship = () => {
                     Palavra Base
                   </p>
                   <p className="text-sm font-sans text-foreground italic">
-                    "E eu rogarei ao Pai, e ele vos dará outro Consolador, para que fique convosco para sempre"
+                    "E eu rogarei ao Pai, e ele vos dará outro Consolador, para
+                    que fique convosco para sempre"
                   </p>
                   <p className="text-xs text-muted-foreground mt-2 font-semibold">
                     João 14:16
@@ -177,9 +205,10 @@ const Worship = () => {
                     Reflexão
                   </p>
                   <p className="text-muted-foreground leading-relaxed">
-                    Deus está chamando nossa geração para ser incendiada pelo Espírito Santo. 
-                    Não podemos viver uma vida morna, precisamos abraçar o fogo transformador 
-                    que queima tudo que não é de Deus e acende uma paixão genuína por Cristo.
+                    Deus está chamando nossa geração para ser incendiada pelo
+                    Espírito Santo. Não podemos viver uma vida morna, precisamos
+                    abraçar o fogo transformador que queima tudo que não é de
+                    Deus e acende uma paixão genuína por Cristo.
                   </p>
                 </div>
 
@@ -225,9 +254,7 @@ const Worship = () => {
                 <p className="text-sm text-muted-foreground mb-1">
                   {message.speaker}
                 </p>
-                <p className="text-xs text-muted-foreground">
-                  {message.date}
-                </p>
+                <p className="text-xs text-muted-foreground">{message.date}</p>
               </motion.div>
             ))}
           </div>

@@ -16,7 +16,8 @@ const Footer = () => {
               </span>
             </div>
             <p className="text-muted-foreground text-sm leading-relaxed">
-              Culto de Jovens comprometido em incendiar uma geração com o fogo do Espírito Santo.
+              Culto de Jovens comprometido em incendiar uma geração com o fogo
+              do Espírito Santo.
             </p>
           </div>
 
@@ -26,16 +27,18 @@ const Footer = () => {
               Links Rápidos
             </h3>
             <ul className="space-y-2">
-              {["Sobre", "Agenda", "Ministérios", "Galeria", "Contato"].map((link) => (
-                <li key={link}>
-                  <a
-                    href={`#${link.toLowerCase()}`}
-                    className="text-muted-foreground hover:text-primary transition-colors text-sm"
-                  >
-                    {link}
-                  </a>
-                </li>
-              ))}
+              {["Sobre", "Agenda", "Ministérios", "Galeria", "Contato"].map(
+                (link) => (
+                  <li key={link}>
+                    <a
+                      href={`#${link.toLowerCase()}`}
+                      className="text-muted-foreground hover:text-primary transition-colors text-sm"
+                    >
+                      {link}
+                    </a>
+                  </li>
+                ),
+              )}
             </ul>
           </div>
 
@@ -46,7 +49,7 @@ const Footer = () => {
             </h3>
             <div className="flex gap-4">
               <a
-                href="https://instagram.com/incends"
+                href="https://www.instagram.com/incendiadosmovement/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 rounded-lg bg-muted hover:bg-gradient-fire flex items-center justify-center transition-all group"
