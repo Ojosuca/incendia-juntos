@@ -77,7 +77,7 @@ const Events = () => {
               Próximo Culto em:
             </h3>
           </div>
-          <Countdown targetDate={getNextFriday()} />
+          <Countdown/> 
         </motion.div>
 
         {/* Events Grid */}

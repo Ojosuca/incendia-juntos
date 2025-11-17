@@ -1,10 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
-interface CountdownProps {
-  targetDate: Date;
-}
-
 interface TimeLeft {
   days: number;
   hours: number;
@@ -12,7 +8,7 @@ interface TimeLeft {
   seconds: number;
 }
 
-const Countdown = ({ targetDate }: CountdownProps) => {
+const Countdown = () => {
   const [timeLeft, setTimeLeft] = useState<TimeLeft>({
     days: 0,
     hours: 0,
@@ -20,7 +16,34 @@ const Countdown = ({ targetDate }: CountdownProps) => {
     seconds: 0,
   });
 
+  // Função para calcular o próximo sábado às 18:00
+  const getNextSaturday18h = (): Date => {
+    const now = new Date();
+    const currentDay = now.getDay(); // 0 = domingo, 6 = sábado
+    const currentHour = now.getHours();
+    
+    // Calcula quantos dias faltam para o próximo sábado
+    let daysUntilSaturday = 6 - currentDay;
+    
+    // Se hoje é sábado e já passou das 18:00, vai para o próximo sábado
+    if (currentDay === 6 && currentHour >= 18) {
+      daysUntilSaturday += 7;
+    } 
+    // Se não é sábado ou é sábado antes das 18:00
+    else if (daysUntilSaturday < 0) {
+      daysUntilSaturday += 7;
+    }
+    
+    const nextSaturday = new Date(now);
+    nextSaturday.setDate(now.getDate() + daysUntilSaturday);
+    nextSaturday.setHours(18, 0, 0, 0); // Sábado às 18:00
+    
+    return nextSaturday;
+  };
+
   useEffect(() => {
+    const targetDate = getNextSaturday18h();
+    
     const calculateTimeLeft = () => {
       const difference = +targetDate - +new Date();
 
@@ -31,6 +54,17 @@ const Countdown = ({ targetDate }: CountdownProps) => {
           minutes: Math.floor((difference / 1000 / 60) % 60),
           seconds: Math.floor((difference / 1000) % 60),
         });
+      } else {
+        // Se o tempo acabou, recalcula para o próximo sábado
+        const newTargetDate = getNextSaturday18h();
+        const newDifference = +newTargetDate - +new Date();
+        
+        setTimeLeft({
+          days: Math.floor(newDifference / (1000 * 60 * 60 * 24)),
+          hours: Math.floor((newDifference / (1000 * 60 * 60)) % 24),
+          minutes: Math.floor((newDifference / 1000 / 60) % 60),
+          seconds: Math.floor((newDifference / 1000) % 60),
+        });
       }
     };
 
@@ -38,7 +72,7 @@ const Countdown = ({ targetDate }: CountdownProps) => {
     const timer = setInterval(calculateTimeLeft, 1000);
 
     return () => clearInterval(timer);
-  }, [targetDate]);
+  }, []);
 
   const timeUnits = [
     { label: "Dias", value: timeLeft.days },
@@ -96,6 +130,11 @@ const Countdown = ({ targetDate }: CountdownProps) => {
             </div>
           </motion.div>
         ))}
+      </div>
+      
+      {/* Mensagem informativa */}
+      <div className="text-center mt-8 text-muted-foreground">
+        <p>Contagem regressiva para o próximo culto de sábado às 18:00</p>
       </div>
     </div>
   );
