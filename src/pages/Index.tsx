@@ -105,7 +105,7 @@ const Index = () => {
                 DESCUBRA MAIS
               </h2>
               <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                Navegue pelas diferentes áreas e conheça tudo sobre o Incends
+                Navegue pelas diferentes áreas e conheça tudo sobre o Incendiados
               </p>
             </motion.div>
 

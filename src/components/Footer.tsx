@@ -16,7 +16,7 @@ const Footer = () => {
               </span>
             </div>
             <p className="text-muted-foreground text-sm leading-relaxed">
-              Culto de Jovens comprometido em incendiar uma geração com o fogo
+              Culto de adolecentes comprometido em incendiar uma geração com o fogo
               do Espírito Santo.
             </p>
           </div>

@@ -19,7 +19,7 @@ const About = () => {
       icon: Users,
       title: "Comunidade Forte",
       description:
-        "Conecte-se com jovens que compartilham a mesma paixão por Jesus.",
+        "Conecte-se com os adolecentes que compartilham a mesma paixão por Jesus.",
     },
     {
       icon: Sparkles,
@@ -86,8 +86,8 @@ const About = () => {
           >
             <div className="bg-card/50 backdrop-blur-sm border border-border rounded-2xl p-8">
               <p className="text-muted-foreground text-lg leading-relaxed">
-                O Incends é mais do que um culto de jovens. É um movimento de
-                jovens apaixonados por Jesus, dispostos a abrir mão de si mesmos
+                O Incends é mais do que um culto de adolecentes. É um movimento de
+                Adolecentes apaixonados por Jesus, dispostos a abrir mão de si mesmos
                 para viver o verdadeiro evangelho.
               </p>
             </div>

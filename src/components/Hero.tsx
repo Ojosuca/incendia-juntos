@@ -18,7 +18,7 @@ const Hero = () => {
     <AnimatedMarqueeHero
       tagline="Vamos lá, Alguém"
       title="INCENDS"
-      description="Um culto onde jovens encontram propósito, comunidade e transformação genuína através de Cristo. Vamos Incendiar Juntos!"
+      description="Um culto onde adolecentes encontram propósito, comunidade e transformação genuína através de Cristo. Vamos Incendiar Juntos!"
       ctaText="Quero fazer parte"
       ctaSecondary="Conhecer ministérios"
       onCtaClick={() => (window.location.href = "#contato")}

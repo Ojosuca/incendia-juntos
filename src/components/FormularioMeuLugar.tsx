@@ -75,7 +75,7 @@ const FormularioMeuLugar = ({ onClose }: FormularioMeuLugarProps) => {
             ENCONTRAR MEU LUGAR
           </h2>
           <p className="text-muted-foreground">
-            Seja bem-vindo à família Incends!
+            Seja bem-vindo à família Incendiados!
           </p>
 
           {/* Progress Indicator */}
