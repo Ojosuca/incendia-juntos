@@ -64,7 +64,7 @@ const LoadingScreen = ({ onComplete }: LoadingScreenProps) => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
-            className="font-display text-6xl md:text-8xl text-foreground tracking-wider"
+            className="font-display text-6xl md:text-8xl text-white tracking-wider"
           >
             INCENDS
           </motion.h1>

@@ -62,7 +62,7 @@ const Worship = () => {
         </motion.div>
 
         <div className="grid lg:grid-cols-2 gap-8 mb-16">
-          {/* Left: Spotify-style Playlist */}
+          {/* Left: Spotify Playlist Embed */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
@@ -78,74 +78,32 @@ const Worship = () => {
                     Louvores dos Cultos
                   </h3>
                   <p className="text-muted-foreground text-sm">
-                    Ouça nossa playlist no Spotify
+                    Playlist oficial no Spotify
                   </p>
                 </div>
               </div>
 
-              {/* Playlist Items */}
-              <div className="space-y-3 mb-6">
-                {[
-                  {
-                    name: "Incendiados",
-                    artist: "Ministério Incends",
-                    duration: "4:32",
-                  },
-                  {
-                    name: "Sem Máscaras",
-                    artist: "Ministério Incends",
-                    duration: "5:18",
-                  },
-                  {
-                    name: "Chama Viva",
-                    artist: "Ministério Incends",
-                    duration: "3:45",
-                  },
-                  {
-                    name: "Transformação",
-                    artist: "Ministério Incends",
-                    duration: "4:50",
-                  },
-                  {
-                    name: "Geração Santa",
-                    artist: "Ministério Incends",
-                    duration: "4:12",
-                  },
-                ].map((song, idx) => (
-                  <motion.div
-                    key={idx}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={isInView ? { opacity: 1, x: 0 } : {}}
-                    transition={{ delay: 0.3 + idx * 0.1 }}
-                    whileHover={{ x: 5 }}
-                    className="flex items-center gap-4 p-3 rounded-xl hover:bg-muted/50 transition-all cursor-pointer group"
-                  >
-                    <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-gradient-fire/20 flex items-center justify-center group-hover:bg-gradient-fire transition-all">
-                      <Play className="w-5 h-5 text-primary group-hover:text-white transition-colors" />
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <p className="font-sans font-semibold text-sm text-foreground truncate">
-                        {song.name}
-                      </p>
-                      <p className="text-xs text-muted-foreground truncate">
-                        {song.artist}
-                      </p>
-                    </div>
-                    <span className="text-xs text-muted-foreground font-mono">
-                      {song.duration}
-                    </span>
-                  </motion.div>
-                ))}
+              {/* Spotify Embed - Substitui a playlist simulada */}
+              <div className="mb-6">
+                <iframe 
+                  src="https://open.spotify.com/embed/playlist/5GnTuspwbfBtDIb8cQxY7y?utm_source=generator&theme=0"
+                  width="100%" 
+                  height="352" 
+                  frameBorder="0" 
+                  allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                  loading="lazy"
+                  className="rounded-xl"
+                ></iframe>
               </div>
 
               <Button
                 size="lg"
                 onClick={() =>
-                  window.open("https://open.spotify.com/", "_blank")
+                  window.open("https://open.spotify.com/playlist/5GnTuspwbfBtDIb8cQxY7y?si=fOiLqeRwS8e8hJNDk2-dWw&pi=hbhbJMf-RMy1s", "_blank")
                 }
                 className="w-full bg-gradient-fire hover:opacity-90 text-white font-sans font-bold"
               >
-                Ouvir no Spotify
+                Seguir no Spotify
               </Button>
             </div>
           </motion.div>

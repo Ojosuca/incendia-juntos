@@ -5,42 +5,126 @@ import { Calendar, Clock, MapPin } from "lucide-react";
 import Countdown from "./Countdown";
 import { Button } from "./ui/button";
 
+// Importe as imagens dos banners (ajuste os caminhos conforme necessário)
+import cultoBanner from "../assets/INCENDS-57.jpg";
+import conferenciaBanner from "../assets/INCENDS-68.jpg";
+import acampamentoBanner from "../assets/INCENDS-73.jpg";
+
 const Events = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
-  // Próximo culto: exemplo de data (próximo Sábadoo às 18h00)
-  const getNextFriday = () => {
-    const today = new Date();
-    const dayOfWeek = today.getDay();
-    const daysUntilFriday = (5 - dayOfWeek + 7) % 7 || 7;
-    const nextFriday = new Date(today);
-    nextFriday.setDate(today.getDate() + daysUntilFriday);
-    nextFriday.setHours(19, 30, 0, 0);
-    return nextFriday;
+  // Função para adicionar ao calendário
+  const addToCalendar = (event: any) => {
+    if (event.date === "A Definir" || event.time === "A definir") {
+      alert("Em breve teremos mais informações sobre este evento. Aguarde!");
+      return;
+    }
+
+    let startDate: Date;
+    
+    // Calcula a data de início baseada no tipo de evento
+    if (event.date === "Todo Sábado") {
+      const now = new Date();
+      const daysUntilSaturday = (6 - now.getDay() + 7) % 7;
+      startDate = new Date(now);
+      startDate.setDate(now.getDate() + daysUntilSaturday);
+      startDate.setHours(18, 0, 0, 0);
+    } else if (event.date === "12-14 Nov") {
+      // Conferência - assumindo início no dia 12 às 19h
+      startDate = new Date(2024, 10, 12, 19, 0, 0);
+    } else {
+      startDate = new Date();
+    }
+
+    const endDate = new Date(startDate.getTime() + 2 * 60 * 60 * 1000); // +2 horas
+
+    // Tenta detectar o dispositivo para oferecer a melhor experiência
+    const isAppleDevice = /Mac|iPhone|iPad|iPod/.test(navigator.userAgent);
+    
+    if (isAppleDevice) {
+      // Para dispositivos Apple, oferece download do arquivo ICS
+      generateAndDownloadICS(event, startDate, endDate);
+    } else {
+      // Para outros dispositivos, abre Google Calendar (mais universal)
+      openGoogleCalendar(event, startDate, endDate);
+    }
+  };
+
+  // Função para gerar e baixar arquivo ICS
+  const generateAndDownloadICS = (event: any, startDate: Date, endDate: Date) => {
+    const icsContent = `
+BEGIN:VCALENDAR
+VERSION:2.0
+CALSCALE:GREGORIAN
+BEGIN:VEVENT
+SUMMARY:${event.title}
+DESCRIPTION:${event.description}
+LOCATION:${event.location}
+DTSTART:${startDate.toISOString().replace(/[-:]/g, '').split('.')[0]}Z
+DTEND:${endDate.toISOString().replace(/[-:]/g, '').split('.')[0]}Z
+UID:${Math.random().toString(36).substring(2)}@incendiados
+DTSTAMP:${new Date().toISOString().replace(/[-:]/g, '').split('.')[0]}Z
+END:VEVENT
+END:VCALENDAR
+    `.trim();
+
+    const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `${event.title.replace(/\s+/g, '_')}.ics`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+  };
+
+  // Função para abrir Google Calendar
+  const openGoogleCalendar = (event: any, startDate: Date, endDate: Date) => {
+    const formatDate = (date: Date) => {
+      return date.toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
+    };
+
+    const params = new URLSearchParams({
+      action: 'TEMPLATE',
+      text: event.title,
+      dates: `${formatDate(startDate)}/${formatDate(endDate)}`,
+      details: event.description,
+      location: event.location,
+    });
+
+    window.open(`https://calendar.google.com/calendar/render?${params.toString()}`, '_blank');
   };
 
   const upcomingEvents = [
     {
-      title: "Culto de Jovens",
+      title: "Culto Incendiados",
       date: "Todo Sábado",
       time: "18h00",
       location: "Igreja Batista do Angelim",
       description: "Nosso encontro semanal de louvor, palavra e comunhão.",
+      image: cultoBanner,
+      hasDefinedSchedule: true,
     },
     {
-      title: "Retiro Incends",
-      date: "15-17 Nov",
-      time: "Todo dia",
-      location: "A definir",
-      description: "Três dias intensos de busca, adoração e transformação.",
-    },
-    {
-      title: "Noite de Adoração",
-      date: "30 Nov",
-      time: "20h00",
+      title: "Conferência Incendiados",
+      date: "12-14 Nov",
+      time: "A definir",
       location: "Auditório Aprisquinho",
-      description: "Uma noite dedicada à adoração profunda e intimidade com Deus.",
+      description: "Três dias intensos de busca, adoração e transformação.",
+      image: conferenciaBanner,
+      hasDefinedSchedule: false,
+    },
+    {
+      title: "Acampamento Incendiados",
+      date: "A Definir",
+      time: "A definir",
+      location: "A Definir",
+      description: "Um fim de semana de retiro espiritual e crescimento na fé.",
+      image: acampamentoBanner,
+      hasDefinedSchedule: false,
     },
   ];
 
@@ -88,9 +172,18 @@ const Events = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: 0.4 + index * 0.1 }}
-              className="bg-card border border-border rounded-2xl p-6 shadow-card hover:shadow-glow transition-all group"
+              className="bg-card border border-border rounded-2xl overflow-hidden shadow-card hover:shadow-glow transition-all group"
             >
-              <div className="space-y-4">
+              {/* Banner Image */}
+              <div className="h-48 overflow-hidden">
+                <img 
+                  src={event.image} 
+                  alt={event.title}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                />
+              </div>
+
+              <div className="p-6 space-y-4">
                 <div className="flex items-start justify-between">
                   <h3 className="font-sans text-xl font-bold text-foreground group-hover:text-primary transition-colors">
                     {event.title}
@@ -122,8 +215,9 @@ const Events = () => {
                 <Button
                   variant="outline"
                   className="w-full border-primary text-primary hover:bg-primary hover:text-primary-foreground mt-4"
+                  onClick={() => addToCalendar(event)}
                 >
-                  Adicionar ao calendário
+                  {event.hasDefinedSchedule ? "Adicionar ao calendário" : "Em breve"}
                 </Button>
               </div>
             </motion.div>

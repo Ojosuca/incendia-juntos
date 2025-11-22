@@ -129,7 +129,7 @@ const Navigation = () => {
                   <div className="flex items-center gap-2">
                     <Flame className="w-6 h-6 text-primary" />
                     <span className="font-display text-xl text-foreground">
-                      INCENDS
+                      INCENDIADOS MOVEMENT
                     </span>
                   </div>
                   <Button

@@ -16,13 +16,13 @@ const Hero = () => {
 
   return (
     <AnimatedMarqueeHero
-      tagline="Vamos lá, Alguém"
-      title="INCENDS"
+      tagline="Vamos Incendiar Juntos?"
+      title="INCENDIADOS"
       description="Um culto onde adolecentes encontram propósito, comunidade e transformação genuína através de Cristo. Vamos Incendiar Juntos!"
       ctaText="Quero fazer parte"
       ctaSecondary="Conhecer ministérios"
-      onCtaClick={() => (window.location.href = "#contato")}
-      onCtaSecondaryClick={() => (window.location.href = "#ministerios")}
+      onCtaClick={() => (window.location.href = "contato")}
+      onCtaSecondaryClick={() => (window.location.href = "ministerios")}
       images={cultoImages}
     />
   );

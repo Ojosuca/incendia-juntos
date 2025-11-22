@@ -30,7 +30,7 @@ const FormularioMeuLugar = ({ onClose }: FormularioMeuLugarProps) => {
         `Email: ${formData.email}\n` +
         `Telefone: ${formData.telefone}\n` +
         `Idade: ${formData.idade}\n` +
-        `Data da Conversão: ${formData.dataConversao}\n` +
+        `Data da Conversão: ${formData.dataConversao}\n` + 
         `Mensagem: ${formData.mensagem}`,
     );
 

@@ -5,10 +5,10 @@ import { ExpandableCard } from "./ui/expandable-card";
 import { Button } from "./ui/button";
 import heroImage from "@/assets/IMG_8221.jpg";
 import communityImage from "@/assets/IMG_7796.jpg";
-import galleryWorship1 from "@/assets/IMG_4141.jpg";
+import galleryWorship1 from "@/assets/IMG_0283.jpg";
 import galleryWorshipBand from "@/assets/IMG_2116.jpg";
-import galleryPrayer from "@/assets/IMG_4152.jpg";
-import galleryYouth from "@/assets/IMG_8247.jpg";
+import galleryPrayer from "@/assets/123A3049.jpg";
+import galleryYouth from "@/assets/IMG_3708.jpg";
 
 const Ministries = () => {
   const ref = useRef(null);
@@ -17,7 +17,7 @@ const Ministries = () => {
   const ministries = [
     {
       id: "louvor",
-      name: "Louvor",
+      name: "Incendiados Music",
       image: galleryWorshipBand,
       description: "Ministério de Adoração",
       shortDescription:
@@ -29,7 +29,7 @@ const Ministries = () => {
     },
     {
       id: "danca",
-      name: "Dança",
+      name: "Incendiados Dance",
       image: heroImage,
       description: "Ministério de Dança Profética",
       shortDescription:
@@ -57,7 +57,7 @@ const Ministries = () => {
       image: galleryWorship1,
       description: "Ministério de Multimídia",
       shortDescription:
-        "Opere projeção, iluminação e som para criar experiências impactantes.",
+        "Opere projeção e iluminação para criar experiências impactantes.",
       details:
         "A tecnologia é uma ferramenta poderosa para amplificar a mensagem do evangelho. Seja parte da equipe que cria a atmosfera dos nossos cultos.",
       requirements:
@@ -65,15 +65,15 @@ const Ministries = () => {
     },
     {
       id: "intercessao",
-      name: "Intercessão",
+      name: "Técnica",
       image: galleryPrayer,
-      description: "Ministério de Oração",
+      description: "Ministério da Técnica",
       shortDescription:
-        "Seja um guerreiro de oração que sustenta o ministério no mundo espiritual.",
+        "Seja um operador de som para criar uma experiência sonora digna ao culto ao nosso Deus",
       details:
-        "Antes de cada culto, um time se reúne para orar e preparar o terreno espiritual. Sua oração faz a diferença.",
+        "Antes, durante e depois de cada culto, o ministério é responsável por toda sonoplastia do culto.",
       requirements:
-        "Vida de oração consistente, maturidade espiritual e compromisso com o ministério.",
+        "Conhecimento básico ou desejo de aprender sonoplastia, disponibilidade para treinamentos e pontualidade nos cultos.",
     },
     {
       id: "acolhimento",
