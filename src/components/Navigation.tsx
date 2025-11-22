@@ -76,7 +76,38 @@ const Navigation = () => {
             ))}
           </div>
 
-          <div className="flex items-center gap-4">
+          {/* Botões de ação - DESKTOP CORRIGIDOS */}
+          <div className="hidden lg:flex items-center gap-4">
+            <Link to="/ministerios">
+              <Button
+                variant="outline"
+                className="border-primary text-primary hover:bg-primary hover:text-white"
+              >
+                Conhecer ministérios
+              </Button>
+            </Link>
+            
+            <Link to="/contato">
+              <Button className="bg-gradient-fire hover:opacity-90">
+                Quero fazer parte
+              </Button>
+            </Link>
+
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={toggleTheme}
+              className="rounded-full"
+            >
+              {theme === "dark" ? (
+                <Sun className="w-5 h-5" />
+              ) : (
+                <Moon className="w-5 h-5" />
+              )}
+            </Button>
+          </div>
+
+          <div className="flex items-center gap-4 lg:hidden">
             <Button
               variant="ghost"
               size="icon"
@@ -93,7 +124,6 @@ const Navigation = () => {
             <Button
               variant="ghost"
               size="icon"
-              className="lg:hidden"
               onClick={() => setIsOpen(!isOpen)}
             >
               {isOpen ? (
@@ -161,20 +191,6 @@ const Navigation = () => {
                     </motion.div>
                   ))}
                 </nav>
-
-                <div className="mt-12 pt-8 border-t border-border">
-                  <p className="text-sm text-muted-foreground mb-4">
-                    Vamos lá, Alguém
-                  </p>
-                  <Link to="/contato">
-                    <Button
-                      className="w-full bg-gradient-fire hover:opacity-90"
-                      onClick={() => setIsOpen(false)}
-                    >
-                      Quero fazer parte
-                    </Button>
-                  </Link>
-                </div>
               </div>
             </motion.div>
           </>
