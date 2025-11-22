@@ -41,21 +41,21 @@ const Index = () => {
     {
       icon: Users,
       title: "Sobre Nós",
-      description: "Conheça nossa história, propósito e valores que nos movem",
+      description: "Conheça nosso propósito, nossos valores e o que nos faz ser Incendiados.",
       path: "/sobre",
       gradient: "from-primary/20 to-primary/5",
     },
     {
       icon: Calendar,
       title: "Eventos",
-      description: "Fique por dentro dos próximos cultos e encontros especiais",
+      description: "Fique por dentro dos próximos cultos incendiados aos encontros especiais. Não fique de fora!",
       path: "/eventos",
       gradient: "from-orange-500/20 to-orange-500/5",
     },
     {
       icon: Music,
       title: "Louvor e Palavra",
-      description: "Ouça nossas playlists e reflita sobre as últimas mensagens",
+      description: "A adoração não termina no amém. Reviva os louvores que tocaram no seu coração e reflita na palavra que transforma vidas.",
       path: "/louvor",
       gradient: "from-red-500/20 to-red-500/5",
     },
@@ -76,7 +76,7 @@ const Index = () => {
     {
       icon: MapPin,
       title: "Contato",
-      description: "Entre em contato conosco e encontre nossa localização",
+      description: "A Chama Espera por Você! Venha fazer parte da nossa comunidade e nos visitar!",
       path: "/contato",
       gradient: "from-red-500/20 to-red-500/5",
     },

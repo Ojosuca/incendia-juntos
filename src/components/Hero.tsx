@@ -30,7 +30,7 @@ const Hero = () => {
     <AnimatedMarqueeHero
       tagline="Vamos Incendiar Juntos?"
       title="INCENDIADOS"
-      description="Um culto onde adolecentes encontram propósito, comunidade e transformação genuína através de Cristo. Vamos Incendiar Juntos!"
+      description="Não somos um culto comum. Somos o lugar onde o fogo de Deus transforma vidas e desperta uma geração — uma fé, uma chama."
       ctaText="Quero fazer parte"
       ctaSecondary="Conhecer ministérios"
       onCtaClick={handleCtaClick}

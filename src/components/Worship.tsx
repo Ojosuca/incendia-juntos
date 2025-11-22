@@ -13,19 +13,19 @@ const Worship = () => {
     {
       title: "O Fogo que Transforma",
       speaker: "Pr. Lucas",
-      date: "10 Nov 2024",
+      date: "10 Nov 2025",
       type: "Pregação",
     },
     {
       title: "Incendiados por Cristo",
       speaker: "Incends Music",
-      date: "03 Nov 2024",
+      date: "03 Nov 2025",
       type: "Louvor",
     },
     {
       title: "Uma Geração Sem Máscaras",
       speaker: "Pr. Lucas",
-      date: "27 Out 2024",
+      date: "27 Out 2025",
       type: "Pregação",
     },
   ];
@@ -56,8 +56,7 @@ const Worship = () => {
             LOUVOR E PALAVRA
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Experiências transformadoras através da adoração genuína e do ensino
-            bíblico profundo
+            A adoração não termina no amém. Reviva os louvores que tocaram no seu coração e reflita na palavra que transforma vidas.
           </p>
         </motion.div>
 

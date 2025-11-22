@@ -86,9 +86,7 @@ const About = () => {
           >
             <div className="bg-card/50 backdrop-blur-sm border border-border rounded-2xl p-8">
               <p className="text-muted-foreground text-lg leading-relaxed">
-                O Incends é mais do que um culto de adolecentes. É um movimento de
-                Adolecentes apaixonados por Jesus, dispostos a abrir mão de si mesmos
-                para viver o verdadeiro evangelho.
+                O Incendiados é o cumprimento da promessa. "Derramarei do meu Espírito sobre toda a carne..." Somos a geração profetizada por Joel, jovens e adolescentes incendiados pelo Espírito Santo, que renunciam a si mesmos para viver não uma religião, mas o derramamento poderoso do evangelho de Cristo.
               </p>
             </div>
 

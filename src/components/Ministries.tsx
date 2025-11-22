@@ -103,14 +103,13 @@ const Ministries = () => {
           className="text-center mb-16"
         >
           <p className="text-primary font-sans font-semibold text-sm uppercase tracking-wider mb-4">
-            Vamos lá, Alguém
+            Vamos lá, Alguém?
           </p>
           <h2 className="font-display text-5xl md:text-7xl text-foreground mb-6">
-            QUERO SER FAMÍLIA INCENDS
+            Venha servir conosco
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Encontre seu lugar e use seus dons para transformar vidas. Todo
-            mundo tem espaço aqui!
+            Deus te deu um dom único para fazer a diferença. Encontre seu lugar e veja como usar sua voz, sua criatividade e sua energia no ministério
           </p>
         </motion.div>
 
