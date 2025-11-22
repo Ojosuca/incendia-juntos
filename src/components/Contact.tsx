@@ -18,7 +18,7 @@ const Contact = () => {
     {
       icon: Phone,
       label: "WhatsApp",
-      value: "(11) 99999-9999",
+      value: "(11) 99999-9998",
       link: "https://wa.me/5511999999999",
     },
     {
