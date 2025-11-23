@@ -6,9 +6,9 @@ import Countdown from "./Countdown";
 import { Button } from "./ui/button";
 
 // Importe as imagens dos banners (ajuste os caminhos conforme necessário)
-import cultoBanner from "../assets/INCENDS-57.jpg";
-import conferenciaBanner from "../assets/INCENDS-68.jpg";
-import acampamentoBanner from "../assets/INCENDS-73.jpg";
+import cultoBanner from "../assets/IMG_9989.jpg";
+import conferenciaBanner from "../assets/TELAO.png";
+import acampamentoBanner from "../assets/EMBREVEON.png";
 
 const Events = () => {
   const ref = useRef(null);
@@ -110,7 +110,7 @@ END:VCALENDAR
     },
     {
       title: "Conferência Incendiados",
-      date: "12-14 Nov",
+      date: "12-14 Mar",
       time: "A definir",
       location: "Auditório Aprisquinho",
       description: "Três dias intensos de busca, adoração e transformação.",
@@ -120,7 +120,7 @@ END:VCALENDAR
     {
       title: "Acampamento Incendiados",
       date: "A Definir",
-      time: "A definir",
+      time: "A Definir",
       location: "A Definir",
       description: "Um fim de semana de retiro espiritual e crescimento na fé.",
       image: acampamentoBanner,
