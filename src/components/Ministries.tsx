@@ -3,12 +3,12 @@ import { useInView } from "framer-motion";
 import { useRef } from "react";
 import { ExpandableCard } from "./ui/expandable-card";
 import { Button } from "./ui/button";
-import heroImage from "@/assets/IMG_8221.jpg";
-import communityImage from "@/assets/IMG_7796.jpg";
-import galleryWorship1 from "@/assets/IMG_0283.jpg";
-import galleryWorshipBand from "@/assets/IMG_2116.jpg";
-import galleryPrayer from "@/assets/123A3049.jpg";
-import galleryYouth from "@/assets/IMG_3708.jpg";
+import heroImage from "@/assets/IMG_8221.webp";
+import communityImage from "@/assets/IMG_7796.webp";
+import galleryWorship1 from "@/assets/IMG_0283.webp";
+import galleryWorshipBand from "@/assets/IMG_2116.webp";
+import galleryPrayer from "@/assets/123a3049.webp";
+import galleryYouth from "@/assets/IMG_3708.webp";
 
 const Ministries = () => {
   const ref = useRef(null);

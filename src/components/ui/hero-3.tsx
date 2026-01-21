@@ -1,8 +1,9 @@
 "use client";
 
-import React from "react";
+import React, { useRef, useLayoutEffect } from "react";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
+import { initHeroEntrance, initHeroMarquee, cleanupHeroAnimations } from "@/animations/homeHero.gsap";
 
 // Props interface for the component
 interface AnimatedMarqueeHeroProps {
@@ -18,6 +19,7 @@ interface AnimatedMarqueeHeroProps {
 }
 
 // Reusable Button component styled like in the image
+// Keeps Framer Motion for microinteractions (hover/tap)
 const ActionButton = ({
   children,
   variant = "primary",
@@ -54,18 +56,48 @@ export const AnimatedMarqueeHero: React.FC<AnimatedMarqueeHeroProps> = ({
   images,
   className,
 }) => {
-  // Animation variants for the text content
-  const FADE_IN_ANIMATION_VARIANTS = {
-    hidden: { opacity: 0, y: 10 },
-    show: {
-      opacity: 1,
-      y: 0,
-      transition: { type: "spring" as const, stiffness: 100, damping: 20 },
-    },
-  };
+  // Refs for GSAP animations
+  const taglineRef = useRef<HTMLDivElement>(null);
+  const titleRef = useRef<HTMLHeadingElement>(null);
+  const descriptionRef = useRef<HTMLParagraphElement>(null);
+  const ctaRef = useRef<HTMLDivElement>(null);
+  const marqueeRef = useRef<HTMLDivElement>(null);
 
   // Duplicate images for a seamless loop
   const duplicatedImages = [...images, ...images];
+
+  // Check if title is a string to split into words
+  const titleIsString = typeof title === "string";
+  const titleWords = titleIsString ? title.split(" ") : [];
+
+  // Initialize GSAP animations
+  useLayoutEffect(() => {
+    // Get all title word elements
+    const titleWordElements: HTMLElement[] = [];
+    if (titleRef.current && titleIsString) {
+      const spans = titleRef.current.querySelectorAll("span");
+      spans.forEach((span) => titleWordElements.push(span));
+    }
+
+    // Initialize entrance animations
+    const entranceCtx = initHeroEntrance({
+      taglineRef: taglineRef.current,
+      titleRef: titleRef.current,
+      titleWords: titleWordElements,
+      descriptionRef: descriptionRef.current,
+      ctaRef: ctaRef.current,
+      marqueeRef: marqueeRef.current,
+    });
+
+    // Initialize marquee animation
+    const marqueeCtx = initHeroMarquee(marqueeRef.current);
+
+    // Cleanup on unmount
+    return () => {
+      cleanupHeroAnimations(entranceCtx);
+      cleanupHeroAnimations(marqueeCtx);
+    };
+  }, [titleIsString]);
 
   return (
     <section
@@ -77,60 +109,42 @@ export const AnimatedMarqueeHero: React.FC<AnimatedMarqueeHeroProps> = ({
     >
       <div className="z-10 flex flex-col items-center max-w-6xl w-full">
         {/* Tagline */}
-        <motion.div
-          initial="hidden"
-          animate="show"
-          variants={FADE_IN_ANIMATION_VARIANTS}
-          className="mb-4 md:mb-6 inline-block rounded-full border-2 border-primary/30 bg-background/40 backdrop-blur-xl px-4 py-1.5 md:px-6 md:py-2 text-xs md:text-sm font-sans font-bold text-primary uppercase tracking-wider shadow-glow"
+        <div
+          ref={taglineRef}
+          className="hero-entrance-initial mb-4 md:mb-6 inline-block rounded-full border-2 border-primary/30 bg-background/40 backdrop-blur-xl px-4 py-1.5 md:px-6 md:py-2 text-xs md:text-sm font-sans font-bold text-primary uppercase tracking-wider shadow-glow"
         >
           {tagline}
-        </motion.div>
+        </div>
 
         {/* Main Title */}
-        <motion.h1
-          initial="hidden"
-          animate="show"
-          variants={{
-            hidden: {},
-            show: {
-              transition: {
-                staggerChildren: 0.1,
-              },
-            },
-          }}
+        <h1
+          ref={titleRef}
           className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl 2xl:text-[12rem] text-foreground leading-none tracking-tighter mb-6 md:mb-8"
         >
-          {typeof title === "string"
-            ? title.split(" ").map((word, i) => (
-                <motion.span
+          {titleIsString
+            ? titleWords.map((word, i) => (
+                <span
                   key={i}
-                  variants={FADE_IN_ANIMATION_VARIANTS}
-                  className="inline-block"
+                  className="hero-entrance-initial inline-block"
                 >
                   {word}&nbsp;
-                </motion.span>
+                </span>
               ))
             : title}
-        </motion.h1>
+        </h1>
 
         {/* Description */}
-        <motion.p
-          initial="hidden"
-          animate="show"
-          variants={FADE_IN_ANIMATION_VARIANTS}
-          transition={{ delay: 0.5 }}
-          className="mt-4 md:mt-6 max-w-3xl text-base sm:text-lg md:text-xl lg:text-2xl text-muted-foreground font-sans px-4"
+        <p
+          ref={descriptionRef}
+          className="hero-entrance-initial mt-4 md:mt-6 max-w-3xl text-base sm:text-lg md:text-xl lg:text-2xl text-muted-foreground font-sans px-4"
         >
           {description}
-        </motion.p>
+        </p>
 
         {/* Call to Action Buttons */}
-        <motion.div
-          initial="hidden"
-          animate="show"
-          variants={FADE_IN_ANIMATION_VARIANTS}
-          transition={{ delay: 0.6 }}
-          className="mt-8 md:mt-10 flex flex-col sm:flex-row gap-3 md:gap-4 justify-center items-center w-full px-4"
+        <div
+          ref={ctaRef}
+          className="hero-entrance-initial mt-8 md:mt-10 flex flex-col sm:flex-row gap-3 md:gap-4 justify-center items-center w-full px-4"
         >
           <ActionButton variant="primary" onClick={onCtaClick}>
             {ctaText}
@@ -140,21 +154,14 @@ export const AnimatedMarqueeHero: React.FC<AnimatedMarqueeHeroProps> = ({
               {ctaSecondary}
             </ActionButton>
           )}
-        </motion.div>
+        </div>
       </div>
 
       {/* Animated Image Marquee */}
       <div className="absolute bottom-0 left-0 w-full h-1/4 sm:h-1/3 md:h-2/5 [mask-image:linear-gradient(to_bottom,transparent,black_20%,black_80%,transparent)]">
-        <motion.div
+        <div
+          ref={marqueeRef}
           className="flex gap-2 sm:gap-3 md:gap-4"
-          animate={{
-            x: ["-50%", "0%"],
-            transition: {
-              ease: "linear",
-              duration: 40,
-              repeat: Infinity,
-            },
-          }}
         >
           {duplicatedImages.map((src, index) => (
             <div
@@ -171,7 +178,7 @@ export const AnimatedMarqueeHero: React.FC<AnimatedMarqueeHeroProps> = ({
               />
             </div>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );

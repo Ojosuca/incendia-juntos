@@ -3,10 +3,10 @@ import { useInView } from "framer-motion";
 import { useRef } from "react";
 import { Button } from "./ui/button";
 import { ChevronRight } from "lucide-react";
-import heroImage from "@/assets/IMG_4144.jpg";
-import communityImage from "@/assets/IMG_8221.jpg";
-import fireTexture from "@/assets/IMG_9968.jpg";
-import incends57 from "@/assets/INCENDS-57.jpg";
+import heroImage from "@/assets/IMG_4144.webp";
+import communityImage from "@/assets/IMG_8221.webp";
+import fireTexture from "@/assets/img-9968.webp";
+import incends57 from "@/assets/INCENDS-57.webp";
 
 const Gallery = () => {
   const ref = useRef(null);

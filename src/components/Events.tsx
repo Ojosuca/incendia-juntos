@@ -6,9 +6,9 @@ import Countdown from "./Countdown";
 import { Button } from "./ui/button";
 
 // Importe as imagens dos banners (ajuste os caminhos conforme necessário)
-import cultoBanner from "../assets/IMG_9989.jpg";
-import conferenciaBanner from "../assets/TELAO.png";
-import acampamentoBanner from "../assets/EMBREVEON.png";
+import cultoBanner from "../assets/img-9999.webp";
+import conferenciaBanner from "../assets/TELAO.webp";
+import acampamentoBanner from "../assets/EMBREVEON.webp";
 
 const Events = () => {
   const ref = useRef(null);

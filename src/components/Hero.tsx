@@ -1,7 +1,7 @@
 import { AnimatedMarqueeHero } from "./ui/hero-3";
-import heroImage from "@/assets/IMG_2116.jpg";
-import communityImage from "@/assets/IMG_4361.jpg";
-import fireTexture from "@/assets/IMG_8249.jpg";
+import heroImage from "@/assets/IMG_2116.webp";
+import communityImage from "@/assets/IMG_4361.webp";
+import fireTexture from "@/assets/IMG_8249.webp";
 import { useNavigate } from "react-router-dom";
 
 const Hero = () => {
@@ -30,7 +30,7 @@ const Hero = () => {
     <AnimatedMarqueeHero
       tagline="Vamos Incendiar Juntos?"
       title="INCENDIADOS"
-      description="Não somos um culto comum. Somos o lugar onde o fogo de Deus transforma vidas e desperta uma geração — uma fé, uma chama."
+      description="Não somos um culto comum. Somos o lugar onde o fogo de Deus transforma vidas e desperta uma geração uma fé, uma chama."
       ctaText="Quero fazer parte"
       ctaSecondary="Conhecer ministérios"
       onCtaClick={handleCtaClick}

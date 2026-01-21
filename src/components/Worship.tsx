@@ -3,7 +3,7 @@ import { useInView } from "framer-motion";
 import { useRef } from "react";
 import { Play, Music2, BookOpen } from "lucide-react";
 import { Button } from "./ui/button";
-import fireTexture from "@/assets/fire-texture.jpg";
+import fireTexture from "@/assets/fire-texture.webp";
 
 const Worship = () => {
   const ref = useRef(null);

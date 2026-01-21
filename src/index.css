@@ -137,3 +137,40 @@ All colors MUST be HSL.
     scroll-behavior: smooth;
   }
 }
+
+/**
+ * GSAP Animation States
+ * 
+ * IMPORTANT: The FINAL state is the default CSS state (no classes needed).
+ * GSAP will temporarily set the initial state and animate to final.
+ * Without JS, elements render in their final state (visible).
+ * 
+ * These utility classes are markers for GSAP to identify elements.
+ * GSAP will override styles via inline styles during animation.
+ */
+
+@layer utilities {
+  /* Hero entrance animations - marker class for GSAP */
+  /* GSAP will set opacity: 0, y: 10 initially, then animate to final state */
+  .hero-entrance-initial {
+    /* Final state is default (opacity: 1, transform: none) */
+    /* GSAP will override this via inline styles */
+  }
+
+  /* Scroll animations - marker class for GSAP */
+  /* GSAP will set opacity: 0, y: 20 initially, then animate on scroll */
+  .scroll-reveal-initial {
+    /* Final state is default (opacity: 1, transform: none) */
+    /* GSAP will override this via inline styles */
+  }
+
+  /* Respect reduced motion preference */
+  @media (prefers-reduced-motion: reduce) {
+    .hero-entrance-initial,
+    .scroll-reveal-initial {
+      /* Ensure final state even with reduced motion */
+      opacity: 1 !important;
+      transform: none !important;
+    }
+  }
+}

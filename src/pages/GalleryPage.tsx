@@ -2,16 +2,16 @@ import { LayoutGrid } from "@/components/ui/layout-grid";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { cn } from "@/lib/utils";
-import heroImage from "@/assets/IMG_4144.jpg";
-import communityImage from "@/assets/IMG_8221.jpg";
-import fireTexture from "@/assets/IMG_9968.jpg";
-import galleryWorship1 from "@/assets/INCENDS-57.jpg";
-import galleryCommunity1 from "@/assets/IMG_8249.jpg";
-import galleryWorshipBand from "@/assets/IMG_9968.jpg";
-import galleryPrayer from "@/assets/IMG_9989.jpg";
-import galleryYouth from "@/assets/INCENDS-73.jpg";
-import gallerySpecialMoment from "@/assets/IMG_8221.jpg";
-import galleryGathering from "@/assets/IMG_9999.jpg";
+import heroImage from "@/assets/IMG_4144.webp";
+import communityImage from "@/assets/IMG_8221.webp";
+import fireTexture from "@/assets/img-9968.webp";
+import galleryWorship1 from "@/assets/INCENDS-57.webp";
+import galleryCommunity1 from "@/assets/IMG_8249.webp";
+import galleryWorshipBand from "@/assets/img-9968.webp";
+import galleryPrayer from "@/assets/img-9999.webp";
+import galleryYouth from "@/assets/INCENDS-73.webp";
+import gallerySpecialMoment from "@/assets/IMG_8221.webp";
+import galleryGathering from "@/assets/img-9999.webp";
 
 const GalleryPage = () => {
   const cards = [

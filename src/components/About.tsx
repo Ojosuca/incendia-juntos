@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
 import { Heart, Users, Sparkles } from "lucide-react";
-import communityImage from "@/assets/IMG_5092.jpg";
+import communityImage from "@/assets/IMG_5092.webp";
 
 const About = () => {
   const ref = useRef(null);
@@ -19,7 +19,7 @@ const About = () => {
       icon: Users,
       title: "Comunidade Forte",
       description:
-        "Conecte-se com os adolecentes que compartilham a mesma paixão por Jesus.",
+        "Aqui, você é parte viva do Corpo de Cristo — encontra família, propósito e uma chama que nada apaga.",
     },
     {
       icon: Sparkles,
