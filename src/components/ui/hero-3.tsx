@@ -4,6 +4,7 @@ import React, { useRef, useLayoutEffect } from "react";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { initHeroEntrance, initHeroMarquee, cleanupHeroAnimations } from "@/animations/homeHero.gsap";
+import { OptimizedImage } from "./optimized-image";
 
 // Props interface for the component
 interface AnimatedMarqueeHeroProps {
@@ -171,9 +172,10 @@ export const AnimatedMarqueeHero: React.FC<AnimatedMarqueeHeroProps> = ({
                 rotate: `${index % 2 === 0 ? -2 : 5}deg`,
               }}
             >
-              <img
+              <OptimizedImage
                 src={src}
                 alt={`Imagem do culto ${index + 1}`}
+                priority={index < 3} // Load first 3 images immediately
                 className="w-full h-full object-cover rounded-lg sm:rounded-xl md:rounded-2xl shadow-md border-2 border-white/10"
               />
             </div>

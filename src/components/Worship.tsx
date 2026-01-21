@@ -38,7 +38,13 @@ const Worship = () => {
     >
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5">
-        <img src={fireTexture} alt="" className="w-full h-full object-cover" />
+        <img 
+          src={fireTexture} 
+          alt="" 
+          className="w-full h-full object-cover"
+          loading="lazy"
+          decoding="async"
+        />
       </div>
 
       <div className="container mx-auto px-4 relative z-10">

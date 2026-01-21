@@ -85,6 +85,8 @@ export function ExpandableCard({
                     src={src}
                     alt={title}
                     className="w-full h-80 object-cover object-center"
+                    loading="lazy"
+                    decoding="async"
                   />
                 </div>
               </motion.div>

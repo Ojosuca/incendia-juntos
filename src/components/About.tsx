@@ -71,6 +71,8 @@ const About = () => {
                   src={communityImage}
                   alt="Comunidade Incends"
                   className="w-full h-[500px] object-cover"
+                  loading="lazy"
+                  decoding="async"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
               </div>

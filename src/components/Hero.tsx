@@ -3,6 +3,7 @@ import heroImage from "@/assets/IMG_2116.webp";
 import communityImage from "@/assets/IMG_4361.webp";
 import fireTexture from "@/assets/IMG_8249.webp";
 import { useNavigate } from "react-router-dom";
+import { useImagePreload } from "@/hooks/use-image-preload";
 
 const Hero = () => {
   const navigate = useNavigate();
@@ -16,6 +17,9 @@ const Hero = () => {
     communityImage,
     fireTexture,
   ];
+
+  // Preload apenas as primeiras 3 imagens críticas (as outras carregam lazy)
+  useImagePreload([heroImage, communityImage, fireTexture]);
 
   // Funções de navegação
   const handleCtaClick = () => {
