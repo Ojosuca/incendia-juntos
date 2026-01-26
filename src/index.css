@@ -164,6 +164,16 @@ All colors MUST be HSL.
     /* GSAP will override this via inline styles */
   }
 
+  /* Portal Hero - final states */
+  .portal-background,
+  .portal-tv,
+  .portal-screen {
+    /* Final state: visible and scaled */
+    opacity: 1;
+    transform: scale(1);
+    filter: blur(0px);
+  }
+
   /* Respect reduced motion preference */
   @media (prefers-reduced-motion: reduce) {
     .hero-entrance-initial,
@@ -171,6 +181,14 @@ All colors MUST be HSL.
       /* Ensure final state even with reduced motion */
       opacity: 1 !important;
       transform: none !important;
+    }
+
+    .portal-background,
+    .portal-tv,
+    .portal-screen {
+      opacity: 1 !important;
+      transform: scale(1) !important;
+      filter: blur(0px) !important;
     }
   }
 }

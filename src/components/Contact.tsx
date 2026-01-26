@@ -1,12 +1,26 @@
-import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
-import { useRef } from "react";
-import { MapPin, Phone, Mail, Instagram, Facebook, Youtube } from "lucide-react";
+import { useRef, useLayoutEffect } from "react";
+import { MapPin, Users, Instagram } from "lucide-react";
 import { Button } from "./ui/button";
+import { initContactAnimations, cleanupContactAnimations } from "@/animations/contact.gsap";
 
 const Contact = () => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const containerRef = useRef<HTMLElement>(null);
+  const headerRef = useRef<HTMLDivElement>(null);
+  const cardsContainerRef = useRef<HTMLDivElement>(null);
+  const mapContainerRef = useRef<HTMLDivElement>(null);
+  const ctaButtonRef = useRef<HTMLDivElement>(null);
+
+  useLayoutEffect(() => {
+    const ctx = initContactAnimations({
+      container: containerRef.current,
+      header: headerRef.current,
+      cardsContainer: cardsContainerRef.current,
+      mapContainer: mapContainerRef.current,
+      ctaButton: ctaButtonRef.current,
+    });
+
+    return () => cleanupContactAnimations(ctx);
+  }, []);
 
   const contactInfo = [
     {
@@ -16,33 +30,25 @@ const Contact = () => {
       link: "https://maps.app.goo.gl/6noG45EM45tDMg736",
     },
     {
-      icon: Phone,
-      label: "WhatsApp",
-      value: "(11) 99999-9998",
-      link: "https://wa.me/5511999999999",
+      icon: Users,
+      label: "Comunidade",
+      value: "Participe da comunidade incends",
+      link: "https://chat.whatsapp.com/IjJiXcA37E0CHGiUo5qkIl?mode=gi_t",
     },
     {
-      icon: Mail,
-      label: "E-mail",
-      value: "contato@incends.com.br",
-      link: "mailto:contato@incends.com.br",
+      icon: Instagram,
+      label: "Instagram",
+      value: "@incendiadosmovement",
+      link: "https://www.instagram.com/incendiadosmovement/",
     },
-  ];
-
-  const socialMedia = [
-    { icon: Instagram, link: "https://www.instagram.com/incendiadosmovement/", name: "@incendiadosmovement" },
-    { icon: Facebook, link: "https://facebook.com/incends", name: "/incends" },
-    { icon: Youtube, link: "https://youtube.com/incends", name: "/incends" },
   ];
 
   return (
-    <section id="contato" ref={ref} className="py-24 md:py-32 bg-background">
+    <section id="contato" ref={containerRef} className="py-24 md:py-32 bg-background overflow-hidden">
       <div className="container mx-auto px-4">
         {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
+        <div
+          ref={headerRef}
           className="text-center mb-16"
         >
           <p className="text-primary font-sans font-semibold text-sm uppercase tracking-wider mb-4">
@@ -54,28 +60,21 @@ const Contact = () => {
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
             Tem alguma dúvida ou quer saber mais sobre nós? Entre em contato!
           </p>
-        </motion.div>
+        </div>
 
         <div className="grid lg:grid-cols-2 gap-12 items-start">
           {/* Contact Info */}
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.8 }}
-            className="space-y-8"
-          >
-            <div className="space-y-6">
-              {contactInfo.map((item, index) => {
+          <div className="space-y-8">
+            <div ref={cardsContainerRef} className="space-y-6">
+              {contactInfo.map((item) => {
                 const Icon = item.icon;
                 return (
-                  <motion.a
+                  <a
                     key={item.label}
                     href={item.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={isInView ? { opacity: 1, x: 0 } : {}}
-                    transition={{ delay: 0.2 + index * 0.1 }}
+                    data-contact-card
                     className="flex items-start gap-4 p-6 bg-card border border-border rounded-2xl hover:shadow-glow transition-all group"
                   >
                     <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-gradient-fire flex items-center justify-center shadow-glow group-hover:scale-110 transition-transform">
@@ -89,47 +88,13 @@ const Contact = () => {
                         {item.value}
                       </p>
                     </div>
-                  </motion.a>
+                  </a>
                 );
               })}
             </div>
 
-            {/* Social Media */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={isInView ? { opacity: 1 } : {}}
-              transition={{ delay: 0.6 }}
-              className="pt-8 border-t border-border"
-            >
-              <h3 className="font-sans font-bold text-lg text-foreground mb-6">
-                Redes Sociais
-              </h3>
-              <div className="flex gap-4">
-                {socialMedia.map((social) => {
-                  const Icon = social.icon;
-                  return (
-                    <motion.a
-                      key={social.name}
-                      href={social.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      whileHover={{ scale: 1.1 }}
-                      whileTap={{ scale: 0.95 }}
-                      className="w-12 h-12 rounded-xl bg-gradient-fire flex items-center justify-center shadow-glow hover:shadow-xl transition-all"
-                    >
-                      <Icon className="w-6 h-6 text-white" />
-                    </motion.a>
-                  );
-                })}
-              </div>
-            </motion.div>
-
             {/* CTA Button */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={isInView ? { opacity: 1 } : {}}
-              transition={{ delay: 0.8 }}
-            >
+            <div ref={ctaButtonRef}>
               <Button
                 size="lg"
                 className="w-full bg-gradient-fire hover:opacity-90 text-white font-sans font-semibold text-lg"
@@ -139,14 +104,12 @@ const Contact = () => {
               >
                 Falar com a liderança
               </Button>
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
 
           {/* Map */}
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.2 }}
+          <div
+            ref={mapContainerRef}
             className="h-[500px] rounded-2xl overflow-hidden shadow-card"
           >
             <iframe
@@ -160,7 +123,7 @@ const Contact = () => {
               title="Localização Incends"
               className="grayscale hover:grayscale-0 transition-all duration-500"
             />
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>

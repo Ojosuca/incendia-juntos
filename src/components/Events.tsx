@@ -7,7 +7,7 @@ import { Button } from "./ui/button";
 
 // Importe as imagens dos banners (ajuste os caminhos conforme necessário)
 import cultoBanner from "../assets/img-9999.webp";
-import conferenciaBanner from "../assets/TELAO.webp";
+import conferenciaBanner from "../assets/CONF-INCENDS-26.webp";
 import acampamentoBanner from "../assets/EMBREVEON.webp";
 
 const Events = () => {
@@ -22,7 +22,7 @@ const Events = () => {
     }
 
     let startDate: Date;
-    
+
     // Calcula a data de início baseada no tipo de evento
     if (event.date === "Todo Sábado") {
       const now = new Date();
@@ -41,7 +41,7 @@ const Events = () => {
 
     // Tenta detectar o dispositivo para oferecer a melhor experiência
     const isAppleDevice = /Mac|iPhone|iPad|iPod/.test(navigator.userAgent);
-    
+
     if (isAppleDevice) {
       // Para dispositivos Apple, oferece download do arquivo ICS
       generateAndDownloadICS(event, startDate, endDate);
@@ -71,7 +71,7 @@ END:VCALENDAR
 
     const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
     const url = URL.createObjectURL(blob);
-    
+
     const link = document.createElement('a');
     link.href = url;
     link.download = `${event.title.replace(/\s+/g, '_')}.ics`;
@@ -161,7 +161,7 @@ END:VCALENDAR
               Próximo Culto em:
             </h3>
           </div>
-          <Countdown/> 
+          <Countdown />
         </motion.div>
 
         {/* Events Grid */}
@@ -176,8 +176,8 @@ END:VCALENDAR
             >
               {/* Banner Image */}
               <div className="h-48 overflow-hidden">
-                <img 
-                  src={event.image} 
+                <img
+                  src={event.image}
                   alt={event.title}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                   loading="lazy"

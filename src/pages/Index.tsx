@@ -2,7 +2,9 @@ import { useState, useEffect, useRef, useLayoutEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import LoadingScreen from "@/components/LoadingScreen";
 import Navigation from "@/components/Navigation";
-import Hero from "@/components/Hero";
+import PortalHero from "@/components/PortalHero";
+import ConferenceSection from "@/components/ConferenceSection";
+import HomeScrollSections from "@/components/HomeScrollSections";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import {
@@ -113,7 +115,14 @@ const Index = () => {
     <div className="min-h-screen bg-background">
       <Navigation />
       <main>
-        <Hero />
+        {/* Portal Hero - TV retrô recriada com CSS */}
+        <PortalHero />
+
+        {/* Conference Section */}
+        <ConferenceSection />
+
+        {/* Home Scroll Sections - Mission, Community, CTA */}
+        <HomeScrollSections />
 
         {/* Sections Grid */}
         <section className="py-24 md:py-32 bg-background">
