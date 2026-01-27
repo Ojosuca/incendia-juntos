@@ -99,7 +99,7 @@ const Contact = () => {
                 size="lg"
                 className="w-full bg-gradient-fire hover:opacity-90 text-white font-sans font-semibold text-lg"
                 onClick={() => {
-                  window.open("https://wa.me/5511999999999?text=Olá! Gostaria de saber mais sobre o Incends.", "_blank");
+                  window.open("https://wa.me/559886250107?text=Olá! Gostaria de saber mais sobre o Incends.", "_blank");
                 }}
               >
                 Falar com a liderança
