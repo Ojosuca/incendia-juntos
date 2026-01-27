@@ -30,9 +30,9 @@ const Events = () => {
       startDate = new Date(now);
       startDate.setDate(now.getDate() + daysUntilSaturday);
       startDate.setHours(18, 0, 0, 0);
-    } else if (event.date === "12-14 Nov") {
+    } else if (event.date === "12-14 Mar" || event.date === "12-14 Nov") {
       // Conferência - assumindo início no dia 12 às 19h
-      startDate = new Date(2024, 10, 12, 19, 0, 0);
+      startDate = new Date(2026, 2, 12, 19, 0, 0); // Março é mês 2 (0-indexed)
     } else {
       startDate = new Date();
     }
@@ -111,11 +111,11 @@ END:VCALENDAR
     {
       title: "Conferência Incendiados",
       date: "12-14 Mar",
-      time: "A definir",
+      time: "19h30",
       location: "Auditório Aprisquinho",
       description: "Três dias intensos de busca, adoração e transformação.",
       image: conferenciaBanner,
-      hasDefinedSchedule: false,
+      hasDefinedSchedule: true,
     },
     {
       title: "Acampamento Incendiados",
