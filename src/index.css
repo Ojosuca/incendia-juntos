@@ -1,6 +1,8 @@
+/* stylelint-disable at-rule-no-unknown */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+/* stylelint-enable at-rule-no-unknown */
 
 * {
   margin: 0;
@@ -53,11 +55,9 @@ All colors MUST be HSL.
     --radius: 0.75rem;
 
     /* Custom variables */
-    --gradient-fire: linear-gradient(
-      135deg,
-      hsl(0, 60%, 50%),
-      hsl(24, 100%, 50%)
-    );
+    --gradient-fire: linear-gradient(135deg,
+        hsl(0, 60%, 50%),
+        hsl(24, 100%, 50%));
     --gradient-dark: linear-gradient(180deg, hsl(0, 0%, 8%), hsl(0, 0%, 15%));
     --shadow-glow: 0 0 40px hsla(0, 60%, 50%, 0.3);
     --shadow-card: 0 10px 30px -10px hsla(0, 0%, 0%, 0.1);
@@ -104,11 +104,9 @@ All colors MUST be HSL.
     --ring: 0 60% 55%;
 
     /* Custom variables for dark mode */
-    --gradient-fire: linear-gradient(
-      135deg,
-      hsl(0, 60%, 55%),
-      hsl(24, 100%, 55%)
-    );
+    --gradient-fire: linear-gradient(135deg,
+        hsl(0, 60%, 55%),
+        hsl(24, 100%, 55%));
     --gradient-dark: linear-gradient(180deg, hsl(0, 0%, 5%), hsl(0, 0%, 12%));
     --shadow-glow: 0 0 60px hsla(0, 60%, 50%, 0.4);
     --shadow-card: 0 10px 40px -10px hsla(0, 0%, 0%, 0.5);
@@ -126,10 +124,12 @@ All colors MUST be HSL.
 
 @layer base {
   * {
+    /* stylelint-disable-next-line at-rule-no-unknown */
     @apply border-border;
   }
 
   body {
+    /* stylelint-disable-next-line at-rule-no-unknown */
     @apply bg-background text-foreground;
   }
 
@@ -150,11 +150,14 @@ All colors MUST be HSL.
  */
 
 @layer utilities {
+
   /* Hero entrance animations - marker class for GSAP */
   /* GSAP will set opacity: 0, y: 10 initially, then animate to final state */
   .hero-entrance-initial {
     /* Final state is default (opacity: 1, transform: none) */
     /* GSAP will override this via inline styles */
+    visibility: inherit;
+    /* Prevent empty ruleset lint */
   }
 
   /* Scroll animations - marker class for GSAP */
@@ -162,6 +165,8 @@ All colors MUST be HSL.
   .scroll-reveal-initial {
     /* Final state is default (opacity: 1, transform: none) */
     /* GSAP will override this via inline styles */
+    visibility: inherit;
+    /* Prevent empty ruleset lint */
   }
 
   /* Portal Hero - final states */
@@ -174,8 +179,111 @@ All colors MUST be HSL.
     filter: blur(0px);
   }
 
+  /* Hero Background Entry Animation */
+  .hero-bg-enter {
+    animation: hero-zoom-in 1.2s ease-out forwards;
+  }
+
+  @keyframes hero-zoom-in {
+    from {
+      opacity: 0;
+      transform: scale(1.08);
+    }
+
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  /* Hero Background Reveal Animation - Unique clip-path reveal */
+  .hero-reveal {
+    animation: hero-clip-reveal 1.5s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+  }
+
+  @keyframes hero-clip-reveal {
+    from {
+      opacity: 0;
+      clip-path: inset(10% 10% 10% 10%);
+    }
+
+    to {
+      opacity: 1;
+      clip-path: inset(0% 0% 0% 0%);
+    }
+  }
+
+  /* Hero Text Reveal */
+  .hero-text-reveal {
+    animation: text-slide-up 0.8s ease-out 0.5s both;
+  }
+
+  @keyframes text-slide-up {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Hero CTA Reveal */
+  .hero-cta-reveal {
+    animation: cta-pop-in 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 0.8s both;
+  }
+
+  @keyframes cta-pop-in {
+    from {
+      opacity: 0;
+      transform: scale(0.8) translateY(20px);
+    }
+
+    to {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+  }
+
+  /* Gradient Overlay Animation */
+  .hero-gradient-pulse {
+    animation: gradient-pulse 4s ease-in-out infinite;
+  }
+
+  @keyframes gradient-pulse {
+
+    0%,
+    100% {
+      opacity: 0.3;
+    }
+
+    50% {
+      opacity: 0.5;
+    }
+  }
+
+  /* CTA Glow Pulse */
+  .cta-glow-pulse {
+    animation: cta-glow 2s ease-in-out infinite;
+  }
+
+  @keyframes cta-glow {
+
+    0%,
+    100% {
+      box-shadow: 0 0 20px hsla(0, 60%, 50%, 0.4);
+    }
+
+    50% {
+      box-shadow: 0 0 40px hsla(0, 60%, 50%, 0.7), 0 0 60px hsla(24, 100%, 50%, 0.3);
+    }
+  }
+
   /* Respect reduced motion preference */
   @media (prefers-reduced-motion: reduce) {
+
     .hero-entrance-initial,
     .scroll-reveal-initial {
       /* Ensure final state even with reduced motion */
@@ -189,6 +297,56 @@ All colors MUST be HSL.
       opacity: 1 !important;
       transform: scale(1) !important;
       filter: blur(0px) !important;
+    }
+
+    .hero-bg-enter {
+      animation: none !important;
+      opacity: 1 !important;
+      transform: scale(1) !important;
+    }
+
+    .hero-gradient-pulse,
+    .cta-glow-pulse {
+      animation: none !important;
+    }
+  }
+
+  /* Scroll Down Indicator Animation */
+  @keyframes scroll-down {
+    0% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    50% {
+      opacity: 0.5;
+      transform: translateY(4px);
+    }
+
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-scroll-down {
+    animation: scroll-down 1.5s ease-in-out infinite;
+  }
+
+  /* Fade In Animation */
+  .animate-fade-in {
+    animation: fade-in 0.8s ease-out forwards;
+  }
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
     }
   }
 }

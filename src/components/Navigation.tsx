@@ -41,11 +41,10 @@ const Navigation = () => {
       <motion.header
         initial={{ y: -100 }}
         animate={{ y: 0 }}
-        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
-          isScrolled
-            ? "bg-background/95 backdrop-blur-md shadow-lg"
+        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${isScrolled
+            ? "bg-background/98 shadow-lg"
             : "bg-transparent"
-        }`}
+          }`}
       >
         <nav className="container mx-auto px-4 py-3 md:py-4 flex items-center justify-between">
           <Link to="/" className="flex items-center gap-2">
@@ -66,9 +65,8 @@ const Navigation = () => {
               <Link
                 key={item.name}
                 to={item.href}
-                className={`text-foreground/80 hover:text-primary transition-colors font-sans text-sm font-medium relative group ${
-                  location.pathname === item.href ? "text-primary" : ""
-                }`}
+                className={`text-foreground/80 hover:text-primary transition-colors font-sans text-sm font-medium relative group ${location.pathname === item.href ? "text-primary" : ""
+                  }`}
               >
                 {item.name}
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full" />
@@ -114,14 +112,14 @@ const Navigation = () => {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setIsOpen(false)}
-              className="fixed inset-0 bg-background/80 backdrop-blur-sm z-40 lg:hidden"
+              className="fixed inset-0 bg-background/90 z-40 lg:hidden"
             />
 
             <motion.div
               initial={{ x: "100%" }}
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
-              transition={{ type: "spring", damping: 25, stiffness: 200 }}
+              transition={{ type: "tween", duration: 0.25, ease: "easeOut" }}
               className="fixed top-0 right-0 bottom-0 w-[85vw] max-w-sm bg-card border-l border-border z-50 lg:hidden overflow-y-auto"
             >
               <div className="p-6 md:p-8">
@@ -142,23 +140,17 @@ const Navigation = () => {
                 </div>
 
                 <nav className="space-y-6">
-                  {navItems.map((item, index) => (
-                    <motion.div
-                      key={item.name}
-                      initial={{ opacity: 0, x: 20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: index * 0.1 }}
-                    >
+                  {navItems.map((item) => (
+                    <div key={item.name}>
                       <Link
                         to={item.href}
                         onClick={() => setIsOpen(false)}
-                        className={`block text-lg font-sans font-medium text-foreground/80 hover:text-primary transition-colors ${
-                          location.pathname === item.href ? "text-primary" : ""
-                        }`}
+                        className={`block text-lg font-sans font-medium text-foreground/80 hover:text-primary transition-colors ${location.pathname === item.href ? "text-primary" : ""
+                          }`}
                       >
                         {item.name}
                       </Link>
-                    </motion.div>
+                    </div>
                   ))}
                 </nav>
 
@@ -168,16 +160,16 @@ const Navigation = () => {
                   </p>
                   <div className="space-y-3">
                     <Link to="/ministerios" onClick={() => setIsOpen(false)}>
-                      <Button 
+                      <Button
                         type="button"
-                        variant="outline" 
+                        variant="outline"
                         className="w-full border-primary text-primary hover:bg-primary hover:text-white"
                       >
                         Conhecer ministérios
                       </Button>
                     </Link>
                     <Link to="/contato" onClick={() => setIsOpen(false)}>
-                      <Button 
+                      <Button
                         type="button"
                         className="w-full bg-gradient-fire hover:opacity-90"
                       >

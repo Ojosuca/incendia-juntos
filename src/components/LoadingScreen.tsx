@@ -14,12 +14,12 @@ const LoadingScreen = ({ onComplete }: LoadingScreenProps) => {
       setProgress((prev) => {
         if (prev >= 100) {
           clearInterval(timer);
-          setTimeout(onComplete, 500);
+          setTimeout(onComplete, 300);
           return 100;
         }
-        return prev + 2;
+        return prev + 4; // Faster progress increments
       });
-    }, 30);
+    }, 80); // Reduced frequency from 30ms to 80ms
 
     return () => clearInterval(timer);
   }, [onComplete]);
@@ -34,8 +34,7 @@ const LoadingScreen = ({ onComplete }: LoadingScreenProps) => {
         <div className="text-center space-y-8">
           <motion.div
             animate={{
-              scale: [1, 1.2, 1],
-              rotate: [0, 5, -5, 0],
+              scale: [1, 1.1, 1],
             }}
             transition={{
               duration: 2,
@@ -45,19 +44,10 @@ const LoadingScreen = ({ onComplete }: LoadingScreenProps) => {
             className="relative inline-block"
           >
             <Flame className="w-24 h-24 text-primary animate-flame" />
-            <motion.div
-              className="absolute inset-0 blur-xl opacity-50"
-              animate={{
-                scale: [1, 1.5, 1],
-              }}
-              transition={{
-                duration: 1.5,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
-            >
+            {/* Removed blur effect for better performance */}
+            <div className="absolute inset-0 opacity-30">
               <Flame className="w-24 h-24 text-secondary" />
-            </motion.div>
+            </div>
           </motion.div>
 
           <motion.h1

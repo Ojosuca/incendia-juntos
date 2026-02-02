@@ -1,6 +1,6 @@
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { useInView } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useMemo } from "react";
 import { Button } from "./ui/button";
 import { ChevronRight } from "lucide-react";
 import heroImage from "@/assets/IMG_4144.webp";
@@ -11,6 +11,23 @@ import incends57 from "@/assets/INCENDS-57.webp";
 const Gallery = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const prefersReducedMotion = useReducedMotion();
+
+  // Optimized animation props
+  const animationProps = useMemo(() => ({
+    initial: prefersReducedMotion ? {} : { opacity: 0, y: 20 },
+    animate: isInView ? { opacity: 1, y: 0 } : {},
+    transition: { duration: prefersReducedMotion ? 0 : 0.4 },
+  }), [isInView, prefersReducedMotion]);
+
+  const cardAnimationProps = useMemo(() => (index: number) => ({
+    initial: prefersReducedMotion ? {} : { opacity: 0, scale: 0.95 },
+    animate: isInView ? { opacity: 1, scale: 1 } : {},
+    transition: {
+      duration: prefersReducedMotion ? 0 : 0.3,
+      delay: prefersReducedMotion ? 0 : Math.min(index * 0.05, 0.15)
+    },
+  }), [isInView, prefersReducedMotion]);
 
   // Placeholder images (reusing generated ones for demo)
   const images = [
@@ -31,9 +48,7 @@ const Gallery = () => {
       <div className="container mx-auto px-4">
         {/* Header */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
+          {...animationProps}
           className="text-center mb-16"
         >
           <p className="text-primary font-sans font-semibold text-sm uppercase tracking-wider mb-4">
@@ -53,21 +68,19 @@ const Gallery = () => {
           {images.map((image, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={isInView ? { opacity: 1, scale: 1 } : {}}
-              transition={{ delay: index * 0.1 }}
+              {...cardAnimationProps(index)}
               className={`relative group overflow-hidden rounded-2xl ${image.span}`}
             >
               <div className="aspect-square w-full">
                 <img
                   src={image.src}
                   alt={image.alt}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                   loading="lazy"
                   decoding="async"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                <div className="absolute bottom-4 left-4 right-4 translate-y-4 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-300">
+                <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
+                <div className="absolute bottom-4 left-4 right-4 translate-y-4 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-200">
                   <p className="text-white font-sans text-sm font-medium">
                     {image.alt}
                   </p>
@@ -79,9 +92,7 @@ const Gallery = () => {
 
         {/* CTA Button */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ delay: 0.8 }}
+          {...animationProps}
           className="text-center"
         >
           <Button
