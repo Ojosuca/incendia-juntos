@@ -88,7 +88,7 @@ const Ministries = () => {
       id: "intercessao",
       name: "Técnica",
       image: galleryPrayer,
-      phone: "559891399517",
+      phone: "5598986250107",
       description: "Ministério da Técnica",
       shortDescription:
         "Seja um operador de som para criar uma experiência sonora digna ao culto ao nosso Deus",
