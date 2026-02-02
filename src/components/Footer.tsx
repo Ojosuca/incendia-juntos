@@ -42,7 +42,7 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Social */}
+          {/* as redes Social do footer */}
           <div>
             <h3 className="font-sans font-bold text-foreground mb-4">
               Redes Sociais
@@ -56,22 +56,7 @@ const Footer = () => {
               >
                 <Instagram className="w-5 h-5 text-foreground group-hover:text-white" />
               </a>
-              <a
-                href="https://facebook.com/incends"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-10 h-10 rounded-lg bg-muted hover:bg-gradient-fire flex items-center justify-center transition-all group"
-              >
-                <Facebook className="w-5 h-5 text-foreground group-hover:text-white" />
-              </a>
-              <a
-                href="https://youtube.com/incends"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-10 h-10 rounded-lg bg-muted hover:bg-gradient-fire flex items-center justify-center transition-all group"
-              >
-                <Youtube className="w-5 h-5 text-foreground group-hover:text-white" />
-              </a>
+
             </div>
           </div>
         </div>
