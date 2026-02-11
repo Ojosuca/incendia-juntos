@@ -13,6 +13,7 @@ const WorshipPage = lazy(() => import("./pages/WorshipPage"));
 const MinistriesPage = lazy(() => import("./pages/MinistriesPage"));
 const GalleryPage = lazy(() => import("./pages/GalleryPage"));
 const ContactPage = lazy(() => import("./pages/ContactPage"));
+const GalleryEventPage = lazy(() => import("./pages/GalleryEventPage"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 // Loading fallback component
@@ -41,6 +42,7 @@ const App = () => (
             <Route path="/louvor" element={<WorshipPage />} />
             <Route path="/ministerios" element={<MinistriesPage />} />
             <Route path="/galeria" element={<GalleryPage />} />
+            <Route path="/galeria/:slug" element={<GalleryEventPage />} />
             <Route path="/contato" element={<ContactPage />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
