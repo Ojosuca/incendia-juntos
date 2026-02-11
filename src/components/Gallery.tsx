@@ -3,10 +3,10 @@ import { useInView } from "framer-motion";
 import { useRef, useMemo } from "react";
 import { Button } from "./ui/button";
 import { ChevronRight } from "lucide-react";
+import { Link } from "react-router-dom";
 import heroImage from "@/assets/IMG_4144.webp";
 import communityImage from "@/assets/IMG_8221.webp";
 import fireTexture from "@/assets/img-9968.webp";
-import incends57 from "@/assets/INCENDS-57.webp";
 
 const Gallery = () => {
   const ref = useRef(null);
@@ -96,12 +96,15 @@ const Gallery = () => {
           className="text-center"
         >
           <Button
+            asChild
             size="lg"
             variant="outline"
             className="border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground font-sans font-semibold group"
           >
-            Ver galeria completa
-            <ChevronRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            <Link to="/galeria">
+              Ver galeria completa
+              <ChevronRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            </Link>
           </Button>
         </motion.div>
       </div>

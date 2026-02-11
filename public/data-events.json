@@ -1,0 +1,66 @@
+{
+  "events": [
+    {
+      "slug": "conferencia-incends-2024",
+      "title": "Conferência Incends 2024",
+      "description": "Uma noite de adoração, oração e comunhão marcada pela presença de Deus.",
+      "year": 2024,
+      "category": "conferencia",
+      "cover": "momento-adoracao",
+      "photos": [
+        {
+          "src": "momento-adoracao",
+          "width": 4,
+          "height": 3,
+          "alt": "Momento de adoração na Conferência Incends 2024"
+        },
+        {
+          "src": "banda-louvor",
+          "width": 3,
+          "height": 4,
+          "alt": "Banda de louvor ministrando"
+        },
+        {
+          "src": "momento-oracao",
+          "width": 4,
+          "height": 3,
+          "alt": "Momento de oração coletiva"
+        }
+      ]
+    },
+    {
+      "slug": "comunidade-incends-2024",
+      "title": "Comunidade Incends 2024",
+      "description": "Registros da nossa comunidade vivendo fé, amizade e propósito.",
+      "year": 2024,
+      "category": "comunidade",
+      "cover": "comunidade-reunida",
+      "photos": [
+        {
+          "src": "comunidade-reunida",
+          "width": 4,
+          "height": 3,
+          "alt": "Comunidade reunida em celebração"
+        },
+        {
+          "src": "juventude-incendiada",
+          "width": 3,
+          "height": 4,
+          "alt": "Juventude Incends em culto"
+        },
+        {
+          "src": "momento-especial",
+          "width": 4,
+          "height": 3,
+          "alt": "Momento especial de comunhão"
+        },
+        {
+          "src": "unidos-em-cristo",
+          "width": 4,
+          "height": 3,
+          "alt": "Igreja unida em Cristo"
+        }
+      ]
+    }
+  ]
+}
