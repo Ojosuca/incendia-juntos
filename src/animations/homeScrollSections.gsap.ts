@@ -1,12 +1,9 @@
 /**
  * Home Scroll Sections GSAP Animations
- * 
- * Animações de scroll inspiradas em Benjamin Jochims
- * - Scroll natural (não hijacked)
- * - Animações progressivas com ScrollTrigger
- * - Elementos entrando com opacity + translateY
- * - Leve deslocamento horizontal em alguns elementos
- * - Sensação de continuidade entre seções
+ *
+ * Animações de scroll para a seção CTA.
+ * As seções Mission e Community foram removidas;
+ * os preletores agora têm seu próprio arquivo de animações (speakersSection.gsap.ts).
  */
 
 import { gsap } from "gsap";
@@ -18,12 +15,6 @@ if (typeof window !== "undefined") {
 }
 
 interface HomeScrollSectionsConfig {
-    missionSection: HTMLElement | null;
-    missionTitle: HTMLElement | null;
-    missionText: HTMLElement | null;
-    communitySection: HTMLElement | null;
-    communityTitle: HTMLElement | null;
-    communityCards: HTMLElement | null;
     ctaSection: HTMLElement | null;
     ctaTitle: HTMLElement | null;
     ctaButton: HTMLElement | null;
@@ -38,84 +29,14 @@ const prefersReducedMotion = (): boolean => {
 };
 
 /**
- * Initializes scroll animations for home sections
- * 
- * Animation philosophy (Benjamin Jochims style):
- * - Natural scroll, no hijacking
- * - Progressive entrance with opacity + y
- * - Subtle horizontal displacement
- * - Scrub for smooth feel
- * - Each section has its own trigger
+ * Initializes scroll animations for CTA section
  */
 export const initHomeScrollSections = (
     config: HomeScrollSectionsConfig
 ): gsap.Context => {
     const ctx = gsap.context(() => {
-        // Skip animation if user prefers reduced motion
         if (prefersReducedMotion()) {
             return;
-        }
-
-        // Mission Section Animations
-        if (config.missionTitle) {
-            gsap.from(config.missionTitle, {
-                opacity: 0,
-                y: 60,
-                x: -20, // Subtle horizontal displacement
-                scrollTrigger: {
-                    trigger: config.missionTitle,
-                    start: "top 80%",
-                    end: "top 50%",
-                    scrub: 1,
-                },
-            });
-        }
-
-        if (config.missionText) {
-            gsap.from(config.missionText, {
-                opacity: 0,
-                y: 40,
-                scrollTrigger: {
-                    trigger: config.missionText,
-                    start: "top 85%",
-                    end: "top 60%",
-                    scrub: 1,
-                },
-            });
-        }
-
-        // Community Section Animations
-        if (config.communityTitle) {
-            gsap.from(config.communityTitle, {
-                opacity: 0,
-                y: 60,
-                x: 20, // Opposite horizontal displacement for variety
-                scrollTrigger: {
-                    trigger: config.communityTitle,
-                    start: "top 80%",
-                    end: "top 50%",
-                    scrub: 1,
-                },
-            });
-        }
-
-        // Community Cards - Sequential entrance
-        if (config.communityCards) {
-            const cards = config.communityCards.querySelectorAll("[data-community-card]");
-
-            cards.forEach((card, index) => {
-                gsap.from(card, {
-                    opacity: 0,
-                    y: 50,
-                    x: index % 2 === 0 ? -15 : 15, // Alternate horizontal displacement
-                    scrollTrigger: {
-                        trigger: card,
-                        start: "top 85%",
-                        end: "top 60%",
-                        scrub: 1,
-                    },
-                });
-            });
         }
 
         // CTA Section Animations
@@ -123,7 +44,7 @@ export const initHomeScrollSections = (
             gsap.from(config.ctaTitle, {
                 opacity: 0,
                 y: 80,
-                scale: 0.95, // Subtle scale for impact
+                scale: 0.95,
                 scrollTrigger: {
                     trigger: config.ctaTitle,
                     start: "top 80%",
@@ -150,35 +71,6 @@ export const initHomeScrollSections = (
         const mm = gsap.matchMedia();
 
         mm.add("(max-width: 768px)", () => {
-            // Reduce horizontal displacement on mobile
-            if (config.missionTitle) {
-                gsap.from(config.missionTitle, {
-                    opacity: 0,
-                    y: 40,
-                    x: 0, // No horizontal displacement on mobile
-                    scrollTrigger: {
-                        trigger: config.missionTitle,
-                        start: "top 85%",
-                        end: "top 60%",
-                        scrub: 0.5,
-                    },
-                });
-            }
-
-            if (config.communityTitle) {
-                gsap.from(config.communityTitle, {
-                    opacity: 0,
-                    y: 40,
-                    x: 0,
-                    scrollTrigger: {
-                        trigger: config.communityTitle,
-                        start: "top 85%",
-                        end: "top 60%",
-                        scrub: 0.5,
-                    },
-                });
-            }
-
             if (config.ctaTitle) {
                 gsap.from(config.ctaTitle, {
                     opacity: 0,
@@ -190,25 +82,6 @@ export const initHomeScrollSections = (
                         end: "top 55%",
                         scrub: 0.5,
                     },
-                });
-            }
-
-            // Cards on mobile - less displacement
-            if (config.communityCards) {
-                const cards = config.communityCards.querySelectorAll("[data-community-card]");
-
-                cards.forEach((card) => {
-                    gsap.from(card, {
-                        opacity: 0,
-                        y: 30,
-                        x: 0,
-                        scrollTrigger: {
-                            trigger: card,
-                            start: "top 90%",
-                            end: "top 70%",
-                            scrub: 0.5,
-                        },
-                    });
                 });
             }
         });

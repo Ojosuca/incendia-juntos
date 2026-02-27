@@ -56,7 +56,6 @@ const Footer = () => {
               >
                 <Instagram className="w-5 h-5 text-foreground group-hover:text-white" />
               </a>
-
             </div>
           </div>
         </div>

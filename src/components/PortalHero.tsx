@@ -20,7 +20,7 @@ const PortalHero = ({ className }: PortalHeroProps) => {
         const scrollY = window.scrollY;
         const windowHeight = window.innerHeight;
         // Calculate scroll progress (0 to 1) within hero section
-        const progress = Math.min(scrollY / (windowHeight * 0.8), 1);
+        const progress = Math.min(scrollY / (windowHeight * 0.7), 1);
         setScrollProgress(progress);
       });
     };
@@ -73,7 +73,7 @@ const PortalHero = ({ className }: PortalHeroProps) => {
             transform: `translateY(${scrollProgress * -20}px)`,
           }}
         >
-          Conferência 2026
+          Conferência Incends 2026
         </p>
 
         {/* CTA Button */}
