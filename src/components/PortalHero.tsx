@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, ChevronDown } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import heroBg from "@/assets/CONF-INCENDS-26.webp";
+import mobileHeroBg from "@/assets/ConfIncendsmobile.jpg.webp";
 
 interface PortalHeroProps {
   className?: string;
@@ -37,24 +38,35 @@ const PortalHero = ({ className }: PortalHeroProps) => {
       ref={sectionRef}
       className={`relative w-full h-screen overflow-hidden ${className || ""}`}
     >
-      {/* Background Image with Unique Reveal Animation */}
+      {/* Background Image (Desktop/Tablet) */}
       <div
-        className="absolute inset-0 w-full h-full hero-reveal will-change-transform"
+        className="absolute inset-0 w-full h-full hero-reveal will-change-transform hidden md:block"
         style={{
           backgroundImage: `url(${heroBg})`,
           backgroundSize: "cover",
           backgroundRepeat: "no-repeat",
-          // Show complete image, centered
           backgroundPosition: "center center",
-          // Unique scroll effect: subtle scale down as user scrolls
           transform: `scale(${1 + scrollProgress * 0.1})`,
           opacity: 1 - scrollProgress * 0.3,
         }}
       >
-        {/* Gradient Overlay - Bottom fade to background */}
         <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_40%,rgba(0,0,0,0.4)_100%)]" />
+      </div>
 
-        {/* Vignette effect for depth */}
+      {/* Background Image (Mobile) */}
+      <div
+        className="absolute inset-0 w-full h-full hero-reveal will-change-transform block md:hidden"
+        style={{
+          backgroundImage: `url(${mobileHeroBg})`,
+          backgroundSize: "cover",
+          backgroundRepeat: "no-repeat",
+          backgroundPosition: "center center",
+          transform: `scale(${1 + scrollProgress * 0.1})`,
+          opacity: 1 - scrollProgress * 0.3,
+        }}
+      >
+        <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_40%,rgba(0,0,0,0.4)_100%)]" />
       </div>
 

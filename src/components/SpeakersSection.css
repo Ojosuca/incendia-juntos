@@ -1,13 +1,13 @@
 /* ============================================
    Speakers Section Styles
-   Flip card 3D, hover overlay, parallax support
+   Carrossel Embla + Flip card 3D
    ============================================ */
 
 /* --- Section --- */
 .speakers-section {
     padding: 6rem 0 4rem;
     position: relative;
-    overflow: hidden;
+    overflow: visible;
     background: linear-gradient(180deg,
             hsl(var(--background)) 0%,
             hsl(var(--muted) / 0.15) 50%,
@@ -60,23 +60,121 @@
     margin: 0 auto;
 }
 
-/* --- Grid --- */
-.speakers-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
+/* --- Carrossel Embla --- */
+.speakers-carousel-wrap {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 1.5rem;
+    padding: 0 1rem;
     position: relative;
     z-index: 2;
 }
 
-/* --- Card (flip container) --- */
+.speakers-carousel {
+    width: 100%;
+}
+
+.speakers-carousel__content {
+    /* Override shadcn defaults for our gap */
+}
+
+.speakers-carousel__item {
+    flex: 0 0 33.333%;
+    min-width: 0;
+    padding: 0 0.75rem;
+    transition: opacity 0.4s ease, transform 0.4s ease, filter 0.4s ease;
+}
+
+.speakers-carousel__item--active {
+    opacity: 1;
+    transform: scale(1);
+    filter: blur(0);
+}
+
+.speakers-carousel__item--inactive {
+    opacity: 0.5;
+    transform: scale(0.92);
+    filter: blur(1.5px);
+}
+
+/* --- Navegação --- */
+.speakers-carousel__nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 2.5rem;
+}
+
+.speakers-carousel__arrow {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    background: hsl(var(--muted) / 0.15);
+    backdrop-filter: blur(8px);
+    border: 1px solid hsl(var(--border));
+    color: hsl(var(--foreground));
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.25s ease, color 0.25s ease, transform 0.15s ease, box-shadow 0.25s ease;
+}
+
+.speakers-carousel__arrow:hover {
+    background: hsl(var(--primary) / 0.15);
+    color: hsl(var(--primary));
+    transform: scale(1.08);
+    box-shadow: 0 0 16px hsl(var(--primary) / 0.15);
+}
+
+.speakers-carousel__arrow:active {
+    transform: scale(0.95);
+}
+
+.speakers-carousel__arrow svg {
+    width: 1.25rem;
+    height: 1.25rem;
+}
+
+/* Dots */
+.speakers-carousel__dots {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.speakers-carousel__dot {
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    border: none;
+    padding: 0;
+    background: hsl(var(--muted-foreground) / 0.25);
+    cursor: pointer;
+    transition: background 0.3s ease, width 0.3s ease, border-radius 0.3s ease;
+}
+
+.speakers-carousel__dot--active {
+    background: hsl(var(--primary));
+    width: 1.5rem;
+    border-radius: 0.25rem;
+}
+
+/* ============================================
+   Card (flip container)
+   ============================================ */
 .speaker-card {
     perspective: 1200px;
     cursor: pointer;
     position: relative;
+}
+
+.speaker-card--focused {
+    opacity: 1;
+}
+
+.speaker-card--unfocused {
+    opacity: 0.8;
 }
 
 .speaker-card__inner {
@@ -84,7 +182,7 @@
     width: 100%;
     aspect-ratio: 3 / 4;
     transform-style: preserve-3d;
-    transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
     border-radius: 1.25rem;
 }
 
@@ -92,7 +190,7 @@
     transform: rotateY(180deg);
 }
 
-/* --- Shared face styles --- */
+/* Shared face */
 .speaker-card__front,
 .speaker-card__back {
     position: absolute;
@@ -103,7 +201,7 @@
     overflow: hidden;
 }
 
-/* --- FRONT --- */
+/* FRONT */
 .speaker-card__front {
     z-index: 2;
 }
@@ -112,7 +210,6 @@
     width: 100%;
     height: 100%;
     overflow: hidden;
-    position: relative;
 }
 
 .speaker-card__image {
@@ -120,15 +217,15 @@
     height: 100%;
     object-fit: cover;
     object-position: center top;
-    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: transform 0.4s ease;
     will-change: transform;
 }
 
 .speaker-card:hover .speaker-card__image {
-    transform: scale(1.08);
+    transform: scale(1.06);
 }
 
-/* Overlay that slides up on hover */
+/* Overlay hover */
 .speaker-card__overlay {
     position: absolute;
     inset: 0;
@@ -141,8 +238,8 @@
             rgba(0, 0, 0, 0.4) 50%,
             transparent 100%);
     opacity: 0;
-    transform: translateY(20%);
-    transition: opacity 0.45s ease, transform 0.45s ease;
+    transform: translateY(15%);
+    transition: opacity 0.4s ease, transform 0.4s ease;
 }
 
 .speaker-card:hover .speaker-card__overlay {
@@ -267,7 +364,6 @@
     margin-bottom: 1.5rem;
 }
 
-/* Scrollbar styling for back description */
 .speaker-card__back-desc::-webkit-scrollbar {
     width: 3px;
 }
@@ -312,7 +408,7 @@
     height: 1.15rem;
 }
 
-/* Back to front hint */
+/* Back flip hint */
 .speaker-card__back-flip-hint {
     position: absolute;
     top: 1rem;
@@ -329,6 +425,7 @@
     color: hsl(var(--muted-foreground));
     cursor: pointer;
     transition: background 0.2s ease, color 0.2s ease;
+    z-index: 5;
 }
 
 .speaker-card__back-flip-hint:hover {
@@ -341,7 +438,131 @@
     height: 0.9rem;
 }
 
-/* Decorative elements */
+/* ============================================
+   Mystery Card (sem imagem — puro CSS)
+   ============================================ */
+
+.speaker-card__front--mystery {
+    background: linear-gradient(160deg,
+            hsl(260, 30%, 8%) 0%,
+            hsl(280, 40%, 12%) 40%,
+            hsl(20, 80%, 10%) 100%);
+}
+
+.speaker-card__mystery-bg {
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(circle at 50% 40%, hsl(var(--primary) / 0.08) 0%, transparent 60%),
+        radial-gradient(circle at 30% 70%, hsl(280, 60%, 30% / 0.06) 0%, transparent 50%);
+}
+
+.speaker-card__mystery-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.25rem;
+    z-index: 2;
+}
+
+.speaker-card__mystery-pulse {
+    width: 5rem;
+    height: 5rem;
+    border-radius: 50%;
+    background: hsl(var(--primary) / 0.12);
+    border: 2px solid hsl(var(--primary) / 0.35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: mystery-pulse 2s ease-in-out infinite;
+}
+
+.speaker-card__mystery-qmark {
+    font-family: "Bebas Neue", Impact, sans-serif;
+    font-size: 2.5rem;
+    color: hsl(var(--primary));
+    line-height: 1;
+}
+
+@keyframes mystery-pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    50% {
+        transform: scale(1.08);
+        opacity: 0.7;
+    }
+}
+
+.speaker-card__mystery-text {
+    font-family: "Bebas Neue", Impact, sans-serif;
+    font-size: 1.8rem;
+    color: #fff;
+    text-align: center;
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.6);
+    letter-spacing: 0.05em;
+}
+
+/* Mystery back */
+.speaker-card__back--mystery {
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: linear-gradient(160deg,
+            hsl(260, 30%, 8%) 0%,
+            hsl(0, 0%, 6%) 100%);
+}
+
+.speaker-card__mystery-back-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.speaker-card__mystery-back-icon {
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    background: hsl(var(--primary) / 0.08);
+    border: 2px solid hsl(var(--primary) / 0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.speaker-card__mystery-back-icon span {
+    font-family: "Bebas Neue", Impact, sans-serif;
+    font-size: 2rem;
+    color: hsl(var(--primary));
+}
+
+.speaker-card__mystery-back-hint {
+    font-family: "Inter", system-ui, sans-serif;
+    font-size: 1.1rem;
+    color: hsl(var(--foreground));
+    line-height: 1.6;
+    max-width: 80%;
+    font-style: italic;
+}
+
+.speaker-card__mystery-back-soon {
+    font-family: "Inter", system-ui, sans-serif;
+    font-size: 0.85rem;
+    color: hsl(var(--primary));
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+/* Decorative */
 .speakers-section__deco-1 {
     position: absolute;
     top: 10%;
@@ -370,22 +591,13 @@
    Responsive
    ============================================ */
 
-/* Tablet */
 @media (max-width: 1024px) {
-    .speakers-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 1.5rem;
-    }
-
-    /* Center the 3rd card if odd count */
-    .speakers-grid> :last-child:nth-child(odd) {
-        grid-column: 1 / -1;
-        max-width: 50%;
-        justify-self: center;
+    .speakers-carousel__item {
+        flex: 0 0 50%;
+        padding: 0 0.5rem;
     }
 }
 
-/* Mobile */
 @media (max-width: 640px) {
     .speakers-section {
         padding: 4rem 0 3rem;
@@ -395,18 +607,22 @@
         margin-bottom: 2.5rem;
     }
 
-    .speakers-grid {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-        padding: 0 1rem;
-        max-width: 400px;
+    .speakers-carousel-wrap {
+        padding: 0 0.5rem;
     }
 
-    .speakers-grid> :last-child:nth-child(odd) {
-        max-width: 100%;
+    .speakers-carousel__item {
+        flex: 0 0 85%;
+        padding: 0 0.5rem;
     }
 
-    /* On mobile, always show overlay since no hover */
+    .speakers-carousel__item--inactive {
+        opacity: 0.35;
+        transform: scale(0.88);
+        filter: blur(2px);
+    }
+
+    /* Always show overlay */
     .speaker-card__overlay {
         opacity: 1;
         transform: translateY(0);
@@ -424,9 +640,18 @@
     .speaker-card__name {
         font-size: 1.6rem;
     }
+
+    .speakers-carousel__nav {
+        margin-top: 1.5rem;
+    }
+
+    .speakers-carousel__arrow {
+        width: 2.75rem;
+        height: 2.75rem;
+    }
 }
 
-/* Touch device: always show overlay */
+/* Touch: always show overlay */
 @media (hover: none) {
     .speaker-card__overlay {
         opacity: 1;

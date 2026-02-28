@@ -1,28 +1,43 @@
 /**
  * SpeakerCard Component
  *
- * Card individual de preletor com flip 3D.
- * Frente: foto com overlay hover (nome, cargo, descrição curta).
- * Verso: bio completa + botão de rede social (Instagram).
+ * Card individual com flip 3D.
+ * - Normal: foto + overlay hover + verso com bio/Instagram.
+ * - Misterioso: pura CSS (sem imagem), mensagem pulsante + dica no verso.
  */
 
 import { useState, useCallback } from "react";
 
-/** Dados do preletor */
-export interface SpeakerData {
+/* ========== Tipos ========== */
+
+export interface NormalSpeakerData {
+    id: string;
+    type: "normal";
     name: string;
     role: string;
     shortDescription: string;
     fullDescription: string;
     photo: string;
     instagram: string;
+    instagramLabel: string;
 }
+
+export interface MysterySpeakerData {
+    id: string;
+    type: "mystery";
+    frontMessage: string;
+    backHint: string;
+}
+
+export type SpeakerCardData = NormalSpeakerData | MysterySpeakerData;
 
 interface SpeakerCardProps {
-    speaker: SpeakerData;
+    data: SpeakerCardData;
+    isFocused?: boolean;
 }
 
-/** SVG inline do ícone de Instagram */
+/* ========== SVGs inline ========== */
+
 const InstagramIcon = () => (
     <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path
@@ -32,7 +47,6 @@ const InstagramIcon = () => (
     </svg>
 );
 
-/** SVG ícone de "virar" (RotateCw) */
 const FlipIcon = () => (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <path d="M21 12a9 9 0 1 1-9-9c2.52 0 4.93 1 6.74 2.74L21 8" />
@@ -40,7 +54,6 @@ const FlipIcon = () => (
     </svg>
 );
 
-/** SVG ícone de "voltar" (X) */
 const CloseIcon = () => (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <path d="M18 6 6 18" />
@@ -48,26 +61,91 @@ const CloseIcon = () => (
     </svg>
 );
 
-const SpeakerCard = ({ speaker }: SpeakerCardProps) => {
+/* ========== Componente ========== */
+
+const SpeakerCard = ({ data, isFocused = true }: SpeakerCardProps) => {
     const [isFlipped, setIsFlipped] = useState(false);
 
     const toggleFlip = useCallback(() => {
         setIsFlipped((prev) => !prev);
     }, []);
 
-    /** Impede que o clique no botão do Instagram propague e vire o card de volta */
     const handleSocialClick = useCallback((e: React.MouseEvent) => {
         e.stopPropagation();
     }, []);
 
+    const focusClass = isFocused ? "speaker-card--focused" : "speaker-card--unfocused";
+
+    /* ── Card Misterioso ── */
+    if (data.type === "mystery") {
+        return (
+            <div
+                className={`speaker-card speaker-card--mystery ${focusClass}${isFlipped ? " speaker-card--flipped" : ""}`}
+                data-speaker-card
+                onClick={toggleFlip}
+                role="button"
+                tabIndex={0}
+                aria-label="Card misterioso — clique para ver dica"
+                onKeyDown={(e) => {
+                    if (e.key === "Enter" || e.key === " ") {
+                        e.preventDefault();
+                        toggleFlip();
+                    }
+                }}
+            >
+                <div className="speaker-card__inner">
+                    {/* FRONT */}
+                    <div className="speaker-card__front speaker-card__front--mystery">
+                        <div className="speaker-card__mystery-bg" />
+                        <div className="speaker-card__mystery-overlay">
+                            <div className="speaker-card__mystery-pulse">
+                                <span className="speaker-card__mystery-qmark">?</span>
+                            </div>
+                            <p className="speaker-card__mystery-text">{data.frontMessage}</p>
+                        </div>
+                        <div className="speaker-card__flip-hint" aria-hidden="true">
+                            <FlipIcon />
+                        </div>
+                    </div>
+
+                    {/* BACK */}
+                    <div className="speaker-card__back speaker-card__back--mystery">
+                        <div
+                            className="speaker-card__back-flip-hint"
+                            aria-label="Voltar"
+                            role="button"
+                            tabIndex={0}
+                            onClick={(e) => { e.stopPropagation(); toggleFlip(); }}
+                            onKeyDown={(e) => {
+                                if (e.key === "Enter" || e.key === " ") {
+                                    e.stopPropagation(); e.preventDefault(); toggleFlip();
+                                }
+                            }}
+                        >
+                            <CloseIcon />
+                        </div>
+                        <div className="speaker-card__mystery-back-content">
+                            <div className="speaker-card__mystery-back-icon">
+                                <span>?</span>
+                            </div>
+                            <p className="speaker-card__mystery-back-hint">{data.backHint}</p>
+                            <p className="speaker-card__mystery-back-soon">Revelação em breve...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        );
+    }
+
+    /* ── Card Normal ── */
     return (
         <div
-            className={`speaker-card${isFlipped ? " speaker-card--flipped" : ""}`}
+            className={`speaker-card ${focusClass}${isFlipped ? " speaker-card--flipped" : ""}`}
             data-speaker-card
             onClick={toggleFlip}
             role="button"
             tabIndex={0}
-            aria-label={`Ver mais sobre ${speaker.name}`}
+            aria-label={`Ver mais sobre ${data.name}`}
             onKeyDown={(e) => {
                 if (e.key === "Enter" || e.key === " ") {
                     e.preventDefault();
@@ -76,82 +154,61 @@ const SpeakerCard = ({ speaker }: SpeakerCardProps) => {
             }}
         >
             <div className="speaker-card__inner">
-                {/* === FRONT === */}
+                {/* FRONT */}
                 <div className="speaker-card__front">
                     <div className="speaker-card__image-wrapper">
                         <img
                             className="speaker-card__image"
-                            src={speaker.photo}
-                            alt={`Foto de ${speaker.name}`}
+                            src={data.photo}
+                            alt={`Foto de ${data.name}`}
                             loading="lazy"
                             draggable={false}
                         />
                     </div>
-
-                    {/* Flip hint button */}
                     <div className="speaker-card__flip-hint" aria-hidden="true">
                         <FlipIcon />
                     </div>
-
-                    {/* Hover overlay */}
                     <div className="speaker-card__overlay">
-                        <p className="speaker-card__name">{speaker.name}</p>
-                        <p className="speaker-card__role">{speaker.role}</p>
-                        <p className="speaker-card__desc-short">{speaker.shortDescription}</p>
+                        <p className="speaker-card__name">{data.name}</p>
+                        <p className="speaker-card__role">{data.role}</p>
+                        <p className="speaker-card__desc-short">{data.shortDescription}</p>
                     </div>
                 </div>
 
-                {/* === BACK === */}
+                {/* BACK */}
                 <div className="speaker-card__back">
-                    {/* Close / flip back */}
                     <div
                         className="speaker-card__back-flip-hint"
                         aria-label="Voltar"
                         role="button"
                         tabIndex={0}
-                        onClick={(e) => {
-                            e.stopPropagation();
-                            toggleFlip();
-                        }}
+                        onClick={(e) => { e.stopPropagation(); toggleFlip(); }}
                         onKeyDown={(e) => {
                             if (e.key === "Enter" || e.key === " ") {
-                                e.stopPropagation();
-                                e.preventDefault();
-                                toggleFlip();
+                                e.stopPropagation(); e.preventDefault(); toggleFlip();
                             }
                         }}
                     >
                         <CloseIcon />
                     </div>
-
-                    {/* Header with mini avatar */}
                     <div className="speaker-card__back-header">
-                        <img
-                            className="speaker-card__back-avatar"
-                            src={speaker.photo}
-                            alt={speaker.name}
-                            loading="lazy"
-                        />
+                        <img className="speaker-card__back-avatar" src={data.photo} alt={data.name} loading="lazy" />
                         <div>
-                            <p className="speaker-card__back-name">{speaker.name}</p>
-                            <p className="speaker-card__back-role">{speaker.role}</p>
+                            <p className="speaker-card__back-name">{data.name}</p>
+                            <p className="speaker-card__back-role">{data.role}</p>
                         </div>
                     </div>
-
-                    {/* Full description */}
-                    <p className="speaker-card__back-desc">{speaker.fullDescription}</p>
-
-                    {/* Instagram button */}
+                    <p className="speaker-card__back-desc">{data.fullDescription}</p>
                     <a
-                        href={speaker.instagram}
+                        href={data.instagram}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="speaker-card__social-btn"
-                        aria-label={`Instagram de ${speaker.name}`}
+                        aria-label={`Instagram de ${data.name}`}
                         onClick={handleSocialClick}
                     >
                         <InstagramIcon />
-                        Seguir no Instagram
+                        {data.instagramLabel}
                     </a>
                 </div>
             </div>
