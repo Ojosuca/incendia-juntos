@@ -35,7 +35,7 @@ const allSpeakers: SpeakerCardData[] = [
         role: "Pastor",
         shortDescription: "Conhecido nacionalmente por ministérios de ensino, avivamento e impacto espiritual.",
         fullDescription:
-            "Pastor, conferencista e líder cristão dedicado à pregação da Palavra de Deus, Dênio Lara Jr é conhecido nacionalmente por ministérios de ensino, avivamento e impacto espiritual em igrejas e conferências no Brasil. Ele ministra em eventos e conferências com foco em crescimento na fé, vida de oração e compromisso com Cristo, influenciando comunidades cristãs com uma mensagem fundamentada nas Escrituras.",
+            "Dênio Lara Jr é pastor e pregador apaixonado pela Palavra e por ver uma geração vivendo um cristianismo real e transformador. Com mensagens intensas, bíblicas e cheias de propósito, ele tem impactado igrejas por todo o Brasil, despertando jovens e adultos para uma vida mais profunda com Deus. Seu ministério carrega uma forte ênfase em avivamento, identidade em Cristo e compromisso com o chamado.",
         photo: photoDenio,
         instagram: "https://www.instagram.com/deniolarajr/",
         instagramLabel: "@deniolarajr",
@@ -47,7 +47,7 @@ const allSpeakers: SpeakerCardData[] = [
         role: "Pastor",
         shortDescription: "Pregador e líder evangélico com forte presença no meio cristão brasileiro.",
         fullDescription:
-            "Pastor Ribinha é um pregador e líder evangélico envolvido no ministério pastoral e evangelístico, especialmente conhecido por suas ministrações em conferências, cultos e serviços de adoração, com ênfase na caminhada cristã prática e no relacionamento com Jesus. Ele tem forte presença no meio cristão e atua promovendo crescimento espiritual e ensino bíblico.",
+            "Pastor Ribinha é um líder cristão apaixonado por ver vidas transformadas pelo evangelho de Jesus. Ele tem dedicado sua vida ao ministério, pregando com autenticidade e inspirando jovens e famílias a caminhar com fé e propósito. Com forte compromisso com a Palavra e experiência em ministérios de fé e adoração, o Pastor Ribamar é reconhecido por sua entrega em eventos, cultos e encontros que impactam corações para Deus.",
         photo: photoRibinha,
         instagram: "https://www.instagram.com/pastorribinha/",
         instagramLabel: "@pastorribinha",
@@ -59,7 +59,7 @@ const allSpeakers: SpeakerCardData[] = [
         role: "Pastor & Escritor",
         shortDescription: "Líder religioso, autor e pastor na Igreja Batista do Angelim em São Luís.",
         fullDescription:
-            "Pastor Rodrigo Arrais é líder religioso, autor e pastor na Igreja Batista do Angelim em São Luís (Maranhão). Ele é também advogado e escritor, com atuação pastoral voltada a missões, evangelismo, discipulado e projetos sociais dentro e fora do Brasil. Sua caminhada conjuga serviço espiritual com compromisso comunitário.",
+            "Pastor Rodrigo Arrais é um líder cristão, advogado e escritor que tem feito a diferença unindo fé, ação social e evangelismo. Como pastor na Igreja Batista do Angelim em São Luís, ele coordena projetos de missões, inspira jovens e comunidades a viverem com propósito e compartilha a Palavra com um coração apaixonado por Jesus. Rodrigo também já atuou à frente de iniciativas que ligam a fé à transformação da sociedade, mostrando que servir faz parte do chamado cristão.",
         photo: photoRodrigo,
         instagram: "https://www.instagram.com/rodrigoarrais/",
         instagramLabel: "@rodrigoarrais",
