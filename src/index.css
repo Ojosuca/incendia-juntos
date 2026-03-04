@@ -350,3 +350,8 @@ All colors MUST be HSL.
     }
   }
 }
+
+input {
+  color: black;
+  background-color: white;
+}

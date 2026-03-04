@@ -73,27 +73,16 @@
     width: 100%;
 }
 
-.speakers-carousel__content {
-    /* Override shadcn defaults for our gap */
-}
+
 
 .speakers-carousel__item {
     flex: 0 0 33.333%;
     min-width: 0;
     padding: 0 0.75rem;
-    transition: opacity 0.4s ease, transform 0.4s ease, filter 0.4s ease;
-}
-
-.speakers-carousel__item--active {
-    opacity: 1;
-    transform: scale(1);
-    filter: blur(0);
-}
-
-.speakers-carousel__item--inactive {
-    opacity: 0.5;
-    transform: scale(0.92);
-    filter: blur(1.5px);
+    /* NO CSS transition on transform/opacity — JS tweening handles this */
+    will-change: transform, opacity, filter;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
 }
 
 /* --- Navegação --- */
@@ -598,6 +587,7 @@
     }
 }
 
+
 @media (max-width: 640px) {
     .speakers-section {
         padding: 4rem 0 3rem;
@@ -614,12 +604,6 @@
     .speakers-carousel__item {
         flex: 0 0 85%;
         padding: 0 0.5rem;
-    }
-
-    .speakers-carousel__item--inactive {
-        opacity: 0.35;
-        transform: scale(0.88);
-        filter: blur(2px);
     }
 
     /* Always show overlay */

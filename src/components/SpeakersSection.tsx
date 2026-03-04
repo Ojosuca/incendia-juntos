@@ -2,8 +2,8 @@
  * SpeakersSection Component
  *
  * Carrossel interativo usando Embla (shadcn Carousel).
- * 6 cards (3 normais + 3 misteriosos), loop infinito.
- * Leve e fluido — zero GSAP no carrossel, somente CSS transitions.
+ * 6 cards revelados, loop infinito.
+ * JS-driven tweening — zero CSS transitions no carrossel para evitar glitches.
  */
 
 import { useRef, useLayoutEffect, useState, useCallback, useEffect } from "react";
@@ -25,6 +25,9 @@ import "./SpeakersSection.css";
 import photoDenio from "@/assets/PreleitorIncendsDenio.webp";
 import photoRibinha from "@/assets/PreleitorIncendsRibinha.webp";
 import photoRodrigo from "@/assets/PreleitorIncendsRodrigo.webp";
+import photoLucas from "@/assets/PreleitorIncendsLucas.webp";
+import photoDavi from "@/assets/DaviFernades.webp";
+import photoGiovana from "@/assets/Giovana.webp";
 
 /** Array com os 6 cards */
 const allSpeakers: SpeakerCardData[] = [
@@ -65,22 +68,40 @@ const allSpeakers: SpeakerCardData[] = [
         instagramLabel: "@rodrigoarrais",
     },
     {
-        id: "mystery1",
-        type: "mystery",
-        frontMessage: "???",
-        backHint: "Dica: Não é o pastor Lucas",
+        id: "lucas",
+        type: "normal",
+        name: "Lucas Tertulino",
+        role: "Pastor",
+        shortDescription: "Pregador apaixonado por despertar uma geração para o fogo de Deus.",
+        fullDescription:
+            "O Pr. Lucas Tertulino é pastor cristocêntrico, dedicado ao ensino fiel das Escrituras e à formação espiritual da nova geração. Casado e pai de duas meninas, vive seu chamado ministerial também através da família, refletindo valores do Reino no dia a dia. Ele é líder do Ministério Incendiados, ministério de adolescentes da Igreja Batista do Angelim, marcado por uma geração apaixonada por Jesus, comprometida com identidade, santidade e propósito.",
+        photo: photoLucas,
+        instagram: "https://www.instagram.com/lucastertulino/",
+        instagramLabel: "@lucastertulino",
     },
     {
-        id: "mystery2",
-        type: "mystery",
-        frontMessage: "???",
-        backHint: "Dica: O pastor não deixou eu dar spoiler",
+        id: "davi",
+        type: "normal",
+        name: "Davi Silva",
+        role: "Ministro de Louvor",
+        shortDescription: "Ministro do evangelho dedicado a transformar vidas pelo poder da Palavra.",
+        fullDescription:
+            "Davi Silva é ministro de louvor, cantor e compositor, conhecido por conduzir a Igreja a momentos profundos de adoração e intimidade com Deus. Seu ministério é marcado por canções cristocêntricas e uma forte ênfase na presença do Espírito Santo.",
+        photo: photoDavi,
+        instagram: "https://www.instagram.com/davisilvaefamilia/",
+        instagramLabel: "@davisilvaefamilia",
     },
     {
-        id: "mystery3",
-        type: "mystery",
-        frontMessage: "???",
-        backHint: "Dica: Ainda não tá podendo falar",
+        id: "giovana",
+        type: "normal",
+        name: "Giovana Chartres",
+        role: "Preletora",
+        shortDescription: "Ministra apaixonada por despertar jovens para o propósito de Deus.",
+        fullDescription:
+            "Giovana Chartres é criadora de conteúdo cristão e ministra que tem impactado milhares de pessoas por meio de mensagens de fé, identidade e propósito em Cristo. Sua comunicação leve e profunda tem alcançado principalmente jovens e mulheres, fortalecendo vidas através da Palavra. Nesta conferência, teremos a alegria de recebê-la pela primeira vez no Nordeste, em um momento que promete marcar nossa geração com fé, esperança e transformação.",
+        photo: photoGiovana,
+        instagram: "https://www.instagram.com/giovanachartres/",
+        instagramLabel: "@giovanachartres",
     },
 ];
 
@@ -114,6 +135,125 @@ const ChevronRight = () => (
     </svg>
 );
 
+/* ======== Tweening constants ======== */
+const TWEEN_SCALE_MIN = 0.88;
+const TWEEN_SCALE_MAX = 1;
+const TWEEN_OPACITY_MIN = 0.35;
+const TWEEN_OPACITY_MAX = 1;
+const TWEEN_BLUR_MAX = 2; // px
+
+/**
+ * Number in range helper — clamps value between 0 and 1.
+ */
+const numberInRange = (num: number, min: number, max: number): number =>
+    Math.min(Math.max(num, min), max);
+
+/**
+ * Hook that applies continuous tween styles (scale, opacity, blur)
+ * directly to slide DOM nodes on every Embla scroll tick.
+ * This avoids CSS transitions that conflict with Embla's loop repositioning.
+ */
+const useTweenStyles = (api: CarouselApi | undefined) => {
+    const tweenNodes = useRef<HTMLElement[]>([]);
+
+    const setTweenNodes = useCallback(() => {
+        if (!api) return;
+        tweenNodes.current = api.slideNodes();
+    }, [api]);
+
+    const tweenStyles = useCallback(() => {
+        if (!api) return;
+
+        const engine = api.internalEngine();
+        const scrollProgress = api.scrollProgress();
+        const slidesInView = api.slidesInView();
+
+        api.scrollSnapList().forEach((snapPosition, snapIndex) => {
+            let diffToTarget = snapPosition - scrollProgress;
+
+            // Handle loop wrapping — find the shortest distance
+            const slidesInSnap = engine.slideRegistry[snapIndex];
+            if (!slidesInSnap) return;
+
+            slidesInSnap.forEach((slideIndex) => {
+                if (engine.options.loop) {
+                    engine.slideLooper.loopPoints.forEach((loopItem) => {
+                        const target = loopItem.target();
+                        if (slideIndex === loopItem.index && target !== 0) {
+                            const sign = Math.sign(target);
+                            if (sign === -1) {
+                                diffToTarget = snapPosition - (1 + scrollProgress);
+                            }
+                            if (sign === 1) {
+                                diffToTarget = snapPosition + (1 - scrollProgress);
+                            }
+                        }
+                    });
+                }
+
+                // Calculate distance factor (0 = centered, 1 = far away)
+                const distance = Math.abs(diffToTarget);
+                const tweenFactor = 1 - numberInRange(distance * 2, 0, 1);
+
+                // Calculate tweened values
+                const scale = numberInRange(
+                    TWEEN_SCALE_MIN + tweenFactor * (TWEEN_SCALE_MAX - TWEEN_SCALE_MIN),
+                    TWEEN_SCALE_MIN,
+                    TWEEN_SCALE_MAX
+                );
+                const opacity = numberInRange(
+                    TWEEN_OPACITY_MIN + tweenFactor * (TWEEN_OPACITY_MAX - TWEEN_OPACITY_MIN),
+                    TWEEN_OPACITY_MIN,
+                    TWEEN_OPACITY_MAX
+                );
+                const blur = numberInRange(
+                    TWEEN_BLUR_MAX * (1 - tweenFactor),
+                    0,
+                    TWEEN_BLUR_MAX
+                );
+
+                const node = tweenNodes.current[slideIndex];
+                if (!node) return;
+
+                // Only apply styles to slides that are (or were recently) in view
+                // to avoid touching offscreen elements
+                if (slidesInView.indexOf(slideIndex) !== -1 || tweenFactor > 0.01) {
+                    node.style.transform = `scale(${scale})`;
+                    node.style.opacity = `${opacity}`;
+                    node.style.filter = blur > 0.05 ? `blur(${blur}px)` : "none";
+                }
+            });
+        });
+    }, [api]);
+
+    useEffect(() => {
+        if (!api) return;
+
+        setTweenNodes();
+        tweenStyles();
+
+        api.on("reInit", setTweenNodes);
+        api.on("reInit", tweenStyles);
+        api.on("scroll", tweenStyles);
+        api.on("slideFocus", tweenStyles);
+
+        return () => {
+            api.off("reInit", setTweenNodes);
+            api.off("reInit", tweenStyles);
+            api.off("scroll", tweenStyles);
+            api.off("slideFocus", tweenStyles);
+        };
+    }, [api, setTweenNodes, tweenStyles]);
+};
+
+const SLIDE_COUNT = allSpeakers.length; // 6 real speakers
+
+/**
+ * Doubled slides for seamless infinite looping.
+ * Embla needs enough off-screen content to clone for smooth wrap-around.
+ */
+const duplicatedSpeakers = [...allSpeakers, ...allSpeakers];
+
 const SpeakersSection = () => {
     const sectionRef = useRef<HTMLElement>(null);
     const titleRef = useRef<HTMLHeadingElement>(null);
@@ -123,12 +263,15 @@ const SpeakersSection = () => {
     const [api, setApi] = useState<CarouselApi>();
     const [current, setCurrent] = useState(0);
 
-    /* Atualizar índice ao mudar slide */
+    /* JS-driven tweening for smooth scale/opacity/blur */
+    useTweenStyles(api);
+
+    /* Atualizar índice ao mudar slide (para dots — mapeado aos 6 reais) */
     useEffect(() => {
         if (!api) return;
 
         const onSelect = () => {
-            setCurrent(api.selectedScrollSnap());
+            setCurrent(api.selectedScrollSnap() % SLIDE_COUNT);
         };
 
         onSelect();
@@ -180,29 +323,27 @@ const SpeakersSection = () => {
                         loop: true,
                         skipSnaps: false,
                         dragFree: false,
+                        containScroll: false,
                     }}
                     setApi={setApi}
                     className="speakers-carousel"
                 >
                     <CarouselContent className="speakers-carousel__content">
-                        {allSpeakers.map((speaker, idx) => (
+                        {duplicatedSpeakers.map((speaker, idx) => (
                             <CarouselItem
-                                key={speaker.id}
-                                className={`speakers-carousel__item ${idx === current
-                                    ? "speakers-carousel__item--active"
-                                    : "speakers-carousel__item--inactive"
-                                    }`}
+                                key={`${speaker.id}-${idx}`}
+                                className="speakers-carousel__item"
                             >
                                 <SpeakerCard
                                     data={speaker}
-                                    isFocused={idx === current}
+                                    isFocused={(idx % SLIDE_COUNT) === current}
                                 />
                             </CarouselItem>
                         ))}
                     </CarouselContent>
                 </Carousel>
 
-                {/* Navegação abaixo do carrossel */}
+                {/* Navegação abaixo do carrossel — 6 dots reais */}
                 <div className="speakers-carousel__nav">
                     <button
                         className="speakers-carousel__arrow"
@@ -238,3 +379,5 @@ const SpeakersSection = () => {
 };
 
 export default SpeakersSection;
+
+
