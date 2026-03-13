@@ -4,6 +4,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import ScrollToTop from "./components/ScrollToTop";
 
 // Code splitting: lazy load pages for better performance
 const Index = lazy(() => import("./pages/Index"));
@@ -13,6 +14,7 @@ const WorshipPage = lazy(() => import("./pages/WorshipPage"));
 const MinistriesPage = lazy(() => import("./pages/MinistriesPage"));
 const GalleryPage = lazy(() => import("./pages/GalleryPage"));
 const ContactPage = lazy(() => import("./pages/ContactPage"));
+const PatrocinadoresPage = lazy(() => import("./pages/PatrocinadoresPage"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 // Loading fallback component
@@ -33,6 +35,7 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
+        <ScrollToTop />
         <Suspense fallback={<PageLoader />}>
           <Routes>
             <Route path="/" element={<Index />} />
@@ -42,6 +45,7 @@ const App = () => (
             <Route path="/ministerios" element={<MinistriesPage />} />
             <Route path="/galeria" element={<GalleryPage />} />
             <Route path="/contato" element={<ContactPage />} />
+            <Route path="/patrocinadores" element={<PatrocinadoresPage />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

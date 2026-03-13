@@ -11,6 +11,7 @@ const navItems = [
   { name: "Louvor", href: "/louvor" },
   { name: "Galeria", href: "/galeria" },
   { name: "Ministérios", href: "/ministerios" },
+  { name: "Patrocinadores", href: "/patrocinadores" },
   { name: "Contato", href: "/contato" },
 ];
 
@@ -42,8 +43,8 @@ const Navigation = () => {
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${isScrolled
-            ? "bg-background/98 shadow-lg"
-            : "bg-transparent"
+          ? "bg-background/98 shadow-lg"
+          : "bg-transparent"
           }`}
       >
         <nav className="container mx-auto px-4 py-3 md:py-4 flex items-center justify-between">

@@ -4,6 +4,7 @@ import LoadingScreen from "@/components/LoadingScreen";
 import Navigation from "@/components/Navigation";
 import PortalHero from "@/components/PortalHero";
 import ConferenceSection from "@/components/ConferenceSection";
+import SponsorsTicker from "@/components/SponsorsTicker";
 import HomeScrollSections from "@/components/HomeScrollSections";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
@@ -120,6 +121,9 @@ const Index = () => {
 
         {/* Conference Section */}
         <ConferenceSection />
+
+        {/* Bronze Sponsors Ticker */}
+        <SponsorsTicker />
 
         {/* Home Scroll Sections - Mission, Community, CTA */}
         <HomeScrollSections />
