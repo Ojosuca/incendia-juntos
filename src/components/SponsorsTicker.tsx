@@ -84,7 +84,7 @@ const SponsorsTicker = ({ onlyBronze = false, hideButton = false }: SponsorsTick
             <div className="container mx-auto px-4 mb-10">
                 <p className="text-primary font-sans font-semibold text-sm uppercase tracking-wider text-center flex items-center justify-center gap-2">
                     <Flame className="w-4 h-4 text-primary" />
-                    Apoiadores da Conferência
+                    Nossos Apoiadores
                     <Flame className="w-4 h-4 text-primary" />
                 </p>
             </div>

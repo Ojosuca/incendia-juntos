@@ -3,9 +3,7 @@ import { useNavigate } from "react-router-dom";
 import LoadingScreen from "@/components/LoadingScreen";
 import Navigation from "@/components/Navigation";
 import PortalHero from "@/components/PortalHero";
-import ConferenceSection from "@/components/ConferenceSection";
 import SponsorsTicker from "@/components/SponsorsTicker";
-import HomeScrollSections from "@/components/HomeScrollSections";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import {
@@ -119,14 +117,8 @@ const Index = () => {
         {/* Portal Hero - TV retrô recriada com CSS */}
         <PortalHero />
 
-        {/* Conference Section */}
-        <ConferenceSection />
-
-        {/* Bronze Sponsors Ticker */}
+        {/* Sponsors Ticker */}
         <SponsorsTicker />
-
-        {/* Home Scroll Sections - Mission, Community, CTA */}
-        <HomeScrollSections />
 
         {/* Sections Grid */}
         <section className="py-24 md:py-32 bg-background">

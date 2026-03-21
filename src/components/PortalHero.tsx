@@ -1,31 +1,30 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, ChevronDown } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
-import heroBg from "@/assets/CONF-INCENDS-26.webp";
-import mobileHeroBg from "@/assets/ConfIncendsmobile.jpg.webp";
+import heroBg from "@/assets/audicaoincendsweb1.webp";
+import mobileHeroBg from "@/assets/audicaoincendsmobile1.webp";
 
 interface PortalHeroProps {
   className?: string;
 }
 
+const AUDITION_FORM_URL =
+  "https://docs.google.com/forms/d/e/1FAIpQLSfqCZBhTViTOHyIgHqLbwOh9zrVIhfo9uhI-z5v-9BNaO2ANw/viewform";
+
 const PortalHero = ({ className }: PortalHeroProps) => {
   const [scrollProgress, setScrollProgress] = useState(0);
   const sectionRef = useRef<HTMLElement>(null);
 
-  // Unique scroll effect: reveal/fade based on scroll
   useEffect(() => {
     let rafId: number;
-
     const handleScroll = () => {
       rafId = requestAnimationFrame(() => {
         const scrollY = window.scrollY;
         const windowHeight = window.innerHeight;
-        // Calculate scroll progress (0 to 1) within hero section
         const progress = Math.min(scrollY / (windowHeight * 0.7), 1);
         setScrollProgress(progress);
       });
     };
-
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => {
       window.removeEventListener("scroll", handleScroll);
@@ -36,84 +35,79 @@ const PortalHero = ({ className }: PortalHeroProps) => {
   return (
     <section
       ref={sectionRef}
-      className={`relative w-full h-screen overflow-hidden ${className || ""}`}
+      className={`relative w-full min-h-screen flex flex-col items-center justify-start md:justify-center bg-background overflow-hidden ${className || ""}`}
+      style={{ paddingTop: "clamp(4.5rem, 8vh, 7rem)" }}
     >
-      {/* Background Image (Desktop/Tablet) */}
+      {/* Ambient glow behind the card */}
       <div
-        className="absolute inset-0 w-full h-full hero-reveal will-change-transform hidden md:block"
-        style={{
-          backgroundImage: `url(${heroBg})`,
-          backgroundSize: "cover",
-          backgroundRepeat: "no-repeat",
-          backgroundPosition: "center center",
-          transform: `scale(${1 + scrollProgress * 0.1})`,
-          opacity: 1 - scrollProgress * 0.3,
-        }}
+        className="absolute inset-0 pointer-events-none"
+        style={{ opacity: 1 - scrollProgress * 0.5 }}
       >
-        <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_40%,rgba(0,0,0,0.4)_100%)]" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[70%] bg-primary/8 rounded-full blur-[120px]" />
+        <div className="absolute top-1/3 right-1/4 w-64 h-64 bg-orange-500/10 rounded-full blur-[80px]" />
       </div>
 
-      {/* Background Image (Mobile) */}
+      {/* Banner Card Container */}
       <div
-        className="absolute inset-0 w-full h-full hero-reveal will-change-transform block md:hidden"
+        className="relative z-10 w-full md:max-w-fit max-w-5xl mx-auto px-4 md:px-8"
         style={{
-          backgroundImage: `url(${mobileHeroBg})`,
-          backgroundSize: "cover",
-          backgroundRepeat: "no-repeat",
-          backgroundPosition: "center center",
-          transform: `scale(${1 + scrollProgress * 0.1})`,
-          opacity: 1 - scrollProgress * 0.3,
+          transform: `translateY(${scrollProgress * -40}px) scale(${1 - scrollProgress * 0.05})`,
+          opacity: 1 - scrollProgress * 0.4,
         }}
       >
-        <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_40%,rgba(0,0,0,0.4)_100%)]" />
+        <div className="relative rounded-2xl md:rounded-3xl overflow-hidden shadow-2xl border border-white/10 group">
+          {/* Desktop Banner */}
+          <img
+            src={heroBg}
+            alt="Audições Banda Incendiados — Instrumentistas e Cantores"
+            className="hidden md:block w-auto max-h-[65vh] object-cover"
+            loading="eager"
+          />
+          {/* Mobile Banner */}
+          <img
+            src={mobileHeroBg}
+            alt="Audições Banda Incendiados — Instrumentistas e Cantores"
+            className="block md:hidden w-full h-auto object-cover"
+            loading="eager"
+          />
+
+          {/* Subtle inner vignette for depth */}
+          <div className="absolute inset-0 rounded-2xl md:rounded-3xl ring-1 ring-inset ring-white/10 pointer-events-none" />
+
+          {/* Hover glow effect */}
+          <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-t from-primary/10 via-transparent to-transparent pointer-events-none" />
+        </div>
       </div>
 
-      {/* Content Container - Properly centered */}
+      {/* CTA below the card */}
       <div
-        className="relative z-10 w-full h-full flex flex-col items-center justify-end px-4"
+        className="relative z-10 mt-4 md:mt-10 flex flex-col items-center gap-2 md:gap-4"
         style={{
-          paddingBottom: "clamp(6rem, 15vh, 10rem)",
+          opacity: 1 - scrollProgress * 1.5,
+          transform: `translateY(${scrollProgress * -20}px)`,
         }}
       >
-        {/* Tagline */}
-        <p
-          className="text-white/90 text-sm md:text-base font-sans uppercase tracking-[0.3em] mb-4 hero-text-reveal"
-          style={{
-            opacity: 1 - scrollProgress * 2,
-            transform: `translateY(${scrollProgress * -20}px)`,
-          }}
-        >
-          Conferência Incends 2026
+        <p className="text-muted-foreground text-xs md:text-base font-sans uppercase tracking-[0.15em] md:tracking-[0.25em] text-center hero-text-reveal">
+          Inscrições até 01/04<span className="hidden md:inline"> · </span><br className="md:hidden" />Audições 07 de Abril
         </p>
 
-        {/* CTA Button */}
         <Button
           size="lg"
-          className="bg-gradient-fire hover:opacity-90 text-white font-sans font-bold text-base md:text-lg px-10 py-7 rounded-full cta-glow-pulse transform hover:scale-105 transition-transform duration-200 hero-cta-reveal"
-          style={{
-            opacity: 1 - scrollProgress * 1.5,
-            transform: `translateY(${scrollProgress * -30}px) scale(${1 - scrollProgress * 0.1})`,
-          }}
-          onClick={() => {
-            window.open("https://www.sympla.com.br/evento/conf-incends-26/3242784?utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQMMjU2MjgxMDQwNTU4AAGnzIhNIBSzK2ioFY4-mdY9ArpLVHAzNCKEogUOtCuLhRdE-R5fJgXS26oCXWk_aem_Fnv9_oyX4DAPwiPDSSJuKw&referrer=l.instagram.com&referrer=l.instagram.com", "_blank");
-          }}
+          className="bg-gradient-fire hover:opacity-90 text-white font-sans font-bold text-sm md:text-lg px-8 py-5 md:px-10 md:py-7 rounded-full cta-glow-pulse transform hover:scale-105 transition-transform duration-200 hero-cta-reveal"
+          onClick={() => window.open(AUDITION_FORM_URL, "_blank")}
         >
-          INSCREVA-SE AQUI
+          INSCREVA-SE NA AUDIÇÃO
           <ArrowRight className="ml-3 w-5 h-5" />
         </Button>
       </div>
 
-      {/* Scroll Indicator - Fixed at bottom center */}
+      {/* Scroll Indicator */}
       <div
-        className="absolute bottom-8 left-0 right-0 flex justify-center pointer-events-none"
-        style={{
-          opacity: 1 - scrollProgress * 3,
-        }}
+        className="absolute bottom-4 md:bottom-8 left-0 right-0 flex justify-center pointer-events-none"
+        style={{ opacity: 1 - scrollProgress * 3 }}
       >
         <div className="flex flex-col items-center gap-1">
-          <ChevronDown className="w-6 h-6 text-white/50 animate-bounce" />
+          <ChevronDown className="w-6 h-6 text-muted-foreground/50 animate-bounce" />
         </div>
       </div>
     </section>
