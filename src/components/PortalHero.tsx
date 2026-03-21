@@ -83,8 +83,8 @@ const PortalHero = ({ className }: PortalHeroProps) => {
       <div
         className="relative z-10 mt-4 md:mt-10 flex flex-col items-center gap-2 md:gap-4"
         style={{
-          opacity: 1 - scrollProgress * 1.5,
-          transform: `translateY(${scrollProgress * -20}px)`,
+          opacity: typeof window !== "undefined" && window.innerWidth >= 768 ? 1 - scrollProgress * 1.5 : 1,
+          transform: typeof window !== "undefined" && window.innerWidth >= 768 ? `translateY(${scrollProgress * -20}px)` : "none",
         }}
       >
         <p className="text-muted-foreground text-xs md:text-base font-sans uppercase tracking-[0.15em] md:tracking-[0.25em] text-center hero-text-reveal">
