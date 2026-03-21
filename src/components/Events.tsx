@@ -7,7 +7,7 @@ import { Button } from "./ui/button";
 
 // Importe as imagens dos banners (ajuste os caminhos conforme necessário)
 import cultoBanner from "../assets/img-9999.webp";
-import conferenciaBanner from "../assets/CONF-INCENDS-26.webp";
+import audicoesBanner from "../assets/audicaoincendsweb1.webp";
 import acampamentoBanner from "../assets/EMBREVEON.webp";
 
 const Events = () => {
@@ -109,13 +109,13 @@ END:VCALENDAR
       hasDefinedSchedule: true,
     },
     {
-      title: "Conferência Incendiados",
-      date: "12-14 Mar",
-      time: "19h30",
-      location: "Auditório Aprisquinho",
-      description: "Três dias intensos de busca, adoração e transformação.",
-      image: conferenciaBanner,
-      hasDefinedSchedule: true,
+      title: "Audições Banda Incendiados",
+      date: "07 Abr",
+      time: "A Definir",
+      location: "A Definir",
+      description: "Audições para instrumentistas e cantores. Inscrições até 01/04.",
+      image: audicoesBanner,
+      hasDefinedSchedule: false,
     },
     {
       title: "Acampamento Incendiados",
