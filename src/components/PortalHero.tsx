@@ -1,15 +1,14 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, ChevronDown } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
-import heroBg from "@/assets/audicaoincendsweb1.webp";
-import mobileHeroBg from "@/assets/audicaoincendsmobile1.webp";
+import heroBg from "@/assets/acamp web.webp";
+import mobileHeroBg from "@/assets/acamp mobile.webp";
 
 interface PortalHeroProps {
   className?: string;
 }
 
-const AUDITION_FORM_URL =
-  "https://docs.google.com/forms/d/e/1FAIpQLSfqCZBhTViTOHyIgHqLbwOh9zrVIhfo9uhI-z5v-9BNaO2ANw/viewform";
+const WHATSAPP_URL = "https://wa.me/5586999205884";
 
 const PortalHero = ({ className }: PortalHeroProps) => {
   const [scrollProgress, setScrollProgress] = useState(0);
@@ -35,8 +34,8 @@ const PortalHero = ({ className }: PortalHeroProps) => {
   return (
     <section
       ref={sectionRef}
-      className={`relative w-full min-h-screen flex flex-col items-center justify-start md:justify-center bg-background overflow-hidden ${className || ""}`}
-      style={{ paddingTop: "clamp(4.5rem, 8vh, 7rem)" }}
+      className={`relative w-full min-h-screen flex flex-col items-center justify-center bg-background overflow-hidden ${className || ""}`}
+      style={{ paddingTop: "clamp(5.5rem, 12vh, 7rem)" }}
     >
       {/* Ambient glow behind the card */}
       <div
@@ -81,22 +80,22 @@ const PortalHero = ({ className }: PortalHeroProps) => {
 
       {/* CTA below the card */}
       <div
-        className="relative z-10 mt-4 md:mt-10 flex flex-col items-center gap-2 md:gap-4"
+        className="relative z-10 mt-8 md:mt-10 flex flex-col items-center gap-2 md:gap-4"
         style={{
           opacity: typeof window !== "undefined" && window.innerWidth >= 768 ? 1 - scrollProgress * 1.5 : 1,
           transform: typeof window !== "undefined" && window.innerWidth >= 768 ? `translateY(${scrollProgress * -20}px)` : "none",
         }}
       >
         <p className="text-muted-foreground text-xs md:text-base font-sans uppercase tracking-[0.15em] md:tracking-[0.25em] text-center hero-text-reveal">
-          Inscrições até 01/04<span className="hidden md:inline"> · </span><br className="md:hidden" />Audições 07 de Abril
+          Inscrições Abertas<span className="hidden md:inline"> · </span><br className="md:hidden" />Vagas Limitadas
         </p>
 
         <Button
           size="lg"
           className="bg-gradient-fire hover:opacity-90 text-white font-sans font-bold text-sm md:text-lg px-8 py-5 md:px-10 md:py-7 rounded-full cta-glow-pulse transform hover:scale-105 transition-transform duration-200 hero-cta-reveal"
-          onClick={() => window.open(AUDITION_FORM_URL, "_blank")}
+          onClick={() => window.open(WHATSAPP_URL, "_blank")}
         >
-          INSCREVA-SE NA AUDIÇÃO
+          INSCREVA-SE AGORA
           <ArrowRight className="ml-3 w-5 h-5" />
         </Button>
       </div>
